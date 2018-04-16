@@ -36,7 +36,10 @@ TBA
 
 ## Dependencies
 
-TBA
+* MySQL==5.7
+* Django==2.0.2
+* Python==3.6
+* NodeJS==8.11.4
 
 
 
