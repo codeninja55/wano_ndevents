@@ -12,7 +12,7 @@
 ## Table of Contents
 
 * [Requirements](#Requirements)
-* [Getting Start](#Getting Started)
+* [Getting Start](#Getting-Started)
 * [Dependencies](#Dependencies)
 * [Documentation](#Documentation)
 * [Feedback](#Feedback)
