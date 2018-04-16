@@ -1,7 +1,7 @@
 # WANO Event Management
 
 | Info:         | This repo is a UOW CSIT214 coursework group assignment to build an event management web application. |
-| ------------- | ------------------------------------------------------------ |
+| ------------- | :----------------------------------------------------------- |
 | Repository:   | <https://github.com/codeninja55/wano_event_management>       |
 | Author:       | Andrew Che (dbac496@uowmail.edu.au)                          |
 | Maintainer:   | Andrew (<https://github.com/codeninja55>)                    |
