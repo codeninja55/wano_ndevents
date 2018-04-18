@@ -103,3 +103,5 @@ ENV/
 backend_django_api/\.idea/
 
 backend_django_api/NDEvents_api/migrations/
+
+*.sqlite3
