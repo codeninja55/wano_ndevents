@@ -2,44 +2,43 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/bootstrap-grid.min.css';
 import './css/bootstrap.min.css';
-import './js/bootstrap.min.js';
-import './jquery-3.2.1.js';
-import './materialize.js';
+//import './js/jquery-3.2.1.js';
+//import './js/bootstrap.min.js';
+//import './js/materialize.js';
 import './index.css';
-import App from './App';
 
 [
     {
     "event_id":1,
     "title": "event1",
     "description": "this is the first event",
-    "organisers_name": "Arvy",
-    "date_start":20-4-2018,
-    "date_end":20-4-2018,
-    "time_start": "3:00PM",
-    "time_end": "4:00PM",
-    "date_created":19-4-2018
+    "organisers_name": 1,
+    "date_start":"2018-04-20",
+    "date_end":"2018-04-20",
+    "time_end": "04:00:00",
+    "time_start": "03:00:00",
+    "date_created":"2018-04-19"
     },
     {
     "event_id":2,
     "title": "event2",
     "description": "this is the second event",
-    "organisers_name": "Arvy",
-    "date_start":22-4-2018,
-    "date_end":21-4-2018,
-    "time_start": "3:00PM",
-    "time_end": "4:00PM",
+    "organisers_name": 1,
+    "date_start":"2018-4-20",
+    "date_end":"2018-4-21",
+    "time_start": "03:00:00",
+    "time_end": "04:00:00",
     "date_created":19-4-2018
     },
     {
     "event_id":3,
     "title": "event3",
     "description": "this is the first event",
-    "organisers_name": "Arvy",
-    "date_start":20-4-2018,
-    "date_end":21-4-2018,
-    "time_start": "3:00PM",
-    "time_end": "4:00PM",
+    "organisers_name": 1,
+    "date_start":"2018-4-20",
+    "date_end":"2018-4-21",
+    "time_start": "03:00:00",
+    "time_end": "04:00:00",
     "date_created":19-4-2018
     },
 ]
@@ -63,11 +62,21 @@ class Header extends React.Component{
     }
 }
 
+class TabButton extends React.Component{
+    render(){
+        return(
+            <div>
+                hi
+            </div>
+        )
+    }
+}
+
 class TabContent extends React.Component{
     render(){
         return(
             <div>
-                
+                hi
             </div>
         );
     }
@@ -117,5 +126,7 @@ class App extends React.Component{
     }
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+ReactDOM.render(
+<App />, 
+document.getElementById('root')
+);
