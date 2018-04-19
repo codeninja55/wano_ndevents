@@ -1,3 +1,36 @@
-from django.shortcuts import render
+from django.http import Http404
+from rest_framework import generics
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
-# Create your views here.
+from .models import Event
+from .serializers import EventSerializer
+
+
+class EventListAPIView(generics.ListCreateAPIView):
+    """
+    This Event API endpoint will return a list of events that can also be created.
+    """
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+
+
+class EventDetailAPIView(APIView):
+    """
+    This Event API endpoint will return a single event from the event_id
+    """
+
+    def get_object(self, event_id):
+        try:
+            return Event.objects.get(event_id=event_id)
+        except Event.DoesNotExist:
+            return Http404
+
+    def get(self, request, event_id, format=None):
+        event = self.get_object(event_id=event_id)
+        serializer = EventSerializer(event)
+        return Response(serializer.data)
+
+
+class EventDetailUpdateAPIView(object):
+    pass
