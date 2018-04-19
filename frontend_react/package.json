@@ -3,9 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/icons": "^1.0.0-beta.42",
+    "ajv": "^6.4.0",
+    "material-ui": "^1.0.0-beta.42",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "prop-types": "latest",
+    "classnames": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -13,8 +18,8 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "description": "",
   "main": "index.js",
-  "author": "",
+  "author": "codeninja55, Xaorox",
   "license": "ISC"
 }
