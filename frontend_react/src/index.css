@@ -1,39 +1,5 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
-}
-
-.header{
-    padding-top: 15px;
-    padding-bottom:15px;
-    text-align: center;
-    font: 50px "Century Gothic", Futura, sans-serif;
-    font-weight: bold;
-    color: white;
-    background:red;
-}
-
-.header .search-container{
-  float: left;
-  padding: 6px 10px;
-  margin-top: 8px;
-  margin-right: 16px;
-  font-size: 17px;
-  border: none;
-  cursor: pointer;
-}
-
-.header .searchBar{
-    font-size: 25px;
-    width: 200px;
-}
-
-.header .searchButton{
-    font-size:25px
-}
-
-.sideNav{
-    width:30%;
-    height:300px;
+  font-family: Roboto, sans-serif;
 }
