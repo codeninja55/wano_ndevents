@@ -1,11 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './css/bootstrap-grid.min.css';
-import './css/bootstrap.min.css';
-//import './js/jquery-3.2.1.js';
-//import './js/bootstrap.min.js';
-//import './js/materialize.js';
 import './index.css';
+import { createMuiTheme, MuiThemeProvider } from 'material-ui/styles';
+import PersistentDrawer from './PersistentDrawerLeft';
+
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            light: '#ff7961',
+            main: '#f44336',
+            dark: '#ba000d',
+            contrastText: '#fff',
+        },
+        secondary: {
+            light: '#8eacbb',
+            main: '#607d8b',
+            dark: '#34515e',
+            contrastText: '#000',
+        },
+    },
+});
 
 let data = [
     {
@@ -20,7 +34,7 @@ let data = [
         "date_created":"2018-04-19"
     },
     {
-        "event_id":2,
+        "event_id": 2,
         "title": "event2",
         "description": "this is the second event",
         "organisers_name": 1,
@@ -28,10 +42,10 @@ let data = [
         "date_end":"2018-4-21",
         "time_start": "03:00:00",
         "time_end": "04:00:00",
-        "date_created":19-4-2018
+        "date_created": "2018-04-19"
     },
     {
-        "event_id":3,
+        "event_id": 3,
         "title": "event3",
         "description": "this is the first event",
         "organisers_name": 1,
@@ -39,79 +53,19 @@ let data = [
         "date_end":"2018-4-21",
         "time_start": "03:00:00",
         "time_end": "04:00:00",
-        "date_created":19-4-2018
+        "date_created": "2018-04-19"
     },
 ];
 
-
-//Changing the search bar into an image or icon might not work well
-class Header extends React.Component{
-    render(){
-        return(
-            <div className="header">
-                <div className="search-container">
-                    <form action="">
-                        <input className="searchBar" type="text" placeholder="Search. . ." name="search" />
-                        <button className="searchButton" type="submit">&nbsp;&nbsp;&nbsp;</button>
-                    </form>
-                </div>
-                NDev
-            </div>
-        );
-    }
-}
-
-class TabButton extends React.Component{
-    render(){
-        return(
-            <div>
-                hi
-            </div>
-        )
-    }
-}
-
-class TabContent extends React.Component{
-    render(){
-        return(
-            <div>
-                hi
-            </div>
-        );
-    }
-}
-
-class RightColumn extends React.Component {
-    render() {
-        return (
-            <aside className=""> TEST RIGHT</aside>
-        )
-    }
-}
-
-class LeftColumn extends React.Component {
-    render(){
-        return(
-            <aside>
-                Test LEFT
-            </aside>
-        );
-    }
-}
-
-class App extends React.Component{
-    render(){
-        return(
-            <div>
-                <Header />
-                <RightColumn />
-                <LeftColumn />
-            </div>
-        );
-    }
+function App() {
+    return (
+        <MuiThemeProvider theme={theme}>
+            <PersistentDrawer />
+        </MuiThemeProvider>
+    );
 }
 
 ReactDOM.render(
-<App />, 
-document.getElementById('root')
+    <App />,
+    document.querySelector('#app')
 );
