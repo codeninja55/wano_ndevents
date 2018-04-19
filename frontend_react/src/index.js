@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { createMuiTheme, MuiThemeProvider } from 'material-ui/styles';
 import PersistentDrawer from './PersistentDrawerLeft';
+import CenteredTabs from "./CenteredTabs";
+import FullWidthTabs from "./FullWidthTabs";
 
 const theme = createMuiTheme({
     palette: {
@@ -61,6 +63,8 @@ function App() {
     return (
         <MuiThemeProvider theme={theme}>
             <PersistentDrawer />
+            {/*<CenteredTabs />*/}
+            <FullWidthTabs />
         </MuiThemeProvider>
     );
 }

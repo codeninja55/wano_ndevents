@@ -1,23 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
+import {withStyles} from 'material-ui/styles';
 import classNames from 'classnames';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import List from 'material-ui/List';
-import { MenuItem } from 'material-ui/Menu';
 import Typography from 'material-ui/Typography';
-import TextField from 'material-ui/TextField';
 import Divider from 'material-ui/Divider';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
-const drawerWidth = 240;
+const drawerWidth = 300;
 
-const styles = theme => ({
+const styles = (theme) => ({
     root: {
         flexGrow: 1,
     },
@@ -110,12 +107,6 @@ class PersistentDrawer extends React.Component {
         this.setState({ open: false });
     };
 
-    handleChangeAnchor = event => {
-        this.setState({
-            anchor: event.target.value,
-        });
-    };
-
     render() {
         const { classes, theme } = this.props;
         const { anchor, open } = this.state;
@@ -179,7 +170,6 @@ class PersistentDrawer extends React.Component {
                             [classes[`contentShift-${anchor}`]]: open,
                         })}
                     >
-
                     </main>
                     {after}
                 </div>
