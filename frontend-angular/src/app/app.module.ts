@@ -9,6 +9,7 @@ import { MaterialModule } from './material-module';
 import {NdevNavbarComponent} from './ndev-navbar/ndev-navbar.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {EventService} from './event.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import {HttpClientModule} from '@angular/common/http';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ EventService ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
