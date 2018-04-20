@@ -1,4 +1,4 @@
-<app-ndev-navbar (navToggle)="sidenav.toggle()" (bookingsToggle)="bookingsSidenav.toggle()"></app-ndev-navbar>
+<app-ndev-navbar (navToggle)="sidenav.toggle()" (bookingsToggle)="bookingsSidenav.close()"></app-ndev-navbar>
 
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav class="sidenav white red-text pt-2" mode="side" [opened]="true"
