@@ -18,3 +18,11 @@
   width: auto;
   z-index: 3;
 }
+
+.bookingsSidenav {
+  display: flex;
+  align-items: start;
+  justify-content: left;
+  width: 400px;
+  z-index: 3;
+}

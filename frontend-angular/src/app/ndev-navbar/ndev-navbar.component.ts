@@ -15,6 +15,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 }*/
 export class NdevNavbarComponent implements OnInit {
   @Output() navToggle = new EventEmitter<boolean>();
+  @Output() bookingsToggle = new EventEmitter<boolean>();
 
   constructor() { }
 
@@ -22,5 +23,8 @@ export class NdevNavbarComponent implements OnInit {
 
   toggleSidenav() {
     this.navToggle.emit(true);
+  }
+  toggleBookings() {
+    this.bookingsToggle.emit(false);
   }
 }

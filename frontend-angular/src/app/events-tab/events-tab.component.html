@@ -1,6 +1,6 @@
 <mat-tab-group>
   <mat-tab label="Upcoming Events">
-    <ng-template mat-tab-label="">
+    <ng-template mat-tab-label>
       <i class="fas fa-calendar-alt fa-2x"></i> &nbsp; Current Events
     </ng-template>
 
@@ -21,6 +21,8 @@
         </button>
       </mat-list-item>
     </mat-nav-list>
+
+    <button mat-button class="mat-button mt-5 red white-text" (click)="toggleBookings()">Right Open</button>
   </mat-tab>
 
   <mat-tab label="Past Events">

@@ -13,6 +13,7 @@ import {EventService} from './event.service';
 import { EventsTabComponent } from './events-tab/events-tab.component';
 import { MatFabComponent } from './mat-fab/mat-fab.component';
 import { EventDetailComponent } from './event-detail/event-detail.component';
+import { BookingsTabComponent } from './bookings-tab/bookings-tab.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { EventDetailComponent } from './event-detail/event-detail.component';
     NdevNavbarComponent,
     EventsTabComponent,
     MatFabComponent,
-    EventDetailComponent
+    EventDetailComponent,
+    BookingsTabComponent
   ],
   imports: [
     BrowserModule,
