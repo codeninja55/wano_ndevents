@@ -20,14 +20,14 @@ class EventDetailAPIView(APIView):
     This Event API endpoint will return a single event from the event_id
     """
 
-    def get_object(self, event_id):
+    def get_object(self, pk):
         try:
-            return Event.objects.get(event_id=event_id)
+            return Event.objects.get(pk=pk)
         except Event.DoesNotExist:
             return Http404
 
-    def get(self, request, event_id):
-        event = self.get_object(event_id=event_id)
+    def get(self, request, pk):
+        event = self.get_object(pk=pk)
         serializer = EventSerializer(event)
         return Response(serializer.data)
 
