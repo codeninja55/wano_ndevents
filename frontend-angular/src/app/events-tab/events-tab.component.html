@@ -1,0 +1,22 @@
+<mat-tab-group>
+  <mat-tab label="Upcoming Events">
+    <ng-template mat-tab-label="">
+      <i class="fas fa-calendar-alt fa-2x"></i> &nbsp; Current Events
+    </ng-template>
+
+    <div class="m-1">
+      <ul>
+        <li *ngFor="let event of events">{{event.title}} - {{event.description}} ({{event.date_start}})</li>
+      </ul>
+    </div>
+
+  </mat-tab>
+
+  <mat-tab label="Past Events">
+    <ng-template mat-tab-label="">
+      <i class="fal fa-calendar-alt fa-2x"></i> &nbsp; Past Events
+    </ng-template>
+
+
+  </mat-tab>
+</mat-tab-group>
