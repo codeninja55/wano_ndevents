@@ -4,12 +4,23 @@
       <i class="fas fa-calendar-alt fa-2x"></i> &nbsp; Current Events
     </ng-template>
 
-    <div class="m-1">
-      <ul>
-        <li *ngFor="let event of events">{{event.title}} - {{event.description}} ({{event.date_start}})</li>
-      </ul>
-    </div>
-
+    <mat-nav-list class="mat-nav-list">
+      <mat-list-item *ngFor="let event of events" class="mt-2 mb-2">
+        <a matLine aria-disabled="false">
+          <span class="mat-title font-weight-bold p-0 m-0">{{event.title}}</span> &nbsp;
+          <br/><span class="mat-subheading-2">{{event.date_start}}</span>
+        </a>
+        <button mat-icon-button class="mat-button">
+            <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button class="mat-button" style="font-size: 24px">
+          <i class="far fa-rocket"></i>
+        </button>
+        <button mat-icon-button class="mat-button">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-nav-list>
   </mat-tab>
 
   <mat-tab label="Past Events">
