@@ -10,11 +10,15 @@ import {NdevNavbarComponent} from './ndev-navbar/ndev-navbar.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {EventService} from './event.service';
+import { EventsTabComponent } from './events-tab/events-tab.component';
+import { MatFabComponent } from './mat-fab/mat-fab.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NdevNavbarComponent
+    NdevNavbarComponent,
+    EventsTabComponent,
+    MatFabComponent
   ],
   imports: [
     BrowserModule,
