@@ -12,13 +12,15 @@ import {HttpClientModule} from '@angular/common/http';
 import {EventService} from './event.service';
 import { EventsTabComponent } from './events-tab/events-tab.component';
 import { MatFabComponent } from './mat-fab/mat-fab.component';
+import { EventDetailComponent } from './event-detail/event-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NdevNavbarComponent,
     EventsTabComponent,
-    MatFabComponent
+    MatFabComponent,
+    EventDetailComponent
   ],
   imports: [
     BrowserModule,
