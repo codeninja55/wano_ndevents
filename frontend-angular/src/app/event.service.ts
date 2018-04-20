@@ -15,4 +15,9 @@ export class EventService {
   getEvents() {
     return this.http.get('http://127.0.0.1:8000/api/event/');
   }
+
+  // Uses http.get() to retrieve one hero from a single API endpoint
+  getEvent(id: number) {
+    return this.http.get('http://127.0.0.1:8000/api/event/' + id + '/');
+  }
 }

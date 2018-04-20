@@ -9,7 +9,6 @@ export class BookingsTabComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }
