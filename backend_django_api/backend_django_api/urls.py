@@ -7,5 +7,5 @@ __author__ = 'codeninja55'
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^api/', include('NDEvents_api.urls'))
+    url(r'^api/', include('NDEvents_api.urls', namespace='api'))
 ]

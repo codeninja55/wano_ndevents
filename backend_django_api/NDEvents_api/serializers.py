@@ -1,11 +1,17 @@
 from rest_framework import serializers
 from .models import Event
+from django.contrib.auth.models import User
 
 
 __author__ = 'codeninja55'
 
 
 class EventSerializer(serializers.ModelSerializer):
+    organisers_name = serializers.PrimaryKeyRelatedField(source='username   ', queryset=User.objects.all())
+    time_start = serializers.TimeField(format='%H:%M')
+    time_end = serializers.TimeField(format='%H:%M')
+    self = serializers.HyperlinkedIdentityField(read_only=True, view_name='ndevents:event', lookup_field='pk')
+
     class Meta:
         model = Event
         fields = (
@@ -21,5 +27,6 @@ class EventSerializer(serializers.ModelSerializer):
             'time_start',
             'time_end',
             'launch_date',
-            'is_launched'
+            'is_launched',
+            'self'
         )
