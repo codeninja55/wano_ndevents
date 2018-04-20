@@ -1,7 +1,37 @@
-<div class="col-12 mt-3" *ngIf="event">
-  <!--<div class="row m-1 details">-->
-    <mat-form-field class="d-flex flex-fill w-100">
-      <input type="text" matInput class="d-flex justify-content-center w-100" placeholder="Event Title: ">
-    </mat-form-field>
-  <!--</div>-->
+<div class="offset-2 col-8 mt-4" *ngIf="event">
+  <mat-form-field class="w-100">
+    <input type="text" matInput class="d-flex flex-column w-100"
+           placeholder="Event Title" value="{{event.title}}" [readonly]="true">
+  </mat-form-field>
+  <mat-form-field class="w-100 mt-2">
+    <input type="text" matInput class="d-flex flex-column w-100"
+           placeholder="Location" value="{{event.venue}}" [readonly]="true">
+  </mat-form-field>
+  <table class="w-50" cellspacing="0">
+    <tr>
+      <td colspan="2">Start</td>
+      <td colspan="2">End</td>
+    </tr>
+    <tr>
+      <td><mat-form-field>
+        <input matInput [matDatepicker]="dateStartPicker" class="w-auto" placeholder=""
+               [readonly]="true" [disabled]="false" value="{{event.date_start}}">
+        <mat-datepicker-toggle matSuffix [for]="dateStartPicker"></mat-datepicker-toggle>
+        <mat-datepicker #dateStartPicker></mat-datepicker>
+      </mat-form-field></td>
+      <td><mat-form-field>
+        <input matInput class="w-auto" placeholder=""
+               [readonly]="true" value="{{event.time_start}}">
+      </mat-form-field></td>
+      <td><mat-form-field>
+        <input matInput [matDatepicker]="dateEndPicker" class="w-100" placeholder=""
+               [readonly]="true" [disabled]="false" value="{{event.date_end}}">
+        <mat-datepicker-toggle matSuffix [for]="dateEndPicker"></mat-datepicker-toggle>
+        <mat-datepicker #dateEndPicker></mat-datepicker>
+      </mat-form-field></td>
+      <td><mat-form-field>
+        <input matInput placeholder="" [readonly]="true" value="{{event.time_end}}">
+      </mat-form-field></td>
+    </tr>
+  </table>
 </div>

@@ -8,16 +8,18 @@ const httpOptions = {
 
 @Injectable()
 export class EventService {
+  private eventApi = 'http://localhost:8000/api/event/';
 
   constructor(private http: HttpClient) {}
 
   // Uses http.get() to load data from a single API endpoint
-  getEvents() {
-    return this.http.get('http://127.0.0.1:8000/api/event/');
+  getEvents(): Observable<Event> {
+    return this.http.get<Event[]>(this.eventApi);
   }
 
   // Uses http.get() to retrieve one hero from a single API endpoint
   getEvent(id: number) {
-    return this.http.get('http://127.0.0.1:8000/api/event/' + id + '/');
+    const url = '${this.eventApi}/${id}';
+    return this.http.get(url);
   }
 }
