@@ -1,6 +1,15 @@
 <app-ndev-navbar (navToggle)="sidenav.toggle()"></app-ndev-navbar>
 
-<h2>Events</h2>
-<ul>
-  <li *ngFor="let event of events">{{event.title}} - {{event.description}} ({{event.date_start}})</li>
-</ul>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav class="sidenav white red-text pt-2" mode="side" [opened]="true"
+               [fixedInViewport]="fixed" [fixedTopGap]="0" [fixedBottomGap]="0">
+
+    <app-events-tab></app-events-tab>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <!--<router-outlet></router-outlet>-->
+    <app-mat-fab></app-mat-fab>
+  </mat-sidenav-content>
+</mat-sidenav-container>
