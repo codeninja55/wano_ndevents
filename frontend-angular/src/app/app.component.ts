@@ -10,4 +10,11 @@ export class AppComponent implements OnInit {
   constructor() { }
 
   ngOnInit() { }
+
+  getBackgroundImage() {
+    return {
+      // 'background-image': 'url(\'../assets/img/AdobeStock_70724536.jpeg\')',
+      'background-color': '#000',
+    };
+  }
 }
