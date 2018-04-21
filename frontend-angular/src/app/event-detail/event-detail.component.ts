@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {EventService} from '../event.service';
 import {CEvent} from '../cEvent';
+import {ActivatedRoute} from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-event-detail',
@@ -44,14 +46,17 @@ export class EventDetailComponent implements OnInit {
     {value: '23:00', viewValue: '11:00 PM'}, {value: '23:30', viewValue: '11:30 PM'},
   ];
 
-  constructor(private _eventService: EventService) { }
+  constructor(private _eventService: EventService,
+              private _route: ActivatedRoute,
+              private _location: Location) { }
 
   ngOnInit() {
     this.getEvent();
   }
 
   getEvent() {
-    this._eventService.getEvent(3).subscribe(
+    const id = +this._route.snapshot.paramMap.get('id');
+    this._eventService.getEvent(id).subscribe(
       data => {
         this.eventJSON = data;
         this.event = CEvent.fromJSON(JSON.parse(JSON.stringify(data)));

@@ -1,10 +1,20 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
+import {EventsTabComponent} from './events-tab/events-tab.component';
+import {EventDetailComponent} from './event-detail/event-detail.component';
+
+const routes: Routes = [
+  { path: 'events', component: EventsTabComponent},
+  { path: 'event/:id', component: EventDetailComponent},
+  { path: '', redirectTo: '/', pathMatch: 'full'}
+];
 
 @NgModule({
   imports: [
-    CommonModule
+    RouterModule.forRoot(routes),
   ],
-  declarations: []
+  exports: [
+    RouterModule,
+  ]
 })
 export class AppRoutingModule { }

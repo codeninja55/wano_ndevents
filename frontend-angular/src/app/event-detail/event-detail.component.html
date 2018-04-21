@@ -33,9 +33,6 @@
         <input matInput class="w-100" placeholder="Time" [readonly]="true" value="{{time_end}}">
       </mat-form-field></td>
     </tr>
-    <tr>
-
-    </tr>
   </table>
 
   <table class="w-100" cellspacing="0">
@@ -55,6 +52,17 @@
     <textarea matInput class="d-flex flex-column w-100" placeholder="Description" matTextareaAutosize
               matAutosizeMinRows="4" matAutosizeMaxRows="10" value="{{event.description}}" [readonly]="true"></textarea>
   </mat-form-field>
+
+  <div *ngIf="event.is_launched; else notLaunched">
+    <mat-slide-toggle labelPosition="before" [checked]="true" color="primary" disabled>
+      <i class="fal fa-rocket fa-1x"></i>&nbsp;Launched
+    </mat-slide-toggle>
+  </div>
+  <ng-template #notLaunched>
+    <mat-slide-toggle class="notLaunched" labelPosition="before" [checked]="false" color="primary">
+      <i class="fal fa-rocket fa-1x"></i>&nbsp;Launch Event
+    </mat-slide-toggle>
+  </ng-template>
 </div>
 
 <!-- FOR VIEWING PURPOSES, DISPLAY THE TIME ONLY AS ABOVE. ELSE, FOR FORMS, USE MAT-SELECT -->
