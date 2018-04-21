@@ -1,0 +1,15 @@
+.app-mat-fab {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  position: absolute;
+  right: 5%;
+  bottom: 5%;
+}
+
+@media(min-width: 1024px) {
+  .app-mat-fab {
+    right: 2.5em;
+    bottom: 3em;
+  }
+}
