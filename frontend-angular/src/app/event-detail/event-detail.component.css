@@ -1,3 +1,16 @@
 table {
   table-layout: fixed;
 }
+
+/*mat-slide-toggle {
+  color: red;
+}*/
+
+/*
+md-slide-toggle.mat-primary:not(.mat-checked):not(.mat-disabled) .mat-slide-toggle-bar {
+  background-color: pink;
+}
+
+md-slide-toggle.mat-accent:not(.mat-checked):not(.mat-disabled) .mat-slide-toggle-bar {
+  background-color: yellow;
+}*/

@@ -11,7 +11,7 @@ export class EventsTabComponent implements OnInit {
   // events: Event[];
   public events;
 
-  constructor(private _eventService: EventService) { }
+  constructor( private _eventService: EventService ) { }
 
   ngOnInit() {
     this.getEvents();
