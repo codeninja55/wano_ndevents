@@ -7,10 +7,11 @@ __author__ = 'codeninja55'
 
 
 class EventSerializer(serializers.ModelSerializer):
-    organisers_name = serializers.PrimaryKeyRelatedField(source='username   ', queryset=User.objects.all())
+    organisers_name = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
     time_start = serializers.TimeField(format='%H:%M')
     time_end = serializers.TimeField(format='%H:%M')
-    self = serializers.HyperlinkedIdentityField(read_only=True, view_name='ndevents:event', lookup_field='pk')
+    self = serializers.HyperlinkedIdentityField(read_only=True, view_name='ndevents:event',
+                                                lookup_field='event_id')
 
     class Meta:
         model = Event
