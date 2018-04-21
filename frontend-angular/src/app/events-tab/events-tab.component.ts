@@ -9,7 +9,8 @@ import {Event} from '../event';
 })
 export class EventsTabComponent implements OnInit {
   @Output() bookingsToggle = new EventEmitter<boolean>();
-  events: Event[];
+  // events: Event[];
+  public events;
 
   constructor(private _eventService: EventService) { }
 
