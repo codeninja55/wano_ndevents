@@ -51,7 +51,11 @@ export class EventDetailComponent implements OnInit {
               private _location: Location) { }
 
   ngOnInit() {
-    this.getEvent();
+    // this.getEvent();
+    this._route.params.subscribe( (params) => {
+      const id = params['id'];
+        this.getEvent(id);
+    });
   }
 
   getEvent() {
