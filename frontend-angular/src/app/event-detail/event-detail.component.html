@@ -7,31 +7,62 @@
     <input type="text" matInput class="d-flex flex-column w-100"
            placeholder="Location" value="{{event.venue}}" [readonly]="true">
   </mat-form-field>
-  <table class="w-50" cellspacing="0">
+
+  <table class="w-100" cellspacing="0">
     <tr>
       <td colspan="2">Start</td>
       <td colspan="2">End</td>
     </tr>
     <tr>
-      <td><mat-form-field>
-        <input matInput [matDatepicker]="dateStartPicker" class="w-auto" placeholder=""
+      <td colspan="" width="75%"><mat-form-field class="w-100">
+        <input matInput [matDatepicker]="dateStartPicker" class="w-100" placeholder="Date" disabled
                [readonly]="true" [disabled]="false" value="{{event.date_start}}">
-        <mat-datepicker-toggle matSuffix [for]="dateStartPicker"></mat-datepicker-toggle>
+        <mat-datepicker-toggle matSuffix [for]="dateStartPicker" disabled></mat-datepicker-toggle>
         <mat-datepicker #dateStartPicker></mat-datepicker>
       </mat-form-field></td>
-      <td><mat-form-field>
-        <input matInput class="w-auto" placeholder=""
-               [readonly]="true" value="{{event.time_start}}">
+      <td colspan="" width="25%"><mat-form-field class="w-50">
+        <input matInput class="w-100" placeholder="Time" [readonly]="true" value="{{event.time_start}}">
+
+        <!-- FOR VIEWING PURPOSES, DISPLAY THE TIME ONLY AS ABOVE. ELSE, FOR FORMS, USE MAT-SELECT -->
+        <!--<mat-select class="w-100" placeholder="Time">-->
+          <!--<mat-option>-->
+            <!--{{event.time_start}}-->
+          <!--</mat-option>-->
+          <!--<mat-option *ngFor="let time of timeOpt" [value]="time.value">-->
+            <!--{{time.viewValue}}-->
+          <!--</mat-option>-->
+        <!--</mat-select>-->
       </mat-form-field></td>
-      <td><mat-form-field>
-        <input matInput [matDatepicker]="dateEndPicker" class="w-100" placeholder=""
+      <td colspan=""><mat-form-field class="w-100">
+        <input matInput [matDatepicker]="dateEndPicker" class="w-100" placeholder="Date"
                [readonly]="true" [disabled]="false" value="{{event.date_end}}">
-        <mat-datepicker-toggle matSuffix [for]="dateEndPicker"></mat-datepicker-toggle>
+        <mat-datepicker-toggle matSuffix [for]="dateEndPicker" disabled></mat-datepicker-toggle>
         <mat-datepicker #dateEndPicker></mat-datepicker>
       </mat-form-field></td>
-      <td><mat-form-field>
-        <input matInput placeholder="" [readonly]="true" value="{{event.time_end}}">
+      <td colspan=""><mat-form-field class="w-50">
+        <input matInput class="w-100" placeholder="Time" [readonly]="true" value="{{event.time_end}}">
+      </mat-form-field></td>
+    </tr>
+    <tr>
+
+    </tr>
+  </table>
+
+  <table class="w-100" cellspacing="0">
+    <tr>
+      <td colspan="2"><mat-form-field class="w-75 mt-2">
+        <input type="number" matInput class="d-flex flex-column w-100"
+               placeholder="Max Capacity" value="{{event.capacity_max}}" [readonly]="true">
+      </mat-form-field></td>
+      <td colspan="2"><mat-form-field class="w-75 mt-2">
+        <input type="number" matInput class="d-flex flex-column w-100"
+               placeholder="Expected Capacity" value="{{event.capacity_expected}}" [readonly]="true">
       </mat-form-field></td>
     </tr>
   </table>
+
+  <mat-form-field class="w-100 mt-2">
+    <textarea matInput class="d-flex flex-column w-100" placeholder="Description" matTextareaAutosize
+              matAutosizeMinRows="4" matAutosizeMaxRows="10" value="{{event.description}}" [readonly]="true"></textarea>
+  </mat-form-field>
 </div>
