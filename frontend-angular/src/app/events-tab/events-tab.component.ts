@@ -1,6 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {EventService} from '../event.service';
-import {Event} from '../event';
 
 @Component({
   selector: 'app-events-tab',

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {EventService} from '../event.service';
-import * as moment from 'moment';
+import {CEvent} from '../cEvent';
 
 @Component({
   selector: 'app-event-detail',
@@ -9,8 +9,14 @@ import * as moment from 'moment';
 })
 export class EventDetailComponent implements OnInit {
   // @Input eventTest: Event;
-  public event: Object;
+  public eventJSON;
+  public event: CEvent;
+  public time_start: string;
+  public time_end: string;
+  public date_start: string;
+  public date_end: string;
 
+  // TODO: This is to be used in the form for a drop down menu
   public timeOpt = [
     {value: '00:00', viewValue: '12:00 AM'}, {value: '00:30', viewValue: '12:30 AM'},
     {value: '01:00', viewValue: '01:00 AM'}, {value: '01:30', viewValue: '01:30 AM'},
@@ -38,13 +44,6 @@ export class EventDetailComponent implements OnInit {
     {value: '23:00', viewValue: '11:00 PM'}, {value: '23:30', viewValue: '11:30 PM'},
   ];
 
-  static convertTime(event: Object) {
-    console.log(event);
-    // Object.entries(event).forEach(
-    //   ([key, value]) => console.log(key + ': ' + value)
-    // );
-  }
-
   constructor(private _eventService: EventService) { }
 
   ngOnInit() {
@@ -53,10 +52,20 @@ export class EventDetailComponent implements OnInit {
 
   getEvent() {
     this._eventService.getEvent(3).subscribe(
-      data => { this.event = data; },
+      data => {
+        this.eventJSON = data;
+        this.event = CEvent.fromJSON(JSON.parse(JSON.stringify(data)));
+        // Set the time_start and _end as strings that display in hh:mm A (i.e. 10:00 AM) format
+        this.time_start = CEvent.getTimeString(this.event.date_start);
+        this.time_end = CEvent.getTimeString(this.event.date_end);
+        // Set the date_start and _end as strings that display in YYYY-MM-DD formation because that's that matDatePicker accepts
+        this.date_start = CEvent.getDateString(this.event.date_start);
+        this.date_end = CEvent.getDateString(this.event.date_end);
+      },
       err => console.error(err),
       () =>
-        EventDetailComponent.convertTime(this.event)
+        // TODO: [DEBUG]
+        console.log(this.eventJSON)
     );
   }
 }
