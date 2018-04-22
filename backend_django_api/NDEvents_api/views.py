@@ -49,6 +49,7 @@ class EventDetailUpdateAPIView(RetrieveUpdateAPIView):
     """
     queryset = Event.objects.all()
     serializer_class = EventSerializer
+    lookup_field = 'event_id'
 
 
 class EventDeleteAPIView(RetrieveDestroyAPIView):
@@ -57,3 +58,4 @@ class EventDeleteAPIView(RetrieveDestroyAPIView):
     """
     queryset = Event.objects.all()
     serializer_class = EventSerializer
+    lookup_field = 'event_id'
