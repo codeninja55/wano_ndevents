@@ -8,8 +8,8 @@
       <mat-list-item *ngFor="let event of events" class="mt-2 mb-2">
         <a matLine aria-disabled="false" routerLink="/event/{{event.event_id}}"
            (click)="toggleSidenav(); openBookings()">
-          <span class="mat-title p-0 m-0">{{event.title}}</span> &nbsp;
-          <br/><span class="mat-subheading-2">{{event.date_start}}</span>
+          <span class="mat-subheading-2 p-0 m-0">{{event.title}}</span> &nbsp;
+          <br/><span class="mat-subheading-1">{{event.date_start}}</span>
         </a>
         <button mat-icon-button class="mat-button">
             <mat-icon class="red-text text-lighten-1">edit</mat-icon>
