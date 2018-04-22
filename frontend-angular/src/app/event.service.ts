@@ -31,6 +31,16 @@ export class EventService {
       catchError(this.handleError('getEvent', []))
     );
   }
+
+  // Uses http.post method to send JSON to the the create API endpoint to make a new event
+  postEvent(data) {
+    const body = JSON.stringify(data);
+    // return this._http.post(this._eventApi + 'create/', body, httpOptions);
+    return this._http.post(this._eventApi + 'create/', body, httpOptions)
+      .pipe(
+        tap((newEvent) => console.log('[DEBUG]' + newEvent)),
+        catchError(this.handleError('postEvent'))
+      );
   }
 
   /**
