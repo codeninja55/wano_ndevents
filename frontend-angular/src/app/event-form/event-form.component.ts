@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {CEvent} from '../cEvent';
+import {iEventJSON} from '../iEventJSON';
+import moment = require('moment');
 
 @Component({
   selector: 'app-event-form',
@@ -35,12 +36,22 @@ export class EventFormComponent implements OnInit {
     {value: '23:00', viewValue: '11:00 PM'}, {value: '23:30', viewValue: '11:30 PM'},
   ];
 
-  model = new CEvent();
+  model = new iEventJSON;
+  submitted = false;
 
   constructor() { }
 
   ngOnInit() { }
 
+  onSubmit() {
+    this.submitted = true;
+    this.model.date_created = moment().format('YYYY-MM-DD');
+    this.model.last_updated = moment().format('YYYY-MM-DD');
+    this.model.is_launched = false;
+    const data = JSON.stringify(this.model);
+    console.log(data);
+  }
+
   // TODO: Remove diagnostic when done
-  get diagnostic() { return JSON.stringify(this.model)}
+  get diagnostic() { return JSON.stringify(this.model); }
 }
