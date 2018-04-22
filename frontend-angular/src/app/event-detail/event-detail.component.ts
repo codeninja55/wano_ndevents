@@ -26,7 +26,6 @@ export class EventDetailComponent implements OnInit {
     this._route.params.subscribe( (params) => {
       // const id = params['id'];
       //   this.getEvent(id);
-      console.log(params.id);
       this.getEvent();
     });
   }
@@ -43,6 +42,7 @@ export class EventDetailComponent implements OnInit {
         // Set the date_start and _end as strings that display in YYYY-MM-DD formation because that's that matDatePicker accepts
         this.date_start = CEvent.getDateString(this.event.date_start);
         this.date_end = CEvent.getDateString(this.event.date_end);
+        console.log(this.event);
       },
       err => console.error(err),
       // () =>
