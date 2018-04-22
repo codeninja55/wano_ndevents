@@ -22,7 +22,7 @@ export class CEvent {
   protected timeFormat = 'HH:MM';
   protected dateTimeFormat = this.dateFormat + ' ' + this.timeFormat;
 
-  constructor(event_id: number, title: string, venue: string, capacity_max: number, capacity_expected: number,
+  /*constructor(event_id: number, title: string, venue: string, capacity_max: number, capacity_expected: number,
               organisers_name: number, date_start: string, date_end: string, time_start: string, time_end: string,
               is_launched: boolean, date_created: string, last_updated: string, url: URL,
               launch_date?: string, description?: string) {
@@ -44,6 +44,27 @@ export class CEvent {
     this.date_created = moment(date_created).toDate();  // Same as launch_date
     this.last_updated = moment().toDate();
     this.url = url;
+
+  }*/
+
+  constructor(iEvent: iEventJSON) {
+    this.event_id = iEvent.event_id;
+    this.title = iEvent.title;
+    this.venue = iEvent.venue;
+    this.capacity_max = iEvent.capacity_max;
+    this.capacity_expected = iEvent.capacity_expected;
+    this.description = iEvent.description;
+    this.organisers_name = iEvent.organisers_name;
+    // Convert date_start (YYYY-MM-DD) and time_start (hh:mm) to a single Date object
+    this.date_start = moment(iEvent.date_start + ' ' + iEvent.time_start, this.dateTimeFormat).toDate();
+    this.date_end = moment(iEvent.date_end + ' ' + iEvent.time_end, this.dateTimeFormat).toDate();
+    // this.launch_date = moment(launch_date).toDate();
+    this.launch_date = iEvent.launch_date;
+    this.is_launched = iEvent.is_launched;
+    // date_created and last_updated formatted from api: YYYY-MM-DDTHH:mm:ssZ
+    this.date_created = moment(iEvent.date_created).toDate();  // Same as launch_date
+    this.last_updated = moment(iEvent.last_updated).toDate();
+    this.url = iEvent.url;
 
   }
 
