@@ -31,7 +31,7 @@
           <h3 class="mat-subheading-2 mb-3 font-weight-bold">Start</h3>
           <mat-form-field class="w-100">
             <input matInput [matDatepicker]="dateStartPicker" class="" placeholder="Date" required
-                   [(ngModel)]="model.date_start" name="date_start">
+                   [(ngModel)]="model.date_start" name="date_start" value="{{date_now}}">
             <mat-datepicker-toggle matSuffix [for]="dateStartPicker"></mat-datepicker-toggle>
             <mat-datepicker #dateStartPicker></mat-datepicker>
           </mat-form-field>
@@ -48,7 +48,7 @@
           <h3 class="mat-subheading-2 mb-3 font-weight-bold">End</h3>
           <mat-form-field class="w-100">
             <input matInput [matDatepicker]="dateEndPicker" class="" placeholder="Date" required
-                   [(ngModel)]="model.date_end" name="date_end">
+                   [(ngModel)]="model.date_end" name="date_end" value="{{date_now}}">
             <mat-datepicker-toggle matSuffix [for]="dateEndPicker"></mat-datepicker-toggle>
             <mat-datepicker #dateEndPicker></mat-datepicker>
           </mat-form-field>
