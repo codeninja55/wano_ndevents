@@ -6,7 +6,8 @@
 
     <mat-nav-list class="mat-nav-list">
       <mat-list-item *ngFor="let event of events" class="mt-2 mb-2">
-        <a matLine aria-disabled="false" routerLink="/event/{{event.event_id}}">
+        <a matLine aria-disabled="false" routerLink="/event/{{event.event_id}}"
+           (click)="toggleSidenav(); openBookings()">
           <span class="mat-title font-weight-bold p-0 m-0">{{event.title}}</span> &nbsp;
           <br/><span class="mat-subheading-2">{{event.date_start}}</span>
         </a>
