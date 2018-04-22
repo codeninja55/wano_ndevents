@@ -76,12 +76,6 @@ export class CEvent {
     return moment(date).format('YYYY-MM-DD');
   }
 
-  /*toJSON(): iEventJSON {
-    return Object.assign({}, this, {
-
-    });
-  }*/
-
   /* fromJSON is used to convert a serialized version of the cEvent to an instance of the class */
   static fromJSON(json: iEventJSON): CEvent {
     // create an instance of the cEvent class
@@ -99,5 +93,19 @@ export class CEvent {
   /* reviver can be passed as the second parameter to JSON.parse to automatically call User.fromJSON on the resulting value. */
   static reviver(key: string, value: any): any {
     return key === '' ? CEvent.fromJSON(value) : value;
+  }
+
+  // toJSON is automatically used by JSON.stringify
+  toJSON(): iEventJSON {
+    // copy all fields from `this` to an empty object and return in
+    return Object.assign({}, this, {
+      // convert fields that need converting
+      date_start: moment(this.date_start).format('YYYY-MM-DD'),
+      date_end: moment(this.date_end).format('YYYY-MM-DD'),
+      time_start: moment(this.date_start).format('HH:MM'),
+      time_end: moment(this.date_end).format('HH:MM'),
+      date_created: moment(this.date_created).format('YYYY-MM-DD'),
+      last_updated: moment().format('YYYY-MM-DD'),
+    });
   }
 }
