@@ -87,15 +87,6 @@
     </ng-template>
     <button mat-raised-button class="mat-button" color="primary"><mat-icon>delete</mat-icon>&nbsp;Delete</button>
   </div>
-
 </div>
 
-<!-- FOR VIEWING PURPOSES, DISPLAY THE TIME ONLY AS ABOVE. ELSE, FOR FORMS, USE MAT-SELECT -->
-<!--<mat-select class="w-100" placeholder="Time">-->
-<!--<mat-option>-->
-<!--{{event.time_start}}-->
-<!--</mat-option>-->
-<!--<mat-option *ngFor="let time of timeOpt" [value]="time.value">-->
-<!--{{time.viewValue}}-->
-<!--</mat-option>-->
-<!--</mat-select>-->
+<router-outlet></router-outlet>

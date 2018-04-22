@@ -11,7 +11,7 @@
     <app-bookings-tab></app-bookings-tab>
   </mat-sidenav>
   <!--<app-event-detail></app-event-detail>-->
-  <app-mat-fab></app-mat-fab>
+  <app-mat-fab (navToggle)="sidenav.close()" (bookingsToggle)="bookingsSidenav.close()"></app-mat-fab>
   <router-outlet></router-outlet>
 
 </mat-sidenav-container>

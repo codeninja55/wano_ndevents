@@ -15,6 +15,7 @@ import { MatFabComponent } from './mat-fab/mat-fab.component';
 import { EventDetailComponent } from './event-detail/event-detail.component';
 import { BookingsTabComponent } from './bookings-tab/bookings-tab.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { EventFormComponent } from './event-form/event-form.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AppRoutingModule } from './/app-routing.module';
     EventsTabComponent,
     MatFabComponent,
     EventDetailComponent,
-    BookingsTabComponent
+    BookingsTabComponent,
+    EventFormComponent
   ],
   imports: [
     BrowserModule,
