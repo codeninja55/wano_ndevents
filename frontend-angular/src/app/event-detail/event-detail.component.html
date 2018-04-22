@@ -1,92 +1,180 @@
-<div class="offset-1 col-10 mt-4" *ngIf="event">
-  <mat-form-field class="w-100">
-    <input type="text" matInput class="d-flex flex-column w-100"
-           placeholder="Event Title" value="{{event.title}}" [readonly]="true">
-  </mat-form-field>
-  <mat-form-field class="w-100 mt-2">
-    <input type="text" matInput class="d-flex flex-column w-100"
-           placeholder="Location" value="{{event.venue}}" [readonly]="true">
-  </mat-form-field>
-
-  <table class="w-100" cellspacing="0">
-    <tr>
-      <td colspan="2">Start</td>
-      <td colspan="2">End</td>
-    </tr>
-    <tr>
-      <td colspan="" width="75%"><mat-form-field class="w-100">
-        <input matInput [matDatepicker]="dateStartPicker" class="w-100" placeholder="Date" disabled
-               [readonly]="true" [disabled]="false" value="{{date_start}}">
-        <mat-datepicker-toggle matSuffix [for]="dateStartPicker" disabled></mat-datepicker-toggle>
-        <mat-datepicker #dateStartPicker></mat-datepicker>
-      </mat-form-field></td>
-      <td colspan="" width="25%"><mat-form-field class="w-50">
-        <input matInput class="w-100" placeholder="Time" [readonly]="true" value="{{time_start}}">
-      </mat-form-field></td>
-      <td colspan=""><mat-form-field class="w-100">
-        <input matInput [matDatepicker]="dateEndPicker" class="w-100" placeholder="Date"
-               [readonly]="true" [disabled]="false" value="{{date_end}}">
-        <mat-datepicker-toggle matSuffix [for]="dateEndPicker" disabled></mat-datepicker-toggle>
-        <mat-datepicker #dateEndPicker></mat-datepicker>
-      </mat-form-field></td>
-      <td colspan=""><mat-form-field class="w-50">
-        <input matInput class="w-100" placeholder="Time" [readonly]="true" value="{{time_end}}">
-      </mat-form-field></td>
-    </tr>
-  </table>
-
-  <table class="w-100" cellspacing="0">
-    <tr>
-      <td colspan="2"><mat-form-field class="w-75 mt-2">
-        <input type="number" matInput class="d-flex flex-column w-100"
-               placeholder="Max Capacity" value="{{event.capacity_max}}" [readonly]="true">
-      </mat-form-field></td>
-      <td colspan="2"><mat-form-field class="w-75 mt-2">
-        <input type="number" matInput class="d-flex flex-column w-100"
-               placeholder="Expected Capacity" value="{{event.capacity_expected}}" [readonly]="true">
-      </mat-form-field></td>
-    </tr>
-  </table>
-
-  <mat-form-field class="w-100 mt-2">
-    <textarea matInput class="d-flex flex-column w-100" placeholder="Description" matTextareaAutosize
-              matAutosizeMinRows="4" matAutosizeMaxRows="10" value="{{event.description}}" [readonly]="true"></textarea>
-  </mat-form-field>
-
-  <table class="w-100 my-3" cellspacing="0">
-    <tr>
-      <td>Tickets</td>
-    </tr>
-  </table>
-
-  <div class="mt-4 mb-4" *ngIf="event.is_launched; else notLaunched">
-    <!--<mat-slide-toggle labelPosition="before" [checked]="true" color="primary">-->
-      <!--<i class="fal fa-rocket fa-1x"></i>&nbsp;Launched-->
-    <!--</mat-slide-toggle>-->
-    <mat-checkbox class="mt-3" color="primary" labelPosition="before" [checked]="true" disabled>
-      <i class="fal fa-rocket fa-1x disabled"></i>&nbsp;Event Launched
-    </mat-checkbox>
-  </div>
-  <ng-template #notLaunched>
-    <!--<mat-slide-toggle class="notLaunched" labelPosition="before" [checked]="false" color="primary">-->
-      <!--<i class="fal fa-rocket fa-1x"></i>&nbsp;Launch Event-->
-    <!--</mat-slide-toggle>-->
-    <mat-checkbox class="mt-3" color="primary" labelPosition="before" [checked]="false" disabled>
-      <i class="fal fa-rocket fa-1x disabled"></i>&nbsp;Event Launched
-    </mat-checkbox>
-  </ng-template>
-
-  <mat-divider class="mt-3 red"></mat-divider>
-  <div class="mt-5">
-    <button mat-raised-button class="mat-button" color="primary"><mat-icon>edit</mat-icon>&nbsp;Edit</button>
-    <div class="d-inline" *ngIf="event.is_launched; else allowLaunch">
-      <button mat-raised-button class="mat-button" color="primary" disabled><i class="far fa-rocket"></i>&nbsp;Launch</button>
+<div class="row p-0" *ngIf="event">
+  <div class="mt-3 col-sm-12 offset-md-1 col-md-10 offset-lg-3 col-lg-6">
+    <div class="mt-5 offset-3 col-6 text-center" style="color: #4d4d4d!important;">
+      <span class="mat-headline">Event Details</span>
     </div>
-    <ng-template #allowLaunch>
-      <button mat-raised-button class="mat-button" color="primary"><i class="far fa-rocket"></i>&nbsp;Launch</button>
-    </ng-template>
-    <button mat-raised-button class="mat-button" color="primary"><mat-icon>delete</mat-icon>&nbsp;Delete</button>
+    <mat-divider class="mt-2 mb-3 red" style="background-color: #4d4d4d"></mat-divider>
+
+    <!--<form class="p-0 m-0" #eventForm="ngForm" (ngSubmit)="onSubmit()">-->
+    <form class="p-0 m-0" #eventForm="ngForm">
+      <div class="row p-0">
+        <mat-form-field class="col w-100">
+          <input type="text" matInput class="" placeholder="Event Title" required
+                 [(ngModel)]="model.title" name="title" [value]="event.title" [readonly]="editable">
+        </mat-form-field>
+      </div>
+
+      <div class="row mt-2 p-0">
+        <mat-form-field class="col w-100">
+          <input type="text" matInput class="" placeholder="Location" required
+                 [(ngModel)]="model.venue" name="venue" value="{{event.venue}}" [readonly]="editable">
+        </mat-form-field>
+      </div>
+
+      <div class="row mt-2 p-0">
+        <div class="col-lg-6 col-md-8 col-sm-12 mat-typography">
+          <h3 class="mat-subheading-2 mb-3 font-weight-bold">Start</h3>
+          <mat-form-field class="w-100">
+            <input matInput [matDatepicker]="dateStartPicker" class="" placeholder="Date" required
+                   [(ngModel)]="model.date_start" name="date_start" value="{{date_start}}"
+                   [readonly]="editable" [disabled]="editable">
+            <mat-datepicker-toggle matSuffix [for]="dateStartPicker" [disabled]="editable"></mat-datepicker-toggle>
+            <mat-datepicker #dateStartPicker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="w-100">
+            <mat-select placeholder="Time" [required]="true" [disabled]="editable"
+                        [(ngModel)]="model.time_start" #time_start="ngModel">
+              <mat-option [value]="time_start">
+                {{model.time_start}}
+              </mat-option>
+              <mat-option *ngFor="let time of timeOpt" [value]="time.value">
+                {{time.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-12 mat-typography px-1">
+          <h3 class="mat-subheading-2 mb-3 font-weight-bold">End</h3>
+          <mat-form-field class="w-100">
+            <input matInput [matDatepicker]="dateEndPicker" class="" placeholder="Date" required
+                   [(ngModel)]="model.date_end" name="date_end" value="{{date_end}}"
+                   [readonly]="editable" [disabled]="editable">
+            <mat-datepicker-toggle matSuffix [for]="dateEndPicker" [disabled]="editable"></mat-datepicker-toggle>
+            <mat-datepicker #dateEndPicker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="w-100">
+            <mat-select placeholder="Time" [required]="true" [disabled]="editable"
+                        [(ngModel)]="model.time_end" #time_end="ngModel">
+              <mat-option>
+                {{model.time_end}}
+              </mat-option>
+              <mat-option *ngFor="let time of timeOpt" [value]="time.value">
+                {{time.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row mt-3 p-0">
+        <div class="col">
+          <mat-form-field class="w-50">
+            <input type="number" matInput class="w-50" placeholder="Max Capacity" required
+                   [(ngModel)]="model.capacity_max" name="capacity_max"
+                   value="{{event.capacity_max}}" [readonly]="editable">
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="w-50">
+            <input type="number" matInput class="w-50" placeholder="Expected Capacity" required
+                   [(ngModel)]="model.capacity_expected" name="capacity_expected"
+                   value="{{event.capacity_expected}}" [readonly]="editable">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row mt-2 p-0">
+        <div class="col">
+          <mat-form-field class="w-100 mt-2">
+            <textarea matInput class="w-100" placeholder="Description" matTextareaAutosize matAutosizeMinRows="4"
+                      matAutosizeMaxRows="10" [(ngModel)]="model.description" name="description"
+                      value="{{event.description}}" [readonly]="true">
+            </textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="mt-4 offset-3 col-6 text-center">
+        <span class="mat-headline" style="color: #4d4d4d!important;">Ticket Details</span>
+      </div>
+      <mat-divider class="mt-2 mb-3 red" style="background-color: #4d4d4d"></mat-divider>
+
+      <div class="row mt-3 p-0">
+        <div class="col">
+          <h3 class="mat-subheading-2 mb-3 font-weight-bold">Create Optional Ticket(s) Types below</h3>
+        </div>
+      </div>
+
+      <div class="row mt-2 p-0">
+        <div class="col-sm-12 col-md-4 pr-1">
+          <mat-form-field hintLabel="Ticket type name" class="w-100">
+            <input type="text" matInput class="" placeholder="Description">
+          </mat-form-field>
+        </div>
+        <div class="col-sm-12 col-md-2 px-1">
+          <mat-form-field class="w-100">
+            <input type="number" matInput class="" placeholder="Quantity">
+          </mat-form-field>
+        </div>
+        <div class="col-sm-12 col-md-2 px-1">
+          <mat-form-field class="w-100">
+            <input type="number" matInput class="" placeholder="Price">
+            <span matPrefix>$&nbsp;</span>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-12 col-md-3 px-1">
+          <mat-form-field hintLabel="Optional promotional code discount" class="w-100">
+            <input type="text" matInput class="" placeholder="Promotional Code">
+          </mat-form-field>
+        </div>
+        <div class="col-sm-12 col-md-1 pl-2">
+          <button mat-mini-fab="" class="mat-mini-fab red white-text">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <div class="mt-4 offset-3 col-6 text-center px-1" [hidden]="true">
+        <span class="mat-headline">Launch the Event</span>
+      </div>
+      <!--<mat-divider class="mt-2 mb-3 px-0 w-100" style="background-color: #4d4d4d"></mat-divider>-->
+
+      <div class="row mt-3 p-0" [hidden]="true">
+        <div class="col">
+          <h4 class="mat-subheading-2 mb-3 font-weight-bold">
+            Are you ready for takeoff? Tick/untick to launch the event so users can see your event and making bookings.
+          </h4>
+        </div>
+      </div>
+
+      <div class="row mb-2 p-0" [hidden]="true">
+        <div class="col mt-4 mb-4">
+          <mat-checkbox class="mt-3" color="primary" labelPosition="before"
+                        [checked]="event.is_launched" value="model.is_launched">
+            <i class="fal fa-rocket fa-1x disabled"></i>&nbsp;Launch Event
+          </mat-checkbox>
+        </div>
+      </div>
+
+      <div class="row mt-4 justify-content-start">
+        <div class="col">
+          <button type="submit" mat-raised-button class="mat-button mr-1" color="primary">
+            <mat-icon>edit</mat-icon>&nbsp;Edit
+          </button>
+          <button type="submit" mat-raised-button class="mat-button mx-1" color="primary">
+            <i class="far fa-rocket"></i>&nbsp;Save & Launch
+          </button>
+          <button mat-raised-button class="mat-button mx-1" color="primary">
+            <mat-icon>delete</mat-icon>&nbsp;Delete
+          </button>
+          <button mat-raised-button class="mat-button ml-1" color="primary" (click)="eventForm.reset()">
+            <mat-icon>cancel</mat-icon>&nbsp;Cancel
+          </button>
+        </div>
+      </div>
+    </form>
   </div>
 </div>
+
 
 <router-outlet></router-outlet>
