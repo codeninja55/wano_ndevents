@@ -11,7 +11,7 @@ import {Location} from '@angular/common';
 })
 export class EventDetailComponent implements OnInit {
   // @Input eventTest: Event;
-  public eventJSON;
+  // public eventJSON;
   public event: CEvent;
   public time_start: string;
   public time_end: string;
@@ -51,18 +51,17 @@ export class EventDetailComponent implements OnInit {
               private _location: Location) { }
 
   ngOnInit() {
-    // this.getEvent();
     this._route.params.subscribe( (params) => {
       const id = params['id'];
         this.getEvent(id);
     });
   }
 
-  getEvent() {
-    const id = +this._route.snapshot.paramMap.get('id');
+  getEvent(id: number) {
+    // const id = +this._route.snapshot.paramMap.get('id');
     this._eventService.getEvent(id).subscribe(
       data => {
-        this.eventJSON = data;
+        // this.eventJSON = data;
         this.event = CEvent.fromJSON(JSON.parse(JSON.stringify(data)));
         // Set the time_start and _end as strings that display in hh:mm A (i.e. 10:00 AM) format
         this.time_start = CEvent.getTimeString(this.event.date_start);
@@ -72,9 +71,9 @@ export class EventDetailComponent implements OnInit {
         this.date_end = CEvent.getDateString(this.event.date_end);
       },
       err => console.error(err),
-      () =>
+      // () =>
         // TODO: [DEBUG]
-        console.log(this.eventJSON)
+        // console.log(this.eventJSON)
     );
   }
 }
