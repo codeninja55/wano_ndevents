@@ -10,23 +10,27 @@ const httpOptions = {
 
 @Injectable()
 export class EventService {
-  private eventApi = 'http://127.0.0.1:8000/api/event/';
+  private _eventApi = 'http://127.0.0.1:8000/api/event/';
 
-  constructor(private http: HttpClient) {}
+  constructor(private _http: HttpClient) {}
 
   // Uses http.get() to load data from a single API endpoint
   getEvents() {
     /* .pipe() used to tap into the Observable to log messages */
-    return this.http.get(this.eventApi).pipe(
-      tap(() => console.log('Fetched all events')),
+    return this._http.get(this._eventApi).pipe(
+      tap(() => console.log('[DEBUG]: Tapped into async fetching')),
       catchError(this.handleError('getEvents', []))
     );
   }
 
   // Uses http.get() to retrieve one hero from a single API endpoint
   getEvent(id: number) {
-    const url = this.eventApi + id + '/';
-    return this.http.get(url);
+    const url = this._eventApi + id + '/';
+    return this._http.get(url).pipe(
+      tap((event) => console.log(event)),
+      catchError(this.handleError('getEvent', []))
+    );
+  }
   }
 
   /**
