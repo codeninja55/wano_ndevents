@@ -1,4 +1,4 @@
-export class iEventJSON {
+interface IEventJSON {
   event_id: number;
   title: string;
   venue: string;
