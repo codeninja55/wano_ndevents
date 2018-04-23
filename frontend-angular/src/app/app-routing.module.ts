@@ -1,12 +1,21 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import {EventsTabComponent} from './events-tab/events-tab.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {EventDetailComponent} from './event-detail/event-detail.component';
+import {EventFormComponent} from './event-form/event-form.component';
 
 const routes: Routes = [
-  { path: 'events', component: EventsTabComponent},
-  { path: 'event/:id', component: EventDetailComponent},
-  { path: '', redirectTo: '/', pathMatch: 'full'}
+  { path: '', redirectTo: '/', pathMatch: 'full'},
+  {
+    path: 'event/:id',
+    component: EventDetailComponent,
+  },
+  {
+    path: 'new',
+    children: [
+      { path: '', pathMatch: 'full', redirectTo: 'event'},
+      { path: 'event', component: EventFormComponent},
+    ]
+  }
 ];
 
 @NgModule({

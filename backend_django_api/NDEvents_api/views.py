@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import Event
-from .serializers import EventSerializer
+from .serializers import EventSerializer, EventCreateUpdateSerializer
 
 
 class EventListAPIView(ListCreateAPIView):
@@ -40,7 +40,7 @@ class EventCreateAPIView(CreateAPIView):
     This Event API endpoint will allow create-only post method handler
     """
     queryset = Event.objects.all()
-    serializer_class = EventSerializer
+    serializer_class = EventCreateUpdateSerializer
 
 
 class EventDetailUpdateAPIView(RetrieveUpdateAPIView):
@@ -49,6 +49,7 @@ class EventDetailUpdateAPIView(RetrieveUpdateAPIView):
     """
     queryset = Event.objects.all()
     serializer_class = EventSerializer
+    lookup_field = 'event_id'
 
 
 class EventDeleteAPIView(RetrieveDestroyAPIView):
@@ -57,3 +58,4 @@ class EventDeleteAPIView(RetrieveDestroyAPIView):
     """
     queryset = Event.objects.all()
     serializer_class = EventSerializer
+    lookup_field = 'event_id'

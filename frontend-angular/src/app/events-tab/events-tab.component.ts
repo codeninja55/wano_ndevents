@@ -7,6 +7,7 @@ import {EventService} from '../event.service';
   styleUrls: ['./events-tab.component.css']
 })
 export class EventsTabComponent implements OnInit {
+  @Output() navToggle = new EventEmitter<boolean>();
   @Output() bookingsToggle = new EventEmitter<boolean>();
   // events: Event[];
   public events;
@@ -17,9 +18,9 @@ export class EventsTabComponent implements OnInit {
     this.getEvents();
   }
 
-  toggleBookings() {
-    this.bookingsToggle.emit(true);
-  }
+  toggleSidenav() { this.navToggle.emit(true); }
+
+  openBookings() { this.bookingsToggle.emit(true); }
 
   getEvents() {
     this._eventService.getEvents().subscribe(

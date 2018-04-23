@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
+  MAT_PLACEHOLDER_GLOBAL_OPTIONS,
   MatAutocompleteModule,
   MatButtonModule,
   MatButtonToggleModule,
@@ -18,7 +19,6 @@ import {
   MatInputModule,
   MatListModule,
   MatMenuModule,
-  MatNativeDateModule,
   MatPaginatorModule,
   MatProgressBarModule,
   MatProgressSpinnerModule,
@@ -30,16 +30,15 @@ import {
   MatSlideToggleModule,
   MatSnackBarModule,
   MatSortModule,
+  MatStepperModule,
   MatTableModule,
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
-  MatStepperModule,
-  MAT_PLACEHOLDER_GLOBAL_OPTIONS,
 } from '@angular/material';
-
+import {MatMomentDateModule} from '@angular/material-moment-adapter';
 // import { MatFormFieldModule } from '@angular/material/form-field';
-import { CdkTableModule } from '@angular/cdk/table';
+import {CdkTableModule} from '@angular/cdk/table';
 
 @NgModule({
   imports: [
@@ -60,7 +59,7 @@ import { CdkTableModule } from '@angular/cdk/table';
     MatInputModule,
     MatListModule,
     MatMenuModule,
-    MatNativeDateModule,
+    MatMomentDateModule,
     MatPaginatorModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
@@ -98,7 +97,7 @@ import { CdkTableModule } from '@angular/cdk/table';
     MatInputModule,
     MatListModule,
     MatMenuModule,
-    MatNativeDateModule,
+    MatMomentDateModule,
     MatPaginatorModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,

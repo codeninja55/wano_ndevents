@@ -8,15 +8,26 @@ __author__ = 'codeninja55'
 
 class EventSerializer(serializers.ModelSerializer):
     organisers_name = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
-    time_start = serializers.TimeField(format='%H:%M')
-    time_end = serializers.TimeField(format='%H:%M')
+    date_start = serializers.DateTimeField(format='%Y-%m-%d %H:%M')
+    date_end = serializers.DateTimeField(format='%Y-%m-%d %H:%M')
+    date_created = serializers.DateTimeField(format='%Y-%m-%d %H:%M')
+    last_updated = serializers.DateTimeField(format='%Y-%m-%d %H:%M')
     self = serializers.HyperlinkedIdentityField(read_only=True, view_name='ndevents:event',
                                                 lookup_field='event_id')
 
     class Meta:
         model = Event
+        fields = '__all__'
+
+
+class EventCreateUpdateSerializer(serializers.ModelSerializer):
+    organisers_name = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
+    date_start = serializers.DateTimeField(format='%Y-%m-%d %H:%M')
+    date_end = serializers.DateTimeField(format='%Y-%m-%d %H:%M')
+
+    class Meta:
+        model = Event
         fields = (
-            'event_id',
             'organisers_name',
             'title',
             'description',
@@ -25,9 +36,6 @@ class EventSerializer(serializers.ModelSerializer):
             'capacity_expected',
             'date_start',
             'date_end',
-            'time_start',
-            'time_end',
             'launch_date',
             'is_launched',
-            'self'
         )
