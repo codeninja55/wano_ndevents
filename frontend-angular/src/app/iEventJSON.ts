@@ -8,8 +8,6 @@ interface IEventJSON {
   organisers_name: number;
   date_start: string;
   date_end: string;
-  time_start: string;
-  time_end: string;
   launch_date: string;
   is_launched: boolean;
   date_created: string;

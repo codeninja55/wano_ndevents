@@ -1,5 +1,4 @@
 import * as moment from 'moment';
-import {iEventJSON} from './iEventJSON';
 
 export class CEvent {
   event_id: number;
@@ -17,37 +16,7 @@ export class CEvent {
   last_updated: Date;
   url: URL;
 
-  // These are formats passed from API
-  protected dateFormat = 'YYYY-MM-DD';
-  protected timeFormat = 'HH:MM';
-  protected dateTimeFormat = this.dateFormat + ' ' + this.timeFormat;
-
-  /*constructor(event_id: number, title: string, venue: string, capacity_max: number, capacity_expected: number,
-              organisers_name: number, date_start: string, date_end: string, time_start: string, time_end: string,
-              is_launched: boolean, date_created: string, last_updated: string, url: URL,
-              launch_date?: string, description?: string) {
-
-    this.event_id = event_id;
-    this.title = title;
-    this.venue = venue;
-    this.capacity_max = capacity_max;
-    this.capacity_expected = capacity_expected;
-    this.description = description;
-    this.organisers_name = organisers_name;
-    // Convert date_start (YYYY-MM-DD) and time_start (hh:mm) to a single Date object
-    this.date_start = moment(date_start + ' ' + time_start, this.dateTimeFormat).toDate();
-    this.date_end = moment(date_end + ' ' + time_end, this.dateTimeFormat).toDate();
-    // this.launch_date = moment(launch_date).toDate();
-    this.launch_date = launch_date;
-    this.is_launched = is_launched;
-    // date_created and last_updated formatted from api: YYYY-MM-DDTHH:mm:ssZ
-    this.date_created = moment(date_created).toDate();  // Same as launch_date
-    this.last_updated = moment().toDate();
-    this.url = url;
-
-  }*/
-
-  constructor(iEvent: iEventJSON) {
+  constructor(iEvent: IEventJSON) {
     this.event_id = iEvent.event_id;
     this.title = iEvent.title;
     this.venue = iEvent.venue;
@@ -56,8 +25,8 @@ export class CEvent {
     this.description = iEvent.description;
     this.organisers_name = iEvent.organisers_name;
     // Convert date_start (YYYY-MM-DD) and time_start (hh:mm) to a single Date object
-    this.date_start = moment(iEvent.date_start + ' ' + iEvent.time_start, this.dateTimeFormat).toDate();
-    this.date_end = moment(iEvent.date_end + ' ' + iEvent.time_end, this.dateTimeFormat).toDate();
+    this.date_start = moment(iEvent.date_start, 'YYYY-MM-DD HH:MM').toDate();
+    this.date_end = moment(iEvent.date_end, 'YYYY-MM-DD HH:MM').toDate();
     // this.launch_date = moment(launch_date).toDate();
     this.launch_date = iEvent.launch_date;
     this.is_launched = iEvent.is_launched;
@@ -77,16 +46,16 @@ export class CEvent {
   }
 
   /* fromJSON is used to convert a serialized version of the cEvent to an instance of the class */
-  static fromJSON(json: iEventJSON): CEvent {
+  static fromJSON(json: IEventJSON): CEvent {
     // create an instance of the cEvent class
     const event = Object.create(CEvent.prototype);
     // copy all the fields from the json object
     return Object.assign(event, json, {
-      date_start: moment(json.date_start + ' ' + json.time_start, event.dateTimeFormat).toDate(),
-      date_end: moment(json.date_end + ' ' + json.time_end, event.dateTimeFormat).toDate(),
+      date_start: moment(json.date_start).toDate(),
+      date_end: moment(json.date_end).toDate(),
       // launch_date: null ? '' : moment(json.launch_date).toDate(),
       date_created: moment(json.date_created).toDate(),
-      last_updated: moment().toDate()
+      last_updated: moment(json.last_updated).toDate()
     });
   }
 
@@ -96,16 +65,14 @@ export class CEvent {
   }
 
   // toJSON is automatically used by JSON.stringify
-  toJSON(): iEventJSON {
+  toJSON(): IEventJSON {
     // copy all fields from `this` to an empty object and return in
     return Object.assign({}, this, {
       // convert fields that need converting
-      date_start: moment(this.date_start).format('YYYY-MM-DD'),
-      date_end: moment(this.date_end).format('YYYY-MM-DD'),
-      time_start: moment(this.date_start).format('HH:MM'),
-      time_end: moment(this.date_end).format('HH:MM'),
-      date_created: moment(this.date_created).format('YYYY-MM-DD'),
-      last_updated: moment().format('YYYY-MM-DD'),
+      date_start: moment(this.date_start, 'YYYY-MM-DD HH:MM').format(),
+      date_end: moment(this.date_end, 'YYYY-MM-DD HH:MM').format(),
+      last_updated: moment(this.last_updated).format(),
+      date_created: moment(this.date_created).format(),
     });
   }
 }
