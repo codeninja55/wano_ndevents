@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import * as moment from 'moment';
 import {EventService} from '../event.service';
-import {Event} from '../Event';
+import {Event} from '../event';
 import {timeOpt} from '../timeOptions';
 
 @Component({

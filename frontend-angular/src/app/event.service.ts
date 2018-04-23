@@ -15,7 +15,7 @@ export class EventService {
   constructor(private _http: HttpClient) {}
 
   // Uses http.get() to load data from a single API endpoint
-  getEvents() {
+  getEvents(): Observable<any> {
     /* .pipe() used to tap into the Observable to log messages */
     return this._http.get(this._eventApi).pipe(
       tap(() => console.log('[DEBUG]: Tapped into async fetching')),
