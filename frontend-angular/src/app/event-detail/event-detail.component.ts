@@ -45,6 +45,14 @@ export class EventDetailComponent implements OnInit {
     this.editable = !this.editable;
   }
 
+  deleteEvent(): void {
+    this._eventService.deleteEvent(this.event.event_id).subscribe(() => {
+        console.log('[DEBUG]: Delete method complete.');
+      },
+      err => console.log(err),
+    );
+  }
+
   // TODO: Remove diagnostic when done
   get diagnostic() { return JSON.stringify(this.model); }
 }

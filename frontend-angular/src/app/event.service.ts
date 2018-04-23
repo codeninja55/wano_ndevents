@@ -27,7 +27,7 @@ export class EventService {
   getEvent(id: number): Observable<any> {
     const url = this._eventApi + id + '/';
     return this._http.get(url).pipe(
-      tap((event) => console.log(event)),
+      tap((event) => console.log('[DEBUG]: ' + event)),
       catchError(this.handleError('getEvent', []))
     );
   }
@@ -37,9 +37,17 @@ export class EventService {
     const body = JSON.stringify(data);
     return this._http.post(this._eventApi + 'create/', body, httpOptions)
       .pipe(
-        tap((newEvent) => console.log('[DEBUG]' + newEvent)),
+        tap((newEvent) => console.log('[DEBUG]: ' + newEvent)),
         catchError(this.handleError('postEvent'))
       );
+  }
+
+  // Uses http.delete method to delete an Event from the API endpoint
+  deleteEvent(id: number) {
+    return this._http.delete(this._eventApi + id + '/delete/').pipe(
+      tap(() => console.log('[DEBUG]: Deleted Event' + id)),
+      catchError(this.handleError('deleteEvent'))
+    );
   }
 
   /**
