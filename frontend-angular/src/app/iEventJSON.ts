@@ -1,5 +1,4 @@
 interface IEventJSON {
-  event_id: number;
   title: string;
   venue: string;
   capacity_max: number;
@@ -8,9 +7,12 @@ interface IEventJSON {
   organisers_name: number;
   date_start: string;
   date_end: string;
-  launch_date: string;
   is_launched: boolean;
-  date_created: string;
-  last_updated: string;
-  url: URL;
+  event_id?: number;
+  launch_date?: string;
+  time_start?: string;
+  time_end?: string;
+  date_created?: string;
+  last_updated?: string;
+  url?: URL;
 }
