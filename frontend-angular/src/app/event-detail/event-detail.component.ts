@@ -26,11 +26,11 @@ export class EventDetailComponent implements OnInit {
     });
   }
 
-  getEvent() {
+  getEvent(): void {
     const id = +this._route.snapshot.paramMap.get('id');
     this._eventService.getEvent(id).subscribe(
       data => {
-        this.event = Event.fromJSON(JSON.parse(JSON.stringify(data)));
+        this.event = Event.fromJSON(data);
         // Set the time_start and _end as strings that display in hh:mm A (i.e. 10:00 AM) format
         this.time_start = Event.getTimeString(this.event.date_start);
         this.time_end = Event.getTimeString(this.event.date_end);
@@ -41,7 +41,7 @@ export class EventDetailComponent implements OnInit {
     );
   }
 
-  toggleEdit() {
+  toggleEdit(): void {
     this.editable = !this.editable;
   }
 

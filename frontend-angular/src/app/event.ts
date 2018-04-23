@@ -50,9 +50,8 @@ export class Event {
     const event = Object.create(Event.prototype);
     // copy all the fields from the json object
     return Object.assign(event, json, {
-      date_start: moment(json.date_start, 'YYYY-MM-DD HH:MM').toDate(),
-      date_end: moment(json.date_end, 'YYYY-MM-DD HH:MM').toDate(),
-      // launch_date: null ? '' : moment(json.launch_date).toDate(),
+      date_start: moment(json.date_start).toDate(),
+      date_end: moment(json.date_end).toDate(),
       date_created: moment(json.date_created).toDate(),
       last_updated: moment(json.last_updated).toDate()
     });

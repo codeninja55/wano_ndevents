@@ -9,20 +9,18 @@ import {EventService} from '../event.service';
 export class EventsTabComponent implements OnInit {
   @Output() navToggle = new EventEmitter<boolean>();
   @Output() bookingsToggle = new EventEmitter<boolean>();
-  // events: Event[];
-  public events;
+  events: Event[];
+  // public events;
 
   constructor( private _eventService: EventService ) { }
 
-  ngOnInit() {
-    this.getEvents();
-  }
+  ngOnInit() { this.getEvents(); }
 
-  toggleSidenav() { this.navToggle.emit(true); }
+  toggleSidenav(): void { this.navToggle.emit(true); }
 
-  openBookings() { this.bookingsToggle.emit(true); }
+  openBookings(): void { this.bookingsToggle.emit(true); }
 
-  getEvents() {
+  getEvents(): void {
     this._eventService.getEvents().subscribe(
       data => { this.events = data; },
       err => console.error(err),

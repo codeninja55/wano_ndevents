@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import * as moment from 'moment';
 import {EventService} from '../event.service';
 import {Event} from '../event';
-import {timeOpt} from '../timeOptions';
 
 @Component({
   selector: 'app-event-form',
@@ -10,9 +9,6 @@ import {timeOpt} from '../timeOptions';
   styleUrls: ['./event-form.component.css']
 })
 export class EventFormComponent implements OnInit {
-  public date_now;
-  public timeOpt = timeOpt;
-
   model = <IPostEventJSON>{};
   submitted = false;
 

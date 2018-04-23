@@ -24,7 +24,7 @@ export class EventService {
   }
 
   // Uses http.get() to retrieve one hero from a single API endpoint
-  getEvent(id: number) {
+  getEvent(id: number): Observable<any> {
     const url = this._eventApi + id + '/';
     return this._http.get(url).pipe(
       tap((event) => console.log(event)),
