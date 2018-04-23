@@ -1,7 +1,6 @@
 import * as moment from 'moment';
 
 export class CEvent {
-  event_id: number;
   title: string;
   venue: string;
   capacity_max: number;
@@ -10,10 +9,11 @@ export class CEvent {
   organisers_name: number;
   date_start: Date;
   date_end: Date;
-  launch_date: any;
   is_launched: boolean;
-  date_created: Date;
-  last_updated: Date;
+  launch_date?: any;
+  event_id?: number;
+  date_created?: any;
+  last_updated?: any;
   url: URL;
 
   constructor(iEvent: IEventJSON) {
@@ -34,7 +34,6 @@ export class CEvent {
     this.date_created = moment(iEvent.date_created).toDate();  // Same as launch_date
     this.last_updated = moment(iEvent.last_updated).toDate();
     this.url = iEvent.url;
-
   }
 
   static getTimeString(time: Date): string {
@@ -51,8 +50,8 @@ export class CEvent {
     const event = Object.create(CEvent.prototype);
     // copy all the fields from the json object
     return Object.assign(event, json, {
-      date_start: moment(json.date_start).toDate(),
-      date_end: moment(json.date_end).toDate(),
+      date_start: moment(json.date_start, 'YYYY-MM-DD HH:MM').toDate(),
+      date_end: moment(json.date_end, 'YYYY-MM-DD HH:MM').toDate(),
       // launch_date: null ? '' : moment(json.launch_date).toDate(),
       date_created: moment(json.date_created).toDate(),
       last_updated: moment(json.last_updated).toDate()
@@ -65,14 +64,28 @@ export class CEvent {
   }
 
   // toJSON is automatically used by JSON.stringify
-  toJSON(): IEventJSON {
+  static toJSON(event: CEvent): IPostEventJSON {
     // copy all fields from `this` to an empty object and return in
-    return Object.assign({}, this, {
+    /*return Object.assign({}, this, {
       // convert fields that need converting
-      date_start: moment(this.date_start, 'YYYY-MM-DD HH:MM').format(),
-      date_end: moment(this.date_end, 'YYYY-MM-DD HH:MM').format(),
-      last_updated: moment(this.last_updated).format(),
-      date_created: moment(this.date_created).format(),
-    });
+      date_start: moment(this.date_start, 'YYYY-MM-DD HH:MM').format('YYYY-MM-DD HH:MM'),
+      date_end: moment(this.date_end, 'YYYY-MM-DD HH:MM').format('YYYY-MM-DD HH:MM'),
+      // date_created: moment(this.date_created).format('YYYY-MM-DD HH:MM'),
+      // last_updated: moment(this.last_updated).format('YYYY-MM-DD HH:MM'),
+    });*/
+
+    // Return a specific format that is required by the API endpoint
+    return {
+      organisers_name: event.organisers_name,
+      title: event.title,
+      description: event.description,
+      venue: event.venue,
+      capacity_max: event.capacity_max,
+      capacity_expected: event.capacity_expected,
+      date_start: moment(event.date_start, 'YYYY-MM-DD HH:MM').format('YYYY-MM-DD HH:MM'),
+      date_end: moment(event.date_end, 'YYYY-MM-DD HH:MM').format('YYYY-MM-DD HH:MM'),
+      launch_date: event.launch_date,
+      is_launched: event.is_launched
+    };
   }
 }
