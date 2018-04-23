@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import * as moment from 'moment';
 import {EventService} from '../event.service';
-import {CEvent} from '../cEvent';
+import {Event} from '../Event';
 import {timeOpt} from '../timeOptions';
 
 @Component({
@@ -34,7 +34,7 @@ export class EventFormComponent implements OnInit {
     this.model.date_end = moment(this.model.date_end).add(this.model.time_end.split(':')[0], 'h')
       .add(this.model.time_end.split(':')[1], 'm').format('YYYY-MM-DD HH:MM');
     // Create a CEvent model and turn it into JSON using static toJSON method
-    const newEventJSON = CEvent.toJSON(new CEvent(this.model));
+    const newEventJSON = Event.toJSON(new Event(this.model));
     console.log(newEventJSON);
     this._eventService.postEvent(newEventJSON).subscribe(() =>
       console.log(newEventJSON));

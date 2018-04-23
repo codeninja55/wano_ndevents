@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {EventService} from '../event.service';
-import {CEvent} from '../cEvent';
+import {Event} from '../Event';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 
@@ -10,7 +10,7 @@ import {Location} from '@angular/common';
   styleUrls: ['./event-detail.component.css']
 })
 export class EventDetailComponent implements OnInit {
-  event: CEvent;
+  event: Event;
   public time_start: string;
   public time_end: string;
   model = <IEventJSON>{};
@@ -21,9 +21,7 @@ export class EventDetailComponent implements OnInit {
               private _location: Location) { }
 
   ngOnInit() {
-    this._route.params.subscribe( (params) => {
-      // const id = params['id'];
-      //   this.getEvent(id);
+    this._route.params.subscribe( () => {
       this.getEvent();
     });
   }
@@ -32,17 +30,14 @@ export class EventDetailComponent implements OnInit {
     const id = +this._route.snapshot.paramMap.get('id');
     this._eventService.getEvent(id).subscribe(
       data => {
-        this.event = CEvent.fromJSON(JSON.parse(JSON.stringify(data)));
+        this.event = Event.fromJSON(JSON.parse(JSON.stringify(data)));
         // Set the time_start and _end as strings that display in hh:mm A (i.e. 10:00 AM) format
-        this.time_start = CEvent.getTimeString(this.event.date_start);
-        this.time_end = CEvent.getTimeString(this.event.date_end);
+        this.time_start = Event.getTimeString(this.event.date_start);
+        this.time_end = Event.getTimeString(this.event.date_end);
         // Set the date_start and _end as strings that display in YYYY-MM-DD formation because that's that matDatePicker accepts
         console.log(this.event);
       },
       err => console.error(err),
-      // () =>
-        // TODO: [DEBUG]
-        // console.log(this.eventJSON)
     );
   }
 
