@@ -7,7 +7,7 @@ __author__ = 'codeninja55'
 
 # Events model
 class Event(models.Model):
-    event_id = models.AutoField(primary_key=True)
+    event_id = models.BigAutoField(primary_key=True)
     organisers_name = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField('event title', max_length=30, blank=False, null=False)
     description = models.TextField('event description', blank=True)
@@ -29,7 +29,13 @@ class Event(models.Model):
 
 
 class Ticket(models.Model):
-    pass
+    ticket_id = models.BigAutoField(primary_key=True)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='event_ticket', null=True, blank=True)
+    description = models.CharField('ticket description', max_length=200, null=True, blank=True)
+    quantity = models.IntegerField('ticket quantity', blank=True, null=True)
+    available = models.IntegerField('tickets available', blank=True, null=True)
+    promotional_code = models.CharField('ticket promotional codes', max_length=100, blank=True, null=True)
+    price = models.DecimalField('ticket price', blank=True, null=True, max_digits=100, decimal_places=2)
 
 
 # Need to update the tickets available as these are saved.
