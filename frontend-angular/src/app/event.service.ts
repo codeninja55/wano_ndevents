@@ -34,12 +34,22 @@ export class EventService {
 
   // Uses http.post method to send JSON to the the create API endpoint to make a new event
   postEvent(data) {
+    const url = this._eventApi + 'create/';
     const body = JSON.stringify(data);
-    return this._http.post(this._eventApi + 'create/', body, httpOptions)
-      .pipe(
+    return this._http.post(url, body, httpOptions).pipe(
         tap((newEvent) => console.log('[DEBUG]: ' + newEvent)),
         catchError(this.handleError('postEvent'))
       );
+  }
+
+  // Uses http.put method to send JSON to the update API endpoint to update details of event
+  putEvent(id: number, data: any) {
+    const body = JSON.stringify(data);
+    const url = this._eventApi + id + '/update/';
+    return this._http.put(url, body, httpOptions).pipe(
+      tap((event) => console.log('[DEBUG]: ' + event)),
+      catchError(this.handleError('putEvent'))
+    );
   }
 
   // Uses http.delete method to delete an Event from the API endpoint
