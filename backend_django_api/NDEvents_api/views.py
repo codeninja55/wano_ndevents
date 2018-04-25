@@ -1,15 +1,12 @@
-from django.http import Http404
 from rest_framework.generics import (
     RetrieveUpdateAPIView, RetrieveDestroyAPIView, CreateAPIView, ListAPIView,
     ListCreateAPIView, RetrieveUpdateDestroyAPIView)
-from rest_framework.response import Response
-from rest_framework.views import APIView
 
-from .models import Event, Ticket
-from .serializers import EventSerializer, EventCreateUpdateSerializer, TicketSerializer
+from .models import Event, Booking
+from .serializers import EventSerializer, EventCreateUpdateSerializer, BookingSerializer
 
 
-class EventListAPIView(ListAPIView):
+class EventListAPIView(ListCreateAPIView):
     """
     This Event API endpoint will return a list of events that can also be created.
     """
@@ -17,24 +14,24 @@ class EventListAPIView(ListAPIView):
     serializer_class = EventSerializer
 
 
-class EventDetailAPIView(APIView):
-    """
-    This Event API endpoint will return a single event from the event_id
-    """
-
-    def get_object(self, event_id):
-        try:
-            return Event.objects.get(event_id=event_id)
-        except Event.DoesNotExist:
-            return Http404
-
-    def get(self, request, event_id):
-        event = self.get_object(event_id=event_id)
-        serializer_context = {
-            'request': request,
-        }
-        serializer = EventSerializer(event, context=serializer_context)
-        return Response(serializer.data)
+# class EventDetailAPIView(APIView):
+#     """
+#     This Event API endpoint will return a single event from the event_id
+#     """
+#
+#     def get_object(self, event_id):
+#         try:
+#             return Event.objects.get(event_id=event_id)
+#         except Event.DoesNotExist:
+#             return Http404
+#
+#     def get(self, request, event_id):
+#         event = self.get_object(event_id=event_id)
+#         serializer_context = {
+#             'request': request,
+#         }
+#         serializer = EventSerializer(event, context=serializer_context)
+#         return Response(serializer.data)
 
 
 class EventCreateAPIView(CreateAPIView):
@@ -63,19 +60,19 @@ class EventDeleteAPIView(RetrieveDestroyAPIView):
     lookup_field = 'event_id'
 
 
-class TicketListAPIView(ListCreateAPIView):
+class BookingsListAPIView(ListCreateAPIView):
     """
     This Ticket API endpoint will allow list retrieval and creating of tickets.
     """
-    queryset = Ticket.objects.all()
-    serializer_class = TicketSerializer
-    lookup_field = 'ticket_id'
+    queryset = Booking.objects.all()
+    serializer_class = BookingSerializer
+    lookup_field = 'booking_id'
 
 
-class TicketRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
+class BookingsRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     """
     This Ticket API endpoint will allow update and destroy of a single ticket based on ticket_id
     """
-    queryset = Ticket.objects.all()
-    serializer_class = TicketSerializer
-    lookup_field = 'ticket_id'
+    queryset = Booking.objects.all()
+    serializer_class = BookingSerializer
+    lookup_field = 'booking_id'
