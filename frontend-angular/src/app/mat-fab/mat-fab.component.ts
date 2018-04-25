@@ -1,4 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-mat-fab',
@@ -9,7 +10,7 @@ export class MatFabComponent implements OnInit {
   @Output() navToggle = new EventEmitter<boolean>();
   @Output() bookingsToggle = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor(private _route: ActivatedRoute) { }
 
   ngOnInit() {
     this.closeSidenav();
