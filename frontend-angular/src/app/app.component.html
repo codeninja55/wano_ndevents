@@ -1,0 +1,15 @@
+<app-ndev-navbar (navToggle)="sidenav.toggle()"></app-ndev-navbar>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav class="sidenav white red-text pt-2" mode="side" [opened]="showEventsTab"
+               [fixedTopGap]="0" [fixedBottomGap]="0">
+
+    <app-events-tab></app-events-tab>
+
+  </mat-sidenav>
+  <mat-sidenav #bookingsSidenav class="bookingsSidenav pt-2" mode="side" [opened]="openBookingsTab" position="end">
+    <app-bookings-tab></app-bookings-tab>
+  </mat-sidenav>
+  <router-outlet></router-outlet>
+  <app-mat-fab (bookingsToggle)="bookingsSidenav.close()" *ngIf="showFab"></app-mat-fab>
+</mat-sidenav-container>

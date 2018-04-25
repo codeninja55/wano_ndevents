@@ -1,0 +1,31 @@
+<mat-tab-group>
+  <mat-tab label="Upcoming Events">
+    <ng-template mat-tab-label>
+      <i class="fas fa-calendar-alt fa-2x"></i> &nbsp; Current Events
+    </ng-template>
+
+    <mat-nav-list class="mat-nav-list">
+      <mat-list-item *ngFor="let event of events" class="mt-2 mb-2">
+        <a matLine aria-disabled="false" routerLink="/event/{{event.event_id}}">
+          <span class="mat-subheading-2 p-0 m-0">{{event.title}}</span> &nbsp;
+          <br/><span class="mat-subheading-1">{{event.date_start}}</span>
+        </a>
+        <button mat-icon-button class="mat-button">
+            <mat-icon class="red-text text-lighten-1">edit</mat-icon>
+        </button>
+        <button mat-icon-button class="mat-button" style="font-size: 24px">
+          <i class="far fa-rocket red-text text-lighten-1"></i>
+        </button>
+        <button mat-icon-button class="mat-button">
+          <mat-icon class="red-text text-lighten-2">delete</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-tab>
+
+  <mat-tab label="Past Events">
+    <ng-template mat-tab-label="">
+      <i class="fal fa-calendar-alt fa-2x"></i> &nbsp; Past Events
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>

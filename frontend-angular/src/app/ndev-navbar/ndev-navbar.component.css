@@ -1,0 +1,31 @@
+.navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.navbar div {
+  height: inherit !important;
+}
+
+.mat-button-focus-overlay {
+  height: inherit !important;
+}
+
+.mat-button {
+  height: inherit !important;
+  padding: 0 !important;
+  min-width: 56px;
+}
+
+.hamburger {
+  padding: 0 2rem !important;
+}
+
+.header {
+  min-width: 120px;
+  padding: 0 1.25rem !important;
+}
