@@ -36,14 +36,6 @@ export class Event {
     this.url = iEvent.url;
   }
 
-  static getTimeString(time: Date): string {
-    return moment(time).format('hh:mm A');
-  }
-
-  static getDateString(date: Date): string {
-    return moment(date).format('YYYY-MM-DD');
-  }
-
   /* fromJSON is used to convert a serialized version of the cEvent to an instance of the class */
   static fromJSON(json: IEventJSON): Event {
     // create an instance of the cEvent class
