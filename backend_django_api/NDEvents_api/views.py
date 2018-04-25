@@ -48,7 +48,7 @@ class EventDetailUpdateAPIView(RetrieveUpdateAPIView):
     This Event API endpoint will allow read or update to represent a single model instance
     """
     queryset = Event.objects.all()
-    serializer_class = EventSerializer
+    serializer_class = EventCreateUpdateSerializer
     lookup_field = 'event_id'
 
 
