@@ -1,4 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {DisplayCompService} from '../display-comp.service';
 
 @Component({
   selector: 'app-mat-fab',
@@ -6,21 +8,12 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
   styleUrls: ['./mat-fab.component.css']
 })
 export class MatFabComponent implements OnInit {
-  @Output() navToggle = new EventEmitter<boolean>();
-  @Output() bookingsToggle = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor(private _displayService: DisplayCompService) { }
 
-  ngOnInit() {
-    this.closeSidenav();
-    this.closeBookingsSidenav();
+  ngOnInit() { }
+
+  closeBookingsSidenav(): void {
+    this._displayService.toggleBookingsTab(false);
   }
-
-  closeSidenav() {
-    this.navToggle.emit(true);
-  }
-  closeBookingsSidenav() {
-    this.bookingsToggle.emit(true);
-  }
-
 }

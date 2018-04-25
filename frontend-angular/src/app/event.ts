@@ -1,6 +1,6 @@
 import * as moment from 'moment';
 
-export class CEvent {
+export class Event {
   title: string;
   venue: string;
   capacity_max: number;
@@ -36,23 +36,14 @@ export class CEvent {
     this.url = iEvent.url;
   }
 
-  static getTimeString(time: Date): string {
-    return moment(time).format('hh:mm A');
-  }
-
-  static getDateString(date: Date): string {
-    return moment(date).format('YYYY-MM-DD');
-  }
-
   /* fromJSON is used to convert a serialized version of the cEvent to an instance of the class */
-  static fromJSON(json: IEventJSON): CEvent {
+  static fromJSON(json: IEventJSON): Event {
     // create an instance of the cEvent class
-    const event = Object.create(CEvent.prototype);
+    const event = Object.create(Event.prototype);
     // copy all the fields from the json object
     return Object.assign(event, json, {
-      date_start: moment(json.date_start, 'YYYY-MM-DD HH:MM').toDate(),
-      date_end: moment(json.date_end, 'YYYY-MM-DD HH:MM').toDate(),
-      // launch_date: null ? '' : moment(json.launch_date).toDate(),
+      date_start: moment(json.date_start).toDate(),
+      date_end: moment(json.date_end).toDate(),
       date_created: moment(json.date_created).toDate(),
       last_updated: moment(json.last_updated).toDate()
     });
@@ -60,11 +51,11 @@ export class CEvent {
 
   /* reviver can be passed as the second parameter to JSON.parse to automatically call User.fromJSON on the resulting value. */
   static reviver(key: string, value: any): any {
-    return key === '' ? CEvent.fromJSON(value) : value;
+    return key === '' ? Event.fromJSON(value) : value;
   }
 
   // toJSON is automatically used by JSON.stringify
-  static toJSON(event: CEvent): IPostEventJSON {
+  static toJSON(event: Event): IPostEventJSON {
     // copy all fields from `this` to an empty object and return in
     /*return Object.assign({}, this, {
       // convert fields that need converting

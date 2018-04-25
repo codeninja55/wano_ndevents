@@ -1,4 +1,5 @@
 <button mat-fab class="red app-mat-fab white-text" routerLink="/new/event"
-        (click)="closeBookingsSidenav(); closeSidenav()">
+        routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+        (click)="closeBookingsSidenav()">
   <mat-icon>add</mat-icon>
 </button>

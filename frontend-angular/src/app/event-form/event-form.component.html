@@ -1,30 +1,30 @@
-<div class="row p-0">
-  <div class="mt-3 col-sm-12 offset-md-1 col-md-10 offset-lg-3 col-lg-6">
-    <div class="mt-5 offset-3 col-6 text-center" style="color: #4d4d4d!important;">
+<div class="row p-0 m-0">
+  <div class="mt-2 mb-4 col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
+    <div class="mt-2 offset-2 col-8 text-center" style="color: #4d4d4d!important;">
       <span class="mat-headline">Event Details</span>
     </div>
-    <mat-divider class="mt-2 mb-3 red" style="background-color: #4d4d4d"></mat-divider>
+    <mat-divider class="mt-2 red" style="background-color: #4d4d4d"></mat-divider>
 
     <form class="p-0 m-0" #eventForm="ngForm" (ngSubmit)="onSubmit()">
-      <div class="row p-0">
+      <div class="row mt-2 p-0">
         <mat-form-field class="col w-100">
-          <input type="text" matInput class="" placeholder="Event Title" required
+          <input type="text" matInput placeholder="Event Title" required
                  [(ngModel)]="model.title" name="title">
         </mat-form-field>
       </div>
 
-      <div class="row mt-2 p-0">
+      <div class="row mt-1 p-0">
         <mat-form-field class="col w-100">
-          <input type="text" matInput class="" placeholder="Location" required
+          <input type="text" matInput placeholder="Location" required
                  [(ngModel)]="model.venue" name="venue">
         </mat-form-field>
       </div>
 
-      <div class="row mt-2 p-0">
+      <div class="row mt-1 p-0">
         <div class="col-lg-6 col-md-8 col-sm-12 mat-typography">
-          <h3 class="mat-subheading-2 mb-3 font-weight-bold">Start</h3>
+          <h3 class="mat-subheading-2 mb-1 font-weight-bold">Start</h3>
           <mat-form-field class="w-100">
-            <input matInput [matDatepicker]="dateStartPicker" class="" placeholder="Date" required
+            <input matInput [matDatepicker]="dateStartPicker" placeholder="Date" required
                    [(ngModel)]="model.date_start" name="date_start">
             <mat-datepicker-toggle matSuffix [for]="dateStartPicker"></mat-datepicker-toggle>
             <mat-datepicker #dateStartPicker></mat-datepicker>
@@ -35,9 +35,9 @@
           </mat-form-field>
         </div>
         <div class="col-lg-6 col-md-8 col-sm-12 mat-typography px-1">
-          <h3 class="mat-subheading-2 mb-3 font-weight-bold">End</h3>
+          <h3 class="mat-subheading-2 mb-1 font-weight-bold">End</h3>
           <mat-form-field class="w-100">
-            <input matInput [matDatepicker]="dateEndPicker" class="" placeholder="Date" required
+            <input matInput [matDatepicker]="dateEndPicker" placeholder="Date" required
                    [(ngModel)]="model.date_end" name="date_end">
             <mat-datepicker-toggle matSuffix [for]="dateEndPicker"></mat-datepicker-toggle>
             <mat-datepicker #dateEndPicker></mat-datepicker>
@@ -49,25 +49,25 @@
         </div>
       </div>
 
-      <div class="row mt-3 p-0">
-        <div class="col">
+      <div class="row mt-1 p-0">
+        <div class="col-lg-6 col-md-8 col-sm-12 mat-typography">
           <mat-form-field class="w-50">
-            <input type="number" matInput class="w-50" placeholder="Max Capacity" required
+            <input type="number" matInput class="w-100" placeholder="Max Capacity" required
                    [(ngModel)]="model.capacity_max" name="capacity_max">
           </mat-form-field>
         </div>
-        <div class="col">
+        <div class="col-lg-6 col-md-8 col-sm-12 mat-typography px-1">
           <mat-form-field class="w-50">
-            <input type="number" matInput class="w-50" placeholder="Expected Capacity" required
+            <input type="number" matInput class="w-100" placeholder="Expected Capacity" required
                    [(ngModel)]="model.capacity_expected" name="capacity_expected">
           </mat-form-field>
         </div>
       </div>
 
-      <div class="row mt-2 p-0">
+      <div class="row mt-1 p-0">
         <div class="col">
-          <mat-form-field class="w-100 mt-2">
-            <textarea matInput class="w-100" placeholder="Description" matTextareaAutosize matAutosizeMinRows="4"
+          <mat-form-field class="w-100">
+            <textarea matInput class="w-100" placeholder="Description" matTextareaAutosize matAutosizeMinRows="2"
                       matAutosizeMaxRows="10" [(ngModel)]="model.description" name="description">
 
             </textarea>
@@ -75,12 +75,12 @@
         </div>
       </div>
 
-      <div class="mt-4 offset-3 col-6 text-center">
+      <div class="mt-2 offset-3 col-6 text-center">
         <span class="mat-headline" style="color: #4d4d4d!important;">Ticket Details</span>
       </div>
       <mat-divider class="mt-2 mb-3 red" style="background-color: #4d4d4d"></mat-divider>
 
-      <div class="row mt-3 p-0">
+      <div class="row mt-2 p-0">
         <div class="col">
           <h3 class="mat-subheading-2 mb-3 font-weight-bold">Create Optional Ticket(s) Types below</h3>
         </div>
@@ -109,7 +109,7 @@
           </mat-form-field>
         </div>
         <div class="col-sm-12 col-md-1 pl-2">
-          <button mat-mini-fab="" class="mat-mini-fab red white-text">
+          <button mat-mini-fab class="mat-mini-fab red white-text">
             <mat-icon>add</mat-icon>
           </button>
         </div>
