@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.validators import UnicodeUsernameValidator
 from rest_framework import serializers
 
 from .models import Event, Booking
@@ -10,7 +11,12 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = get_user_model()
-        fields = ('username')
+        fields = 'username'
+        extra_kwargs = {
+            'username': {
+                'validators': [UnicodeUsernameValidator()],
+            }
+        }
 
 
 class BookingSerializer(serializers.ModelSerializer):
@@ -19,7 +25,7 @@ class BookingSerializer(serializers.ModelSerializer):
         model = Booking
         fields = (
             'booking_id',
-            'event',
+            'event_id',
             'first_name',
             'last_name',
             'email',
