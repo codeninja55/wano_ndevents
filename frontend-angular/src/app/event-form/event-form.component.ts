@@ -1,8 +1,8 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import * as moment from 'moment';
 import {EventService} from '../event.service';
 import {Event} from '../event';
-import {MatFabService} from '../mat-fab.service';
+import {DisplayCompService} from '../display-comp.service';
 
 @Component({
   selector: 'app-event-form',
@@ -14,10 +14,10 @@ export class EventFormComponent implements OnInit {
   submitted = false;
 
   constructor(private _eventService: EventService,
-              private _fabService: MatFabService) { }
+              private _displayService: DisplayCompService) { }
 
   ngOnInit() {
-    this._fabService.emitChange(false);
+    this._displayService.emitChange(false);
   }
 
   onSubmit() {

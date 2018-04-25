@@ -1,4 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {DisplayCompService} from '../display-comp.service';
 
 @Component({
   selector: 'app-ndev-navbar',
@@ -8,13 +9,13 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 export class NdevNavbarComponent implements OnInit {
   @Output() navToggle = new EventEmitter<boolean>();
-  @Output() bookingsToggle = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor(private _displayService: DisplayCompService) { }
 
   ngOnInit() { }
 
   toggleSidenav() { this.navToggle.emit(true); }
-  closeBookingsSidenav() { this.bookingsToggle.emit(true); }
+  closeBookingsSidenav() { this._displayService.toggleBookingsTab(false); }
+  showEventsTab() { this._displayService.toggleEventsTab(true); }
 
 }
