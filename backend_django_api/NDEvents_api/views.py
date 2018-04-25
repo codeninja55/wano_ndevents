@@ -1,5 +1,7 @@
 from django.http import Http404
-from rest_framework.generics import RetrieveUpdateAPIView, ListCreateAPIView, RetrieveDestroyAPIView, CreateAPIView
+from rest_framework.generics import (
+    RetrieveUpdateAPIView, RetrieveDestroyAPIView, CreateAPIView, ListAPIView
+)
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -7,7 +9,7 @@ from .models import Event
 from .serializers import EventSerializer, EventCreateUpdateSerializer
 
 
-class EventListAPIView(ListCreateAPIView):
+class EventListAPIView(ListAPIView):
     """
     This Event API endpoint will return a list of events that can also be created.
     """
