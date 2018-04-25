@@ -1,12 +1,12 @@
 from django.http import Http404
 from rest_framework.generics import (
-    RetrieveUpdateAPIView, RetrieveDestroyAPIView, CreateAPIView, ListAPIView
-)
+    RetrieveUpdateAPIView, RetrieveDestroyAPIView, CreateAPIView, ListAPIView,
+    ListCreateAPIView, RetrieveUpdateDestroyAPIView)
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import Event
-from .serializers import EventSerializer, EventCreateUpdateSerializer
+from .models import Event, Ticket
+from .serializers import EventSerializer, EventCreateUpdateSerializer, TicketSerializer
 
 
 class EventListAPIView(ListAPIView):
@@ -61,3 +61,21 @@ class EventDeleteAPIView(RetrieveDestroyAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
     lookup_field = 'event_id'
+
+
+class TicketListAPIView(ListCreateAPIView):
+    """
+    This Ticket API endpoint will allow list retrieval and creating of tickets.
+    """
+    queryset = Ticket.objects.all()
+    serializer_class = TicketSerializer
+    lookup_field = 'ticket_id'
+
+
+class TicketRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
+    """
+    This Ticket API endpoint will allow update and destroy of a single ticket based on ticket_id
+    """
+    queryset = Ticket.objects.all()
+    serializer_class = TicketSerializer
+    lookup_field = 'ticket_id'
