@@ -34,7 +34,7 @@ class Event(models.Model):
 # Need to update the tickets available as these are saved.
 class Booking(models.Model):
     booking_id = models.BigAutoField(primary_key=True)
-    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='event_booking', null=True, blank=True)
+    event_id = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='event_booking', null=True, blank=True)
     first_name = models.CharField('first name', max_length=100, blank=False, null=False)
     last_name = models.CharField('last name', max_length=100, blank=False, null=False)
     email = models.EmailField('email', blank=False, null=False)
