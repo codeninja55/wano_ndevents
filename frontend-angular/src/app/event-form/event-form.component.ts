@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import * as moment from 'moment';
 import {EventService} from '../event.service';
 import {Event} from '../event';
+import {MatFabService} from '../mat-fab.service';
 
 @Component({
   selector: 'app-event-form',
@@ -12,9 +13,12 @@ export class EventFormComponent implements OnInit {
   model = <IPostEventJSON>{};
   submitted = false;
 
-  constructor(private _eventService: EventService) { }
+  constructor(private _eventService: EventService,
+              private _fabService: MatFabService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this._fabService.emitChange(false);
+  }
 
   onSubmit() {
     this.submitted = true;

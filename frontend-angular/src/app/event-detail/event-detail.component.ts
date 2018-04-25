@@ -4,6 +4,7 @@ import {Event} from '../event';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import * as moment from 'moment';
+import {MatFabService} from '../mat-fab.service';
 
 @Component({
   selector: 'app-event-detail',
@@ -18,12 +19,14 @@ export class EventDetailComponent implements OnInit {
 
   constructor(private _eventService: EventService,
               private _route: ActivatedRoute,
-              private _location: Location) { }
+              private _location: Location,
+              private _fabService: MatFabService) { }
 
   ngOnInit() {
     this._route.params.subscribe( () => {
       this.getEvent();
     });
+    this._fabService.emitChange(true);
   }
 
   getEvent(): void {
