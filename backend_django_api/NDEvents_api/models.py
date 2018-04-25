@@ -28,6 +28,7 @@ class Event(models.Model):
                                                       date=self.date_start)
 
 
+# Ticket model
 class Ticket(models.Model):
     ticket_id = models.BigAutoField(primary_key=True)
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='event_ticket', null=True, blank=True)

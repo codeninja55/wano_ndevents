@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Event
+from .models import Event, Ticket
 from django.contrib.auth.models import User
 
 
@@ -39,3 +39,10 @@ class EventCreateUpdateSerializer(serializers.ModelSerializer):
             'launch_date',
             'is_launched',
         )
+
+
+class TicketSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Ticket
+        fields = '__all__'
