@@ -40,8 +40,8 @@ class EventSerializer(serializers.ModelSerializer):
     event_bookings = BookingSerializer(many=True, read_only=True)
     date_start = serializers.DateTimeField(format='%Y-%m-%d %H:%M')
     date_end = serializers.DateTimeField(format='%Y-%m-%d %H:%M')
-    date_created = serializers.DateTimeField(format='%Y-%m-%d %H:%M')
-    last_updated = serializers.DateTimeField(format='%Y-%m-%d %H:%M')
+    date_created = serializers.DateTimeField(format='%Y-%m-%d %H:%M', read_only=True)
+    last_updated = serializers.DateTimeField(format='%Y-%m-%d %H:%M', read_only=True)
     self = serializers.HyperlinkedIdentityField(read_only=True,
                                                 view_name='ndevents:event',
                                                 lookup_field='event_id')
@@ -79,7 +79,6 @@ class EventSerializer(serializers.ModelSerializer):
         instance.promotional_code = validated_data['promotional_code']
         instance.price = validated_data['price']
         instance.date_start = validated_data['date_start']
-        instance.date_end = validated_data['date_end']
         instance.date_end = validated_data['date_end']
         instance.launch_date = validated_data['launch_date']
         instance.is_launched = validated_data['is_launched']
