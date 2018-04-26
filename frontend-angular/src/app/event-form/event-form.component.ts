@@ -10,7 +10,8 @@ import {DisplayCompService} from '../display-comp.service';
   styleUrls: ['./event-form.component.css']
 })
 export class EventFormComponent implements OnInit {
-  model = <IPostEventJSON>{};
+  model = <IEventJSON>{};
+  user = <User>{};
   submitted = false;
 
   constructor(private _eventService: EventService,
@@ -23,10 +24,12 @@ export class EventFormComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
+
     // TODO: Figure out these defaults
     this.model.launch_date = null;
     this.model.is_launched = false;
-    this.model.organisers_name = 1;
+
+    this.model.organisers_name = this.user;
     // Add the time to the date as when received, the date is set to 0. Using MomentJS chained adding feature
     // https://momentjs.com/docs/#/manipulating/add/
     this.model.date_start = moment(this.model.date_start).add(this.model.time_start.split(':')[0], 'h')
@@ -36,10 +39,11 @@ export class EventFormComponent implements OnInit {
     // Create a CEvent model and turn it into JSON using static toJSON method
     const newEventJSON = Event.toJSON(new Event(this.model));
     console.log(newEventJSON);
+
     this._eventService.postEvent(newEventJSON).subscribe(() =>
       console.log(newEventJSON));
   }
 
   // TODO: Remove diagnostic when done
-  // get diagnostic() { return JSON.stringify(this.model); }
+  get diagnostic() { return JSON.stringify(this.model); }
 }
