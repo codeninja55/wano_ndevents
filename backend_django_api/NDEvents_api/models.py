@@ -14,14 +14,17 @@ class Event(models.Model):
     venue = models.TextField('event location', max_length=200, null=False, blank=False)
     capacity_max = models.IntegerField('max capacity', blank=True, null=False, default=0)
     capacity_expected = models.IntegerField('expected capacity', blank=True, null=False, default=0)
-    bookings_available = models.IntegerField('bookings available', blank=True, null=True)
-    bookings_made = models.IntegerField('bookings made', blank=True, null=True)
+    bookings_available = models.IntegerField('bookings available', blank=True, null=True,
+                                             editable=False, default=capacity_max)
+    bookings_made = models.IntegerField('bookings made', blank=True, null=True, default=0, editable=False)
     promotional_code = models.CharField('promotional code', max_length=30, blank=True, null=True)
     price = models.DecimalField('booking price', blank=True, null=True, max_digits=100, decimal_places=2)
-    date_start = models.DateTimeField('event start date and time', auto_now=False, auto_now_add=False)
-    date_end = models.DateTimeField('event end date and time', auto_now=False, auto_now_add=False)
-    date_created = models.DateTimeField('date event created', auto_now=False, auto_now_add=True)
-    last_updated = models.DateTimeField('last updated date', auto_now=True, auto_now_add=False)
+    date_start = models.DateTimeField('event start date and time', auto_now=False, auto_now_add=False,
+                                      null=False, blank=False)
+    date_end = models.DateTimeField('event end date and time', auto_now=False, auto_now_add=False,
+                                    null=False, blank=False)
+    date_created = models.DateTimeField('date event created', auto_now=False, auto_now_add=True, editable=False)
+    last_updated = models.DateTimeField('last updated date', auto_now=True, auto_now_add=False, editable=False)
     launch_date = models.DateTimeField('date event launched', blank=True, null=True, auto_now_add=False, auto_now=False)
     is_launched = models.BooleanField('event launched', default=False)
 
@@ -34,7 +37,7 @@ class Event(models.Model):
 # Need to update the tickets available as these are saved.
 class Booking(models.Model):
     booking_id = models.BigAutoField(primary_key=True)
-    event_id = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='event_booking', null=True, blank=True)
+    event_id = models.ForeignKey(Event, related_name='event_bookings', on_delete=models.CASCADE, null=True, blank=True)
     first_name = models.CharField('first name', max_length=100, blank=False, null=False)
     last_name = models.CharField('last name', max_length=100, blank=False, null=False)
     email = models.EmailField('email', blank=False, null=False)

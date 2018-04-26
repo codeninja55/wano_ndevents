@@ -1,9 +1,8 @@
 from rest_framework.generics import (
-    RetrieveUpdateAPIView, RetrieveDestroyAPIView, CreateAPIView, ListAPIView,
-    ListCreateAPIView, RetrieveUpdateDestroyAPIView)
+    CreateAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView)
 
 from .models import Event, Booking
-from .serializers import EventSerializer, EventCreateUpdateSerializer, BookingSerializer
+from .serializers import EventSerializer, BookingSerializer
 
 
 class EventListAPIView(ListCreateAPIView):
@@ -12,6 +11,7 @@ class EventListAPIView(ListCreateAPIView):
     """
     queryset = Event.objects.all()
     serializer_class = EventSerializer
+    lookup_field = 'event_id'
 
 
 # class EventDetailAPIView(APIView):
@@ -39,21 +39,13 @@ class EventCreateAPIView(CreateAPIView):
     This Event API endpoint will allow create-only post method handler
     """
     queryset = Event.objects.all()
-    serializer_class = EventCreateUpdateSerializer
-
-
-class EventDetailUpdateAPIView(RetrieveUpdateAPIView):
-    """
-    This Event API endpoint will allow read or update to represent a single model instance
-    """
-    queryset = Event.objects.all()
-    serializer_class = EventCreateUpdateSerializer
+    serializer_class = EventSerializer
     lookup_field = 'event_id'
 
 
-class EventDeleteAPIView(RetrieveDestroyAPIView):
+class EventDetailUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     """
-    This Event API endpoint will allow delete of a single event based on event_id
+    This Event API endpoint will allow retrieve, update or destroy to represent a single model instance
     """
     queryset = Event.objects.all()
     serializer_class = EventSerializer

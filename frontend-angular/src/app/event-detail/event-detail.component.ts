@@ -5,6 +5,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import * as moment from 'moment';
 import {DisplayCompService} from '../display-comp.service';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-event-detail',
@@ -13,7 +14,7 @@ import {DisplayCompService} from '../display-comp.service';
 })
 export class EventDetailComponent implements OnInit {
   event: Event;
-  model = <IPostEventJSON>{};
+  event_model = <IEventJSON>{};
   editable = true;
   submitted = false;
 
@@ -34,23 +35,29 @@ export class EventDetailComponent implements OnInit {
     const id = +this._route.snapshot.paramMap.get('id');
     this._eventService.getEvent(id).subscribe(
       data => {
-        this.event = Event.fromJSON(data);
-        console.log(this.event);
+        // this.event = Event.fromJSON(data);
+        this.event = data;
+        console.log(data);
       },
       err => console.error(err),
       () => {
-        this.model.title = this.event.title;
-        this.model.description = this.event.description;
-        this.model.venue = this.event.venue;
-        this.model.date_start = moment(this.event.date_start).format('YYYY-MM-DD');
-        this.model.date_end = moment(this.event.date_end).format('YYYY-MM-DD');
-        this.model.time_start = moment(this.event.date_start).format('HH:MM');
-        this.model.time_end = moment(this.event.date_end).format('HH:MM');
-        this.model.capacity_max = this.event.capacity_max;
-        this.model.capacity_expected = this.event.capacity_expected;
-        this.model.organisers_name = this.event.organisers_name;
-        this.model.launch_date = this.event.launch_date;
-        this.model.is_launched = this.event.is_launched;
+        console.log(this.event);
+        this.event_model.organisers_name = this.event.organisers_name;
+        this.event_model.title = this.event.title;
+        this.event_model.description = this.event.description;
+        this.event_model.venue = this.event.venue;
+        this.event_model.capacity_max = this.event.capacity_max;
+        this.event_model.capacity_expected = this.event.capacity_expected;
+        this.event_model.bookings_available = this.event.bookings_available;
+        this.event_model.bookings_made = this.event.bookings_made;
+        this.event_model.date_start = moment(this.event.date_start).format('YYYY-MM-DD');
+        this.event_model.date_end = moment(this.event.date_end).format('YYYY-MM-DD');
+        this.event_model.time_start = moment(this.event.date_start).format('HH:MM');
+        this.event_model.time_end = moment(this.event.date_end).format('HH:MM');
+        this.event_model.price = this.event.price;
+        this.event_model.promotional_code = this.event.promotional_code;
+        this.event_model.launch_date = this.event.launch_date;
+        this.event_model.is_launched = this.event.is_launched;
       }
     );
   }
@@ -63,12 +70,12 @@ export class EventDetailComponent implements OnInit {
     this.submitted = true;
     this.toggleEdit();
 
-    this.model.date_start = moment(this.model.date_start).add(this.model.time_start.split(':')[0], 'h')
-      .add(this.model.time_start.split(':')[1], 'm').format('YYYY-MM-DD HH:MM');
-    this.model.date_end = moment(this.model.date_end).add(this.model.time_end.split(':')[0], 'h')
-      .add(this.model.time_end.split(':')[1], 'm').format('YYYY-MM-DD HH:MM');
+    this.event_model.date_start = moment(this.event_model.date_start).add(this.event_model.time_start.split(':')[0], 'h')
+      .add(this.event_model.time_start.split(':')[1], 'm').format('YYYY-MM-DD HH:MM');
+    this.event_model.date_end = moment(this.event_model.date_end).add(this.event_model.time_end.split(':')[0], 'h')
+      .add(this.event_model.time_end.split(':')[1], 'm').format('YYYY-MM-DD HH:MM');
 
-    const editedEvent = Event.toJSON(new Event(this.model));
+    const editedEvent = Event.toJSON(new Event(this.event_model));
     console.log(editedEvent);
 
     this._eventService.putEvent(this.event.event_id, editedEvent).subscribe(() => {
