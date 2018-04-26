@@ -17,7 +17,7 @@ export class EventsTabComponent implements OnInit {
     this._eventService.getEvents().subscribe(
       data => { this.events = data; },
       err => console.error(err),
-      () => console.log('[DEBUG]: Completed loading events')
+      () => console.log(this.events)
     );
   }
 
