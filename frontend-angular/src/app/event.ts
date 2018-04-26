@@ -1,29 +1,39 @@
 import * as moment from 'moment';
 
 export class Event {
+  event_id?: number;
   title: string;
+  organisers_name: any;
+  description: string;
   venue: string;
   capacity_max: number;
   capacity_expected: number;
-  description: string;
-  organisers_name: number;
+  bookings_available: number;
+  bookings_made: number;
+  promotional_code: string;
+  price: number;
+  event_bookings: any;
   date_start: Date;
   date_end: Date;
   is_launched: boolean;
   launch_date?: any;
-  event_id?: number;
   date_created?: any;
   last_updated?: any;
   url: URL;
 
   constructor(iEvent: IEventJSON) {
     this.event_id = iEvent.event_id;
+    this.organisers_name = iEvent.organisers_name;
     this.title = iEvent.title;
+    this.description = iEvent.description;
     this.venue = iEvent.venue;
     this.capacity_max = iEvent.capacity_max;
     this.capacity_expected = iEvent.capacity_expected;
-    this.description = iEvent.description;
-    this.organisers_name = iEvent.organisers_name;
+    this.bookings_available = iEvent.bookings_available;
+    this.bookings_made = iEvent.bookings_made;
+    this.promotional_code = iEvent.promotional_code;
+    this.price = iEvent.price;
+    this.event_bookings = iEvent.event_bookings;
     // Convert date_start (YYYY-MM-DD) and time_start (hh:mm) to a single Date object
     this.date_start = moment(iEvent.date_start, 'YYYY-MM-DD HH:MM').toDate();
     this.date_end = moment(iEvent.date_end, 'YYYY-MM-DD HH:MM').toDate();
@@ -56,15 +66,6 @@ export class Event {
 
   // toJSON is automatically used by JSON.stringify
   static toJSON(event: Event): IPostEventJSON {
-    // copy all fields from `this` to an empty object and return in
-    /*return Object.assign({}, this, {
-      // convert fields that need converting
-      date_start: moment(this.date_start, 'YYYY-MM-DD HH:MM').format('YYYY-MM-DD HH:MM'),
-      date_end: moment(this.date_end, 'YYYY-MM-DD HH:MM').format('YYYY-MM-DD HH:MM'),
-      // date_created: moment(this.date_created).format('YYYY-MM-DD HH:MM'),
-      // last_updated: moment(this.last_updated).format('YYYY-MM-DD HH:MM'),
-    });*/
-
     // Return a specific format that is required by the API endpoint
     return {
       organisers_name: event.organisers_name,
@@ -73,6 +74,8 @@ export class Event {
       venue: event.venue,
       capacity_max: event.capacity_max,
       capacity_expected: event.capacity_expected,
+      promotional_code: event.promotional_code,
+      price: event.price,
       date_start: moment(event.date_start, 'YYYY-MM-DD HH:MM').format('YYYY-MM-DD HH:MM'),
       date_end: moment(event.date_end, 'YYYY-MM-DD HH:MM').format('YYYY-MM-DD HH:MM'),
       launch_date: event.launch_date,
