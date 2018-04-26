@@ -3,7 +3,7 @@ import * as moment from 'moment';
 export class Event {
   event_id?: number;
   title: string;
-  organisers_name: any;
+  organisers_name: User;
   description: string;
   venue: string;
   capacity_max: number;
@@ -65,10 +65,14 @@ export class Event {
   }
 
   // toJSON is automatically used by JSON.stringify
-  static toJSON(event: Event): IPostEventJSON {
+  static toJSON(event: Event): IEventJSON {
+    const organiser = {
+      username: event.organisers_name.username,
+      email: event.organisers_name.email
+    };
     // Return a specific format that is required by the API endpoint
     return {
-      organisers_name: event.organisers_name,
+      organisers_name: organiser,
       title: event.title,
       description: event.description,
       venue: event.venue,
