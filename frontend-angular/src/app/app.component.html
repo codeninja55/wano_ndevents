@@ -10,6 +10,9 @@
   <mat-sidenav #bookingsSidenav class="bookingsSidenav pt-2" mode="side" [opened]="openBookingsTab" position="end">
     <app-bookings-tab></app-bookings-tab>
   </mat-sidenav>
-  <router-outlet></router-outlet>
-  <app-mat-fab (bookingsToggle)="bookingsSidenav.close()" *ngIf="showFab"></app-mat-fab>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+    <app-mat-fab (bookingsToggle)="bookingsSidenav.close()" *ngIf="showFab"></app-mat-fab>
+  </mat-sidenav-content>
+
 </mat-sidenav-container>
