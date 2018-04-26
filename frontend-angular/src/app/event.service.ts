@@ -27,7 +27,7 @@ export class EventService {
   getEvent(id: number): Observable<any> {
     const url = this._eventApi + id + '/';
     return this._http.get(url).pipe(
-      tap((event) => console.log('[DEBUG]: ' + event)),
+      tap((event) => console.log('[DEBUG]: ' + event.toString())),
       catchError(this.handleError('getEvent', []))
     );
   }
