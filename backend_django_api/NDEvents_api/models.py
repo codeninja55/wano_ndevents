@@ -14,8 +14,7 @@ class Event(models.Model):
     venue = models.TextField('event location', max_length=200, null=False, blank=False)
     capacity_max = models.IntegerField('max capacity', blank=True, null=False, default=0)
     capacity_expected = models.IntegerField('expected capacity', blank=True, null=False, default=0)
-    bookings_available = models.IntegerField('bookings available', blank=True, null=True,
-                                             editable=False, default=capacity_max)
+    bookings_available = models.IntegerField('bookings available', blank=True, null=True, editable=False)
     bookings_made = models.IntegerField('bookings made', blank=True, null=True, default=0, editable=False)
     promotional_code = models.CharField('promotional code', max_length=30, blank=True, null=True)
     price = models.DecimalField('booking price', blank=True, null=True, max_digits=100, decimal_places=2)
@@ -32,6 +31,11 @@ class Event(models.Model):
         return '{title} @ {venue} ({date})'.format(title=self.title,
                                                    venue=self.venue,
                                                    date=self.date_start)
+
+    def save(self, *args, **kwargs):
+        if not self.bookings_available:
+            self.bookings_available = self.capacity_max
+        super().save(*args, **kwargs)
 
 
 # Need to update the tickets available as these are saved.
