@@ -11,7 +11,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username',)
+        fields = ('username', 'email')
         extra_kwargs = {
             'username': {
                 'validators': [UnicodeUsernameValidator()],
@@ -36,8 +36,7 @@ class BookingSerializer(serializers.ModelSerializer):
 
 
 class EventSerializer(serializers.ModelSerializer):
-    # organisers_name = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
-    organisers_name = UserSerializer(read_only=True)
+    organisers_name = UserSerializer()
     event_bookings = BookingSerializer(many=True, read_only=True)
     date_start = serializers.DateTimeField(format='%Y-%m-%d %H:%M')
     date_end = serializers.DateTimeField(format='%Y-%m-%d %H:%M')
@@ -49,33 +48,20 @@ class EventSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Event
-        fields = ('event_id', 'organisers_name', 'title',
-                  'description', 'venue', 'capacity_max',
-                  'capacity_expected', 'bookings_available', 'bookings_made',
-                  'promotional_code', 'price', 'date_start',
-                  'date_end', 'date_created', 'last_updated',
-                  'launch_date', 'is_launched', 'self',
-                  'event_bookings')
-
-
-class EventCreateUpdateSerializer(serializers.ModelSerializer):
-    organisers_name = UserSerializer()
-    date_start = serializers.DateTimeField(format='%Y-%m-%d %H:%M')
-    date_end = serializers.DateTimeField(format='%Y-%m-%d %H:%M')
-
-    class Meta:
-        model = Event
-        fields = (
-            'organisers_name', 'title', 'description',
-            'venue', 'capacity_max', 'capacity_expected',
-            'promotional_code', 'price', 'date_start',
-            'date_end', 'launch_date', 'is_launched'
-        )
+        fields = '__all__'
+        read_only_fields = ('event_id',
+                            'bookings_available',
+                            'bookings_made',
+                            'event_bookings',
+                            'last_updated',
+                            'date_created',
+                            'self')
 
     def create(self, validated_data):
         organisers_name = validated_data.pop('organisers_name')
         username = organisers_name.pop('username')
-        organisers_name = User.objects.get_or_create(username=username)[0]
+        email = organisers_name.pop('email')
+        organisers_name = User.objects.get_or_create(username=username, email=email)[0]
         event = Event.objects.create(organisers_name=organisers_name, **validated_data)
         return event
 
@@ -88,6 +74,7 @@ class EventCreateUpdateSerializer(serializers.ModelSerializer):
         instance.description = validated_data['description']
         instance.venue = validated_data['venue']
         instance.capacity_max = validated_data['capacity_max']
+        instance.bookings_available = validated_data['capacity_max']
         instance.capacity_expected = validated_data['capacity_expected']
         instance.promotional_code = validated_data['promotional_code']
         instance.price = validated_data['price']
@@ -96,4 +83,5 @@ class EventCreateUpdateSerializer(serializers.ModelSerializer):
         instance.date_end = validated_data['date_end']
         instance.launch_date = validated_data['launch_date']
         instance.is_launched = validated_data['is_launched']
+        instance.save()
         return instance
