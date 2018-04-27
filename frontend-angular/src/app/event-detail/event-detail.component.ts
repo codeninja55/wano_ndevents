@@ -6,6 +6,7 @@ import {Location} from '@angular/common';
 import * as moment from 'moment';
 import {DisplayCompService} from '../display-comp.service';
 import {Subscription} from 'rxjs/Subscription';
+import {BookingService} from '../booking.service';
 
 @Component({
   selector: 'app-event-detail',
@@ -17,27 +18,27 @@ export class EventDetailComponent implements OnInit {
   event_model = <IEventJSON>{};
   editable = true;
   submitted = false;
+  toggle = false;
 
   constructor(private _eventService: EventService,
               private _route: ActivatedRoute,
               private _location: Location,
-              private _displayService: DisplayCompService) { }
+              private _displayService: DisplayCompService,
+              private _bookingService: BookingService) { }
 
   ngOnInit() {
     this._route.params.subscribe( () => {
       this.getEvent();
     });
     this._displayService.emitChange(true);
-    this._displayService.toggleBookingsTab(true);
   }
 
   getEvent(): void {
     const id = +this._route.snapshot.paramMap.get('id');
     this._eventService.getEvent(id).subscribe(
       data => {
-        // this.event = Event.fromJSON(data);
         this.event = data;
-        console.log(data);
+        this._bookingService.sendEventID(this.event.event_id);
       },
       err => console.error(err),
       () => {
@@ -64,6 +65,11 @@ export class EventDetailComponent implements OnInit {
 
   toggleEdit(): void {
     this.editable = !this.editable;
+  }
+
+  showBookings(): void {
+    this.toggle = !this.toggle;
+    this._displayService.toggleBookingsTab(this.toggle);
   }
 
   onSubmit() {

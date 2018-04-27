@@ -33,6 +33,7 @@ class BookingSerializer(serializers.ModelSerializer):
             'promotional_code',
             'date_created'
         )
+        read_only_fields = ('booking_id', 'date_created')
 
 
 class EventSerializer(serializers.ModelSerializer):

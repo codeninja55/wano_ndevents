@@ -5,7 +5,7 @@
     </div>
     <mat-divider class="mt-2 red" style="background-color: #4d4d4d"></mat-divider>
 
-    <form class="w-100 p-0 m-0" #eventForm="ngForm" (ngSubmit)="onSubmit()">
+    <form class="w-100 p-0 m-0" #eventForm="ngForm">
       <div class="row mt-2 p-0">
         <div class="col">
           <h3 class="mat-subheading-2 my-1 font-weight-bold">Event Details</h3>
@@ -183,22 +183,26 @@
       <!-- BUTTONS -->
       <div class="row mt-4 justify-content-start">
         <div class="col">
-          <button type="submit" *ngIf="!editable; else editBlock" mat-raised-button class="mat-button mr-1" color="primary">
+          <button type="submit" *ngIf="!editable; else editBlock" mat-raised-button class="mat-button mr-1" (click)="onSubmit()"
+                  color="primary">
             <mat-icon>save</mat-icon>&nbsp;Save
           </button>
           <ng-template #editBlock>
-            <button mat-raised-button class="mat-button mr-1" color="primary" (click)="toggleEdit()">
+            <button mat-raised-button class="mat-raised-button mr-1" color="primary" (click)="toggleEdit()">
               <mat-icon>edit</mat-icon>&nbsp;Edit
             </button>
           </ng-template>
-          <button type="submit" mat-raised-button class="mat-button mx-1" color="primary" [disabled]="event.is_launched">
+          <button type="submit" mat-raised-button class="mat-raised-button mx-1" color="primary" [disabled]="event.is_launched">
             <i class="far fa-rocket"></i>&nbsp;Launch
           </button>
-          <button mat-raised-button class="mat-button mx-1" color="primary" (click)="deleteEvent()">
+          <button mat-raised-button class="mat-raised-button mx-1" color="primary" (click)="deleteEvent()">
             <mat-icon>delete</mat-icon>&nbsp;Delete
           </button>
-          <button mat-raised-button class="mat-button ml-1" color="primary" *ngIf="!editable" (click)="toggleEdit()">
+          <button mat-raised-button class="mat-raised-button mx-1" color="primary" *ngIf="!editable" (click)="toggleEdit()">
             <mat-icon>cancel</mat-icon>&nbsp;Cancel
+          </button>
+          <button mat-raised-button class="mat-raised-button ml-1 white-text" color="accent" (click)="showBookings()">
+            <i class="far fa-ticket-alt fa-2x white-text"></i>&nbsp;Bookings
           </button>
         </div>
       </div>
