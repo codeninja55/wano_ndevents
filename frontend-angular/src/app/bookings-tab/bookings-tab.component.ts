@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Booking} from '../booking';
 import {BookingService} from '../booking.service';
-import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-bookings-tab',
@@ -25,6 +24,12 @@ export class BookingsTabComponent implements OnInit {
       (data) => this.bookings = data,
       (err) => console.error(err),
       () => console.log(this.bookings)
+    );
+  }
+
+  deleteBooking(id: number): void {
+    this._bookingService.deleteBooking(id).subscribe(
+      () => console.log('[DEBUG]: Delete booking complete')
     );
   }
 

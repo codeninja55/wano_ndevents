@@ -16,7 +16,7 @@
           <mat-icon class="blue-grey-text text-lighten-1">edit</mat-icon>
         </button>
         <button mat-icon-button class="mat-button">
-          <mat-icon class="blue-grey-text text-lighten-2">delete</mat-icon>
+          <mat-icon class="blue-grey-text text-lighten-2" (click)="deleteBooking(booking.booking_id)">delete</mat-icon>
         </button>
       </mat-list-item>
     </mat-nav-list>

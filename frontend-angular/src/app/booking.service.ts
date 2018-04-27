@@ -6,7 +6,7 @@ import {Subject} from 'rxjs/Subject';
 
 @Injectable()
 export class BookingService {
-  private _bookingApi = 'http://127.0.0.1:8000/api/event/';
+  private _bookingApi = 'http://127.0.0.1:8000/api/booking/';
   private _event_id;
 
   constructor(private _http: HttpClient) { }
@@ -21,9 +21,16 @@ export class BookingService {
   }
 
   getBookings(event_id: number): Observable<any> {
-    const url = this._bookingApi + event_id + '/bookings/';
+    const url = 'http://127.0.0.1:8000/api/event/' + event_id + '/bookings/';
     return this._http.get(url).pipe(
       tap(() => console.log('[DEBUG]: Tapped into async booking fetching'))
+    );
+  }
+
+  deleteBooking(event_id: number): Observable<any> {
+    const url = this._bookingApi + event_id + '/delete/';
+    return this._http.delete(url).pipe(
+      tap(() => console.log('[DEBUG]: Deleting booking'))
     );
   }
 
