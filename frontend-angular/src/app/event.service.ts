@@ -18,7 +18,7 @@ export class EventService {
   getEvents(): Observable<any> {
     /* .pipe() used to tap into the Observable to log messages */
     return this._http.get(this._eventApi).pipe(
-      tap(() => console.log('[DEBUG]: Tapped into async fetching')),
+      tap(() => console.log('[DEBUG]: Tapped into async event fetching')),
       catchError(this.handleError('getEvents', []))
     );
   }

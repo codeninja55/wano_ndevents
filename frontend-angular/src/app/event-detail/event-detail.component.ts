@@ -6,6 +6,7 @@ import {Location} from '@angular/common';
 import * as moment from 'moment';
 import {DisplayCompService} from '../display-comp.service';
 import {Subscription} from 'rxjs/Subscription';
+import {BookingService} from '../booking.service';
 
 @Component({
   selector: 'app-event-detail',
@@ -21,7 +22,8 @@ export class EventDetailComponent implements OnInit {
   constructor(private _eventService: EventService,
               private _route: ActivatedRoute,
               private _location: Location,
-              private _displayService: DisplayCompService) { }
+              private _displayService: DisplayCompService,
+              private _bookingService: BookingService) { }
 
   ngOnInit() {
     this._route.params.subscribe( () => {
@@ -34,12 +36,11 @@ export class EventDetailComponent implements OnInit {
   getEvent(): void {
     const id = +this._route.snapshot.paramMap.get('id');
     this._eventService.getEvent(id).subscribe(
-      data => {
-        // this.event = Event.fromJSON(data);
+      (data) => {
         this.event = data;
-        console.log(data);
+        this._bookingService.sendEventID(this.event.event_id);
       },
-      err => console.error(err),
+      (err) => console.error(err),
       () => {
         console.log(this.event);
         this.event_model.organisers_name = this.event.organisers_name;

@@ -56,9 +56,15 @@ class BookingsListAPIView(ListCreateAPIView):
     """
     This Ticket API endpoint will allow list retrieval and creating of tickets.
     """
-    queryset = Booking.objects.all()
     serializer_class = BookingSerializer
-    lookup_field = 'booking_id'
+
+    def get_queryset(self):
+        """
+        This view should return a list of all the bookings for
+        the event as determined by the event_id portion of the URL.
+        """
+        event_id = self.kwargs['event_id']
+        return Booking.objects.filter(event_id=event_id)
 
 
 class BookingsRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):

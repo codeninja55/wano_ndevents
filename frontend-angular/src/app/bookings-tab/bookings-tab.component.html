@@ -3,6 +3,22 @@
     <ng-template mat-tab-label class="mat-tab-label">
       <i class="far fa-ticket-alt fa-2x"></i> &nbsp; Bookings
     </ng-template>
+
+    <mat-nav-list class="mat-nav-list">
+      <mat-list-item *ngFor="let booking of bookings" class="my-2">
+        <a matLine aria-disabled="false" routerLink="/booking/{{booking.booking_id}}">
+          <span class="mat-subheading-1 p-0 m-0">
+            {{booking.last_name}}, {{booking.first_name}} &nbsp;
+          </span> &nbsp;
+          <br/><span class="mat-subheading-1">{{booking.date_created | date:'short'}}</span>
+        </a>
+        <button mat-icon-button class="mat-button">
+          <mat-icon class="blue-grey-text text-lighten-1">edit</mat-icon>
+        </button>
+        <button mat-icon-button class="mat-button">
+          <mat-icon class="blue-grey-text text-lighten-2">delete</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-nav-list>
   </mat-tab>
 </mat-tab-group>
-<!--<h2 class="mat-tab-label font-weight-bold"><i class="far fa-ticket-alt fa-2x"></i> &nbsp; Bookings</h2>-->

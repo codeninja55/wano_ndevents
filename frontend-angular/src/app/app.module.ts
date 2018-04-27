@@ -18,6 +18,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { EventFormComponent } from './event-form/event-form.component';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material';
 import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
+import {BookingService} from './booking.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-mome
     HttpClientModule,
     AppRoutingModule,
   ],
-  providers: [ EventService,
+  providers: [ EventService, BookingService,
     {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
     {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
   ],
