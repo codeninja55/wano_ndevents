@@ -18,6 +18,7 @@ export class EventDetailComponent implements OnInit {
   event_model = <IEventJSON>{};
   editable = true;
   submitted = false;
+  toggle = false;
 
   constructor(private _eventService: EventService,
               private _route: ActivatedRoute,
@@ -30,17 +31,16 @@ export class EventDetailComponent implements OnInit {
       this.getEvent();
     });
     this._displayService.emitChange(true);
-    this._displayService.toggleBookingsTab(true);
   }
 
   getEvent(): void {
     const id = +this._route.snapshot.paramMap.get('id');
     this._eventService.getEvent(id).subscribe(
-      (data) => {
+      data => {
         this.event = data;
         this._bookingService.sendEventID(this.event.event_id);
       },
-      (err) => console.error(err),
+      err => console.error(err),
       () => {
         console.log(this.event);
         this.event_model.organisers_name = this.event.organisers_name;
@@ -65,6 +65,11 @@ export class EventDetailComponent implements OnInit {
 
   toggleEdit(): void {
     this.editable = !this.editable;
+  }
+
+  showBookings(): void {
+    this.toggle = !this.toggle;
+    this._displayService.toggleBookingsTab(this.toggle);
   }
 
   onSubmit() {
