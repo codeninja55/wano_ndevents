@@ -107,3 +107,5 @@ backend_django_api/NDEvents_api/migrations/
 *.sqlite3
 
 frontend_react/\.idea/
+
+backend_django_api/NDEvents_api/__init__\.py

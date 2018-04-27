@@ -7,22 +7,26 @@
   overflow: hidden;
 }
 
-.sidenav-content {
-  overflow: hidden;
+mat-sidenav-content {
+  margin: 0 auto;
 }
 
-.sidenav {
-  display: flex;
-  align-items: start;
-  justify-content: left;
-  width: auto;
-  z-index: 3;
-}
+/*.sidenav-content {*/
+  /*overflow: hidden;*/
+/*}*/
 
-.bookingsSidenav {
-  display: flex;
-  align-items: start;
-  justify-content: left;
-  width: auto;
-  z-index: 3;
-}
+/*.sidenav {*/
+  /*display: flex;*/
+  /*align-items: start;*/
+  /*justify-content: left;*/
+  /*width: auto;*/
+  /*z-index: 3;*/
+/*}*/
+
+/*.bookingsSidenav {*/
+  /*display: flex;*/
+  /*align-items: start;*/
+  /*justify-content: left;*/
+  /*width: auto;*/
+  /*z-index: 3;*/
+/*}*/
