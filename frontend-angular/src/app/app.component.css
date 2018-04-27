@@ -7,6 +7,10 @@
   overflow: hidden;
 }
 
+mat-sidenav-content {
+  margin: 0 auto;
+}
+
 /*.sidenav-content {*/
   /*overflow: hidden;*/
 /*}*/

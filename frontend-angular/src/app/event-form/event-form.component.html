@@ -8,7 +8,6 @@
     <mat-divider class="mt-2 red" style="background-color: #4d4d4d"></mat-divider>
 
     <form class="w-100 p-0 m-0" #eventForm="ngForm" (ngSubmit)="onSubmit()">
-
       <div class="row mt-2 p-0">
         <div class="col">
           <h3 class="mat-subheading-2 my-1 font-weight-bold">Event Details</h3>
@@ -193,6 +192,12 @@
       </div>
 
     </form>
+
+    <!-- DIAGNOSTIC -->
+    <mat-divider class="mt-2 red" style="background-color: #4d4d4d"></mat-divider>
+    <div class="mt-2 offset-2 col-8 text-center" style="color: #4d4d4d!important;">
+      {{ diagnostic }}
+    </div>
 
   </div>
 </div>

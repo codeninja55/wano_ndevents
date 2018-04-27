@@ -19,7 +19,6 @@ import { EventFormComponent } from './event-form/event-form.component';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material';
 import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
 import {BookingService} from './booking.service';
-import { EventComponent } from './event/event.component';
 
 @NgModule({
   declarations: [
@@ -29,8 +28,7 @@ import { EventComponent } from './event/event.component';
     MatFabComponent,
     EventDetailComponent,
     BookingsTabComponent,
-    EventFormComponent,
-    EventComponent
+    EventFormComponent
   ],
   imports: [
     BrowserModule,
