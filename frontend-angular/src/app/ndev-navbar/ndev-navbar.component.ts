@@ -15,7 +15,6 @@ export class NdevNavbarComponent implements OnInit {
   ngOnInit() { }
 
   toggleSidenav() { this.navToggle.emit(true); }
-  closeBookingsSidenav() { this._displayService.toggleBookingsTab(false); }
   showEventsTab() { this._displayService.toggleEventsTab(true); }
 
 }

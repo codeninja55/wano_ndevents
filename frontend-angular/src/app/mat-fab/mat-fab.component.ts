@@ -1,6 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {DisplayCompService} from '../display-comp.service';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-mat-fab',
@@ -9,11 +7,8 @@ import {DisplayCompService} from '../display-comp.service';
 })
 export class MatFabComponent implements OnInit {
 
-  constructor(private _displayService: DisplayCompService) { }
+  constructor() { }
 
   ngOnInit() { }
 
-  closeBookingsSidenav(): void {
-    this._displayService.toggleBookingsTab(false);
-  }
 }

@@ -5,7 +5,6 @@ import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import * as moment from 'moment';
 import {DisplayCompService} from '../display-comp.service';
-import {Subscription} from 'rxjs/Subscription';
 import {BookingService} from '../booking.service';
 
 @Component({
@@ -30,7 +29,6 @@ export class EventDetailComponent implements OnInit {
       this.getEvent();
     });
     this._displayService.emitChange(true);
-    this._displayService.toggleBookingsTab(true);
   }
 
   getEvent(): void {
