@@ -1,23 +1,22 @@
 <app-ndev-navbar (navToggle)="sidenav.toggle()"></app-ndev-navbar>
 
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #sidenav class="white red-text pt-2" mode="side" [opened]="showEventsTab"
-               [fixedTopGap]="60" [fixedBottomGap]="0" [fixedInViewport]="true">
+  <mat-sidenav #sidenav class="sidenav white red-text pt-2" mode="side" [opened]="openEventsTab"
+               [fixedTopGap]="0" [fixedBottomGap]="0">
 
     <app-events-tab></app-events-tab>
 
   </mat-sidenav>
 
-  <mat-sidenav-content class="w-100">
-    <app-mat-fab (bookingsToggle)="bookingsSidenav.close()" *ngIf="showFab"></app-mat-fab>
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-
   <mat-sidenav #bookingsSidenav class="w-auto pt-2" mode="side" [opened]="openBookingsTab"
-               position="end" [fixedTopGap]="60" [fixedBottomGap]="0" [fixedInViewport]="true">
+               position="end" [fixedTopGap]="60" [fixedBottomGap]="0">
 
     <app-bookings-tab></app-bookings-tab>
 
   </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+    <app-mat-fab (bookingsToggle)="bookingsSidenav.close()" *ngIf="showFab"></app-mat-fab>
+  </mat-sidenav-content>
 
 </mat-sidenav-container>

@@ -12,7 +12,7 @@ export class AppComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   public showFab = true;
   public openBookingsTab = false;
-  public showEventsTab = true;
+  public openEventsTab = true;
 
   constructor(private _displayService: DisplayCompService) {
     // Subscribe to changes emitted from the service
@@ -21,10 +21,10 @@ export class AppComponent implements OnInit, OnDestroy {
     );
     this.subscription = _displayService.bookingsTabChangeEmitted$.subscribe(
       (change) => this.openBookingsTab = change,
-      (err) => console.log(err)
+      // (err) => console.log(err)
     );
     _displayService.eventsTabChangeEmitted$.subscribe(
-      (change) => this.showEventsTab = change
+      (change) => this.openEventsTab = change
     );
   }
 
