@@ -1,0 +1,38 @@
+<mat-toolbar class="mat-elevation-z6 navbar mat-toolbar" color="primary" role="toolbar">
+  <mat-toolbar-row class="mat-toolbar-row p-0">
+    <div class="col-sm-4 no-gutters p-0">
+      <button mat-button class="hamburger mat-button" title="Side Navigation" (click)="toggleSidenav(); closeBookingsSidenav()">
+        <span class="mat-button-wrapper">
+          <mat-icon class="mat-icon mat-24" aria-hidden="true">menu</mat-icon>
+        </span>
+      </button>
+    </div>
+
+    <div class="col-sm-4 no-gutters text-center p-0">
+      <button mat-button class="mat-button header" title="header" routerLink="/" (click)="showEventsTab(); closeBookingsSidenav()">
+        <!--<mat-icon class="mat-icon mat-24 align-middle">code</mat-icon>-->
+        <img src="../../../assets/img/UOW_Icon-white.png" alt="UOW logo png icon" width="">
+        <span class="mat-title align-middle pl-1 m-auto">UOW NDEvents</span>
+      </button>
+    </div>
+
+    <div class="col-sm-4 no-gutters align-middle text-right p-0">
+      <!--<button mat-button class="mat-button" title="Search">-->
+      <!--<span class="mat-button-wrapper">-->
+      <!--<mat-icon class="mat-icon mat-24" aria-hidden="true">search</mat-icon>-->
+      <!--</span>-->
+      <!--</button>-->
+
+      <!--<button mat-button class="mat-button p-0 m-0" title="Angular" type="button"-->
+              <!--onclick="window.open('https://material.angular.io/')">-->
+        <!--<img src="../../assets/img/Google_Material_Design_Logo.png" alt="Material Design png icon" width="24">-->
+      <!--</button>-->
+
+      <!--<button mat-button class="mat-button p-0 m-0" title="Angular" type="button"-->
+              <!--onclick="window.open('https://github.com/codeninja55/wano_ndevents')">-->
+        <!--<i class="fab fa-github align-middle fa-2x"></i>-->
+      <!--</button>-->
+
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

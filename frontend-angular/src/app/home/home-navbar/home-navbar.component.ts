@@ -1,13 +1,12 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {DisplayCompService} from '../display-comp.service';
+import {DisplayCompService} from '../../display-comp.service';
 
 @Component({
-  selector: 'app-ndev-navbar',
-  templateUrl: './ndev-navbar.component.html',
-  styleUrls: ['./ndev-navbar.component.css']
+  selector: 'app-home-navbar',
+  templateUrl: './home-navbar.component.html',
+  styleUrls: ['./home-navbar.component.css']
 })
-
-export class NdevNavbarComponent implements OnInit {
+export class HomeNavbarComponent implements OnInit {
   @Output() navToggle = new EventEmitter<boolean>();
 
   constructor(private _displayService: DisplayCompService) { }
