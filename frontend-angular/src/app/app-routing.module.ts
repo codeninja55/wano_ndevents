@@ -1,26 +1,20 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {EventDetailComponent} from './event-detail/event-detail.component';
-import {EventFormComponent} from './event-form/event-form.component';
+import {HomeComponent} from './home/home.component';
+import {PageNotFoundComponent} from './not-found/not-found.component';
 
-const routes: Routes = [
-  { path: '', redirectTo: '/', pathMatch: 'full'},
-  {
-    path: 'event/:id',
-    component: EventDetailComponent,
-  },
-  {
-    path: 'new',
-    children: [
-      { path: '', pathMatch: 'full', redirectTo: 'event'},
-      { path: 'event', component: EventFormComponent},
-    ]
-  }
+const appRoutes: Routes = [
+  { path: 'admin', redirectTo: '/admin', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent},
+  { path: '', redirectTo: '/home', pathMatch: 'full'},
+  { path: '**', component: PageNotFoundComponent},
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(appRoutes,
+      { enableTracing: true}  // <-- For debugging purposes
+      ),
   ],
   exports: [
     RouterModule,
