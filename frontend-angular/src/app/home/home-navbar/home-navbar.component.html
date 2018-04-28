@@ -1,7 +1,7 @@
 <mat-toolbar class="mat-elevation-z6 navbar mat-toolbar" color="primary" role="toolbar">
   <mat-toolbar-row class="mat-toolbar-row p-0">
     <div class="col-sm-4 no-gutters p-0">
-      <button mat-button class="hamburger mat-button" title="Side Navigation" (click)="toggleSidenav(); closeBookingsSidenav()">
+      <button mat-button class="hamburger mat-button" title="Side Navigation" (click)="toggleSidenav()">
         <span class="mat-button-wrapper">
           <mat-icon class="mat-icon mat-24" aria-hidden="true">menu</mat-icon>
         </span>
@@ -9,7 +9,7 @@
     </div>
 
     <div class="col-sm-4 no-gutters text-center p-0">
-      <button mat-button class="mat-button header" title="header" routerLink="/" (click)="showEventsTab(); closeBookingsSidenav()">
+      <button mat-button class="mat-button header" title="header" routerLink="/" (click)="showEventsTab()">
         <!--<mat-icon class="mat-icon mat-24 align-middle">code</mat-icon>-->
         <img src="../../../assets/img/UOW_Icon-white.png" alt="UOW logo png icon" width="">
         <span class="mat-title align-middle pl-1 m-auto">UOW NDEvents</span>
@@ -17,11 +17,11 @@
     </div>
 
     <div class="col-sm-4 no-gutters align-middle text-right p-0">
-      <!--<button mat-button class="mat-button" title="Search">-->
-      <!--<span class="mat-button-wrapper">-->
-      <!--<mat-icon class="mat-icon mat-24" aria-hidden="true">search</mat-icon>-->
-      <!--</span>-->
-      <!--</button>-->
+      <button mat-button class="mat-button mr-2" title="Admin" (click)="goToAdmin()">
+        <span class="mat-button-wrapper">
+          &nbsp;<i class="fal fa-sign-in"></i>&nbsp;Admin&nbsp;
+        </span>
+      </button>
 
       <!--<button mat-button class="mat-button p-0 m-0" title="Angular" type="button"-->
               <!--onclick="window.open('https://material.angular.io/')">-->

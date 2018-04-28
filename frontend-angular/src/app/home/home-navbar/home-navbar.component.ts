@@ -1,5 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {DisplayCompService} from '../../display-comp.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home-navbar',
@@ -9,12 +10,13 @@ import {DisplayCompService} from '../../display-comp.service';
 export class HomeNavbarComponent implements OnInit {
   @Output() navToggle = new EventEmitter<boolean>();
 
-  constructor(private _displayService: DisplayCompService) { }
+  constructor(private _router: Router,
+              private _displayService: DisplayCompService) { }
 
   ngOnInit() { }
 
   toggleSidenav() { this.navToggle.emit(true); }
-  closeBookingsSidenav() { this._displayService.toggleBookingsTab(false); }
   showEventsTab() { this._displayService.toggleEventsTab(true); }
+  goToAdmin(): void { this._router.navigate(['/admin']); }
 
 }
