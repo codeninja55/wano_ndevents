@@ -1,4 +1,4 @@
-interface IBooking {
+export interface IBookingJSON {
   booking_id?: number;
   event_id?: number;
   first_name: string;
