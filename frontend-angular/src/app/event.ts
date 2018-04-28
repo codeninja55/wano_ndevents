@@ -1,4 +1,5 @@
 import * as moment from 'moment';
+import {IEventJSON} from './iEventJSON';
 
 export class Event {
   event_id?: number;

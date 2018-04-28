@@ -1,5 +1,6 @@
 import * as moment from 'moment';
 import {Event} from './event';
+import {IBookingJSON} from './IBookingJSON';
 
 export class Booking {
   booking_id?: number;
@@ -11,7 +12,7 @@ export class Booking {
   promotional_code: string;
   date_created?: Date;
 
-  constructor(iBooking: IBooking) {
+  constructor(iBooking: IBookingJSON) {
     this.booking_id = iBooking.booking_id;
     this.event_id = iBooking.event_id;
     this.first_name = iBooking.first_name;
@@ -28,7 +29,7 @@ export class Booking {
   }
 
   /* fromJSON is used to convert a serialized version of the cEvent to an instance of the class */
-  static fromJSON(json: IBooking): Event {
+  static fromJSON(json: IBookingJSON): Event {
     // create an instance of the cEvent class
     const event = Object.create(Booking.prototype);
     // copy all the fields from the json object
@@ -36,7 +37,7 @@ export class Booking {
   }
 
   // toJSON is automatically used by JSON.stringify
-  static toJSON(booking: Booking): IBooking {
+  static toJSON(booking: Booking): IBookingJSON {
 
     // Return a specific format that is required by the API endpoint
     return {
