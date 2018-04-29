@@ -1,7 +1,9 @@
 import {Component, OnInit, Renderer2} from '@angular/core';
-import {EventService} from '../event.service';
+import {EventService} from '../../event.service';
 import {Observable} from 'rxjs/Observable';
-import {Event} from '../event';
+import {Event} from '../../event';
+import {EventBookingDialogComponent} from '../event-booking-dialog/event-booking-dialog.component';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-event-dashboard',
@@ -12,7 +14,8 @@ export class EventDashboardComponent implements OnInit {
   events$: Observable<Event[]>;
 
   constructor(private _eventService: EventService,
-              private _renderer2: Renderer2) { }
+              private _renderer2: Renderer2,
+              private _dialog: MatDialog) { }
 
   ngOnInit() {
     this.events$ = this._eventService.getEvents();
@@ -27,4 +30,11 @@ export class EventDashboardComponent implements OnInit {
     this._renderer2.removeClass(event.target, 'mat-elevation-z5');
   }
 
+  openDialog(event: Event) {
+    const dialogRef = this._dialog.open(EventBookingDialogComponent, {
+      // height: '400px',
+      width: '70%',
+      data: event
+    });
+  }
 }
