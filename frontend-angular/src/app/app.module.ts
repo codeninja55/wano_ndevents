@@ -8,8 +8,11 @@ import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {DisplayCompService} from './display-comp.service';
 import {AdminModule} from './admin/admin.module';
-import {HomeModule} from './home/home.module';
 import {PageNotFoundComponent} from './not-found/not-found.component';
+import {MatDialogModule} from '@angular/material';
+import {HomeModule} from './home/home.module';
+import {EventBookingDialogComponent} from './home/event-booking-dialog/event-booking-dialog.component';
+import {MaterialModule} from './material.module';
 
 @NgModule({
   declarations: [
@@ -21,12 +24,15 @@ import {PageNotFoundComponent} from './not-found/not-found.component';
     CommonModule,
     FormsModule,
     HttpClientModule,
-    AdminModule,
+    MaterialModule,
     HomeModule,
+    AdminModule,
     AppRoutingModule,
+    MatDialogModule,
   ],
-  exports: [],
+  exports: [MatDialogModule, MaterialModule, ],
   providers: [ DisplayCompService, ],
+  entryComponents: [ EventBookingDialogComponent ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
