@@ -41,6 +41,7 @@ export class Booking {
 
     // Return a specific format that is required by the API endpoint
     return {
+      event_id: booking.event_id,
       first_name: booking.first_name,
       last_name: booking.last_name,
       email: booking.email,
