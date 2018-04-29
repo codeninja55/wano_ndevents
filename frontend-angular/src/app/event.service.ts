@@ -33,7 +33,7 @@ export class EventService {
   }
 
   // Uses http.post method to send JSON to the the create API endpoint to make a new event
-  postEvent(data) {
+  postEvent(data): Observable<any> {
     const url = this._eventApi + 'create/';
     const body = JSON.stringify(data);
     return this._http.post(url, body, httpOptions).pipe(
