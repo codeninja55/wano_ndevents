@@ -35,6 +35,23 @@ class BookingSerializer(serializers.ModelSerializer):
         )
         read_only_fields = ('booking_id', 'date_created')
 
+    # def create(self, validated_data):
+    #     event_id = validated_data.pop('event_id')
+    #     event_id = Event.objects.get_or_create(event_id=event_id)[0]
+    #     return Booking.objects.create(event_id=event_id, **validated_data)
+    #
+    # def update(self, instance, validated_data):
+    #     event_id = validated_data.pop('event_id')
+    #     event_id = Event.objects.get_or_create(event_id=event_id)[0]
+    #     instance.event_id = event_id
+    #     instance.first_name = validated_data['first_name']
+    #     instance.last_name = validated_data['last_name']
+    #     instance.email = validated_data['email']
+    #     instance.quantity = validated_data['quantity']
+    #     instance.promotional_code = validated_data['promotional_code']
+    #     instance.save()
+    #     return instance
+
 
 class EventSerializer(serializers.ModelSerializer):
     organisers_name = UserSerializer()

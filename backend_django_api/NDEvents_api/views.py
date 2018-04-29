@@ -1,5 +1,5 @@
 from rest_framework.generics import (
-    CreateAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView)
+    CreateAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView)
 
 from .models import Event, Booking
 from .serializers import EventSerializer, BookingSerializer
@@ -52,9 +52,9 @@ class EventDetailUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     lookup_field = 'event_id'
 
 
-class BookingsListAPIView(ListCreateAPIView):
+class BookingsListAPIView(ListAPIView):
     """
-    This Ticket API endpoint will allow list retrieval and creating of tickets.
+    This Booking API endpoint will allow list retrieval and creating of tickets.
     """
     serializer_class = BookingSerializer
 
@@ -67,9 +67,17 @@ class BookingsListAPIView(ListCreateAPIView):
         return Booking.objects.filter(event_id=event_id)
 
 
+class BookingCreateAPIView(CreateAPIView):
+    """
+    This Booking API endpoint will allow create access to the Booking model.
+    """
+    serializer_class = BookingSerializer
+    queryset = Booking.objects.all()
+
+
 class BookingsRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     """
-    This Ticket API endpoint will allow update and destroy of a single ticket based on ticket_id
+    This Booking API endpoint will allow update and destroy of a single ticket based on ticket_id
     """
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer

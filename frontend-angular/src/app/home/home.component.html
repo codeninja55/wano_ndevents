@@ -1,0 +1,17 @@
+<app-home-navbar (navToggle)="sidenav.toggle()"></app-home-navbar>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav class="sidenav white red-text pt-2" mode="side" [opened]="false"
+               [fixedTopGap]="0" [fixedBottomGap]="0">
+
+  </mat-sidenav>
+
+  <mat-sidenav #bookingsSidenav class="w-auto pt-2" mode="side" [opened]="false"
+               position="end" [fixedTopGap]="60" [fixedBottomGap]="0">
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

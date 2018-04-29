@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {DisplayCompService} from '../display-comp.service';
+import {DisplayCompService} from '../../display-comp.service';
 
 @Component({
   selector: 'app-mat-fab',

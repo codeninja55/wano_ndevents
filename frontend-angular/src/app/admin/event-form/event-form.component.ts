@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import * as moment from 'moment';
-import {EventService} from '../event.service';
-import {Event} from '../event';
-import {DisplayCompService} from '../display-comp.service';
+import {EventService} from '../../event.service';
+import {Event} from '../../event';
+import {DisplayCompService} from '../../display-comp.service';
+import {IEventJSON} from '../../iEventJSON';
 
 @Component({
   selector: 'app-event-form',

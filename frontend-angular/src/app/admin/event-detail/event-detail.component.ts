@@ -1,12 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {EventService} from '../event.service';
-import {Event} from '../event';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, ParamMap} from '@angular/router';
+import 'rxjs/add/operator/switchMap';
+import {Observable} from 'rxjs/Observable';
 import {Location} from '@angular/common';
+import {EventService} from '../../event.service';
+import {BookingService} from '../../booking.service';
+import {Event} from '../../event';
 import * as moment from 'moment';
-import {DisplayCompService} from '../display-comp.service';
-import {Subscription} from 'rxjs/Subscription';
-import {BookingService} from '../booking.service';
+import {DisplayCompService} from '../../display-comp.service';
+import {IEventJSON} from '../../iEventJSON';
 
 @Component({
   selector: 'app-event-detail',
@@ -14,6 +16,7 @@ import {BookingService} from '../booking.service';
   styleUrls: ['./event-detail.component.css']
 })
 export class EventDetailComponent implements OnInit {
+  event$: Observable<Event>;
   event: Event;
   event_model = <IEventJSON>{};
   editable = true;
@@ -27,14 +30,23 @@ export class EventDetailComponent implements OnInit {
               private _bookingService: BookingService) { }
 
   ngOnInit() {
+    // Old way, not recommended as params might be deprecated
     this._route.params.subscribe( () => {
-      this.getEvent();
+      const id = +this._route.snapshot.paramMap.get('id');
+      this.getEvent(id);
     });
+    this.event$ = this._route.paramMap
+      .switchMap((params: ParamMap) => this._eventService.getEvent(+params.get('id')));
+
+    this.event$.subscribe(
+      data => console.log(data)
+    );
+
     this._displayService.emitChange(true);
   }
 
-  getEvent(): void {
-    const id = +this._route.snapshot.paramMap.get('id');
+  getEvent(id: any): void {
+    // const id = +this._route.snapshot.paramMap.get('id');
     this._eventService.getEvent(id).subscribe(
       data => {
         this.event = data;
@@ -42,7 +54,7 @@ export class EventDetailComponent implements OnInit {
       },
       err => console.error(err),
       () => {
-        console.log(this.event);
+        // console.log(this.event);
         this.event_model.organisers_name = this.event.organisers_name;
         this.event_model.title = this.event.title;
         this.event_model.description = this.event.description;
