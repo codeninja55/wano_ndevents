@@ -54,7 +54,15 @@ class EventDetailUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
 
 class BookingsListAPIView(ListAPIView):
     """
-    This Booking API endpoint will allow list retrieval and creating of tickets.
+    This Booking API endpoint will allow list retrieval of all Bookings.
+    """
+    serializer_class = BookingSerializer
+    queryset = Booking.objects.all()
+
+
+class BookingsSpecificListAPIView(ListAPIView):
+    """
+    This Booking API endpoint will allow a list retrieval specific to the Event for the booking object.
     """
     serializer_class = BookingSerializer
 
