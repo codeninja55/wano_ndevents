@@ -13,6 +13,7 @@ import {MatDialogModule} from '@angular/material';
 import {HomeModule} from './home/home.module';
 import {EventBookingDialogComponent} from './home/event-booking-dialog/event-booking-dialog.component';
 import {MaterialModule} from './material.module';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import {MaterialModule} from './material.module';
     AdminModule,
     AppRoutingModule,
     MatDialogModule,
+    FlexLayoutModule,
   ],
   exports: [MatDialogModule, MaterialModule, ],
   providers: [ DisplayCompService, ],
