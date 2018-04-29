@@ -8,9 +8,10 @@
 
     <!-- SEARCH BAR HERE -->
 
-    <div fxLayout="row" fxLayoutGap="10px" class="mt-3">
+    <div fxLayout="row" fxLayoutGap="15px" fxLayoutAlign="space-between stretch" class="m-4 flex-wrap">
 
-      <mat-card class="mx-2 d-flex flex-column" *ngFor="let event of events$ | async" fxFlex="25"
+      <mat-card class="d-flex flex-column mt-3" *ngFor="let event of events$ | async"
+                fxFlex="23"
                 (mouseenter)="mouseenter($event)" (mouseleave)="mouseleave($event)">
         <mat-card-header>
           <mat-card-title>{{event.title | uppercase}}</mat-card-title>
