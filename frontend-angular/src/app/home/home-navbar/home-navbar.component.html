@@ -1,38 +1,50 @@
-<mat-toolbar class="mat-elevation-z6 navbar mat-toolbar" color="primary" role="toolbar">
-  <mat-toolbar-row class="mat-toolbar-row p-0">
-    <div class="col-sm-4 no-gutters p-0">
-      <button mat-button class="hamburger mat-button" title="Side Navigation" (click)="toggleSidenav()">
-        <span class="mat-button-wrapper">
-          <mat-icon class="mat-icon mat-24" aria-hidden="true">menu</mat-icon>
-        </span>
-      </button>
-    </div>
+<div class="header mat-typography mat-elevation-z7">
+  <!--<img src="../../../assets/img/UOW_Icon-white.png" alt="UOW logo png icon" width="">-->
+  <h1 class="red-text">UOW NDEvents</h1>
+  <h2 class="red-text text-lighten-2">Events and Bookings</h2>
+</div>
 
-    <div class="col-sm-4 no-gutters text-center p-0">
-      <button mat-button class="mat-button header" title="header" routerLink="/" (click)="showEventsTab()">
-        <!--<mat-icon class="mat-icon mat-24 align-middle">code</mat-icon>-->
+<mat-toolbar class="mat-elevation-z5 mat-toolbar" color="primary" role="toolbar" id="navbar">
+  <mat-toolbar-row class="mat-toolbar-row p-0">
+    <div class="flex-row p-0 align-middle text-right p-0">
+      <button mat-button [hidden]="true" class="mat-button main-button" title="main nav option"
+              routerLink="/home" (click)="showEventsTab()">
         <img src="../../../assets/img/UOW_Icon-white.png" alt="UOW logo png icon" width="">
         <span class="mat-title align-middle pl-1 m-auto">UOW NDEvents</span>
       </button>
-    </div>
 
-    <div class="col-sm-4 no-gutters align-middle text-right p-0">
-      <button mat-button class="mat-button mr-2" title="Admin" (click)="goToAdmin()">
-        <span class="mat-button-wrapper">
-          &nbsp;<i class="fal fa-sign-in"></i>&nbsp;Admin&nbsp;
-        </span>
+      <button mat-button class="mat-button nav-menu" title="event menu nav option" routerLink="/home">
+        <mat-icon class="">event</mat-icon>&nbsp;Events
       </button>
 
-      <!--<button mat-button class="mat-button p-0 m-0" title="Angular" type="button"-->
-              <!--onclick="window.open('https://material.angular.io/')">-->
-        <!--<img src="../../assets/img/Google_Material_Design_Logo.png" alt="Material Design png icon" width="24">-->
-      <!--</button>-->
+      <button mat-button class="mat-button nav-menu" title="bookings menu nav option" routerLink="/bookings">
+        <mat-icon class="">payment</mat-icon>&nbsp;Bookings
+      </button>
+    </div>
 
-      <!--<button mat-button class="mat-button p-0 m-0" title="Angular" type="button"-->
-              <!--onclick="window.open('https://github.com/codeninja55/wano_ndevents')">-->
-        <!--<i class="fab fa-github align-middle fa-2x"></i>-->
-      <!--</button>-->
+    <span class="flex-fill"></span>
 
+    <div class="flex-row align-middle text-right p-0">
+      <button mat-button class="mat-button mr-1 nav-menu" title="Admin" (click)="goToAdmin()">
+        <span class="mat-button-wrapper">
+          &nbsp;<i class="fal fa-sign-in fa-2x"></i>&nbsp;Admin&nbsp;
+        </span>
+      </button>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
+
+<script>
+  window.onscroll = function() {myFunction()};
+
+  const navbar = document.getElementById('navbar');
+  const sticky = navbar.offsetTop;
+
+  function myFunction() {
+    if (window.pageYOffset >= sticky) {
+      navbar.classList.add('sticky')
+    } else {
+      navbar.classList.remove('sticky')
+    }
+  }
+</script>

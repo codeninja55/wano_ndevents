@@ -1,14 +1,34 @@
-.navbar {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
+#navbar {
+  /*position: fixed;*/
+  /*width: 100%;*/
+  /*top: 0;*/
+  /*left: 0;*/
+  /*right: 0;*/
+  /*z-index: 10;*/
+  overflow: hidden;
 }
 
-.navbar div {
+#navbar div {
   height: inherit !important;
+}
+
+.header {
+  background-image: url("../../../assets/img/AdobeStock_70724536.jpeg");
+  -webkit-background-size: 60%;
+  background-size: 60%;
+  text-align: center;
+  padding: 56px 30px 30px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 60px;
 }
 
 .mat-button-focus-overlay {
@@ -25,7 +45,12 @@
   padding: 0 2rem !important;
 }
 
-.header {
+.main-button {
   min-width: 120px;
+  padding: 0 1.25rem !important;
+}
+
+.nav-menu {
+  min-width: 56px;
   padding: 0 1.25rem !important;
 }
