@@ -1,45 +1,40 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
-// All Angular Material Modules imported at once
-import {MaterialModule} from './material-module';
-// Custom Project Components
-import {NdevNavbarComponent} from './ndev-navbar/ndev-navbar.component';
+import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
+// Custom Project Components
 import {HttpClientModule} from '@angular/common/http';
-import {EventService} from './event.service';
-import {EventsTabComponent} from './events-tab/events-tab.component';
-import {MatFabComponent} from './mat-fab/mat-fab.component';
-import {EventDetailComponent} from './event-detail/event-detail.component';
-import {BookingsTabComponent} from './bookings-tab/bookings-tab.component';
 import {AppRoutingModule} from './app-routing.module';
-import {EventFormComponent} from './event-form/event-form.component';
-import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material';
-import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
-import {BookingService} from './booking.service';
 import {DisplayCompService} from './display-comp.service';
+import {AdminModule} from './admin/admin.module';
+import {PageNotFoundComponent} from './not-found/not-found.component';
+import {MatDialogModule} from '@angular/material';
+import {HomeModule} from './home/home.module';
+import {EventBookingDialogComponent} from './home/event-booking-dialog/event-booking-dialog.component';
+import {MaterialModule} from './material.module';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NdevNavbarComponent,
-    EventsTabComponent,
-    MatFabComponent,
-    EventDetailComponent,
-    BookingsTabComponent,
-    EventFormComponent
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
-    MaterialModule,
+    CommonModule,
     FormsModule,
     HttpClientModule,
+    MaterialModule,
+    HomeModule,
+    AdminModule,
     AppRoutingModule,
+    MatDialogModule,
+    FlexLayoutModule,
   ],
-  providers: [ EventService, BookingService, DisplayCompService,
-    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
-    {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
-  ],
+  exports: [MatDialogModule, MaterialModule, ],
+  providers: [ DisplayCompService, ],
+  entryComponents: [ EventBookingDialogComponent ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

@@ -1,4 +1,4 @@
-interface IEventJSON {
+export interface IEventJSON {
   event_id?: number;
   organisers_name: any;
   title: string;
