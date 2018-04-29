@@ -16,7 +16,7 @@ urlpatterns = [
     url(r'^event/(?P<event_id>[0-9]+)/update/$', views.EventDetailUpdateDestroyAPIView.as_view()),
     url(r'^event/(?P<event_id>[0-9]+)/delete/$', views.EventDetailUpdateDestroyAPIView.as_view()),
     url(r'^event/(?P<event_id>[0-9]+)/bookings/$', views.BookingsListAPIView.as_view()),
-    url(r'^booking/create/$', views.BookingsListAPIView.as_view()),
+    url(r'^booking/create/$', views.BookingCreateAPIView.as_view()),
     url(r'^booking/(?P<booking_id>[0-9]+)/$', views.BookingsRetrieveUpdateDestroyAPIView.as_view()),
     url(r'^booking/(?P<booking_id>[0-9]+)/update/$', views.BookingsRetrieveUpdateDestroyAPIView.as_view()),
     url(r'^booking/(?P<booking_id>[0-9]+)/delete/$', views.BookingsRetrieveUpdateDestroyAPIView.as_view()),
