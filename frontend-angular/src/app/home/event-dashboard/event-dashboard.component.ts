@@ -23,16 +23,15 @@ export class EventDashboardComponent implements OnInit {
 
   // Add elevation classes when mouse hover over card
   mouseenter (event) {
-    this._renderer2.addClass(event.target, 'mat-elevation-z5');
+    this._renderer2.addClass(event.target, 'mat-elevation-z7');
   }
 
   mouseleave (event) {
-    this._renderer2.removeClass(event.target, 'mat-elevation-z5');
+    this._renderer2.removeClass(event.target, 'mat-elevation-z7');
   }
 
   openDialog(event: Event) {
     const dialogRef = this._dialog.open(EventBookingDialogComponent, {
-      // height: '400px',
       width: '70%',
       data: event
     });
