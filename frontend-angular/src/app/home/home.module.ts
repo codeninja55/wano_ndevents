@@ -9,6 +9,8 @@ import {EventDashboardComponent} from './event-dashboard/event-dashboard.compone
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {EventBookingDialogComponent} from './event-booking-dialog/event-booking-dialog.component';
 import {MaterialModule} from '../material.module';
+import { HomeBookingDashComponent } from './home-booking-dash/home-booking-dash.component';
+import { BookingEditDialogComponent } from './booking-edit-dialog/booking-edit-dialog.component';
 
 @NgModule({
   imports: [
@@ -23,6 +25,8 @@ import {MaterialModule} from '../material.module';
     HomeNavbarComponent,
     EventDashboardComponent,
     EventBookingDialogComponent,
+    HomeBookingDashComponent,
+    BookingEditDialogComponent,
   ],
   exports: [],
   providers: [ DisplayCompService, ]

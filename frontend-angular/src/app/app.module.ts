@@ -14,6 +14,7 @@ import {HomeModule} from './home/home.module';
 import {EventBookingDialogComponent} from './home/event-booking-dialog/event-booking-dialog.component';
 import {MaterialModule} from './material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import {BookingEditDialogComponent} from './home/booking-edit-dialog/booking-edit-dialog.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
   ],
   exports: [MatDialogModule, MaterialModule, ],
   providers: [ DisplayCompService, ],
-  entryComponents: [ EventBookingDialogComponent ],
+  entryComponents: [ EventBookingDialogComponent, BookingEditDialogComponent ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
