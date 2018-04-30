@@ -1,0 +1,80 @@
+<div class="mx-lg-5 mx-md-4 mx-sm-3 mt-4">
+  <div class="mx-auto">
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let booking of bookings$ | async">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <strong>Booking {{booking.booking_id}} |  </strong>
+          </mat-panel-title>
+          <mat-panel-description>
+            {{booking.last_name}} , {{booking.first_name}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <form [formGroup]="bookingFormGroup">
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="w-100">
+                <input type="text" matInput placeholder="First name" formControlName="first_name" required
+                       [readonly]="editable">
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-form-field class="w-100">
+                <input type="text" matInput placeholder="Last name" formControlName="last_name" required
+                       [readonly]="editable">
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-form-field class="w-100">
+                <input type="email" matInput placeholder="Email" formControlName="email" required
+                       [readonly]="editable">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="w-100">
+                <input type="number" matInput placeholder="Quantity" formControlName="quantity" required
+                       [readonly]="editable">
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-form-field class="w-100">
+                <input type="text" matInput placeholder="Promotional Code" formControlName="promotional_code"
+                       [readonly]="editable">
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <!--<mat-form-field class="w-100">-->
+                <!--<input type="number" placeholder="Price" [readonly]="true">-->
+                <!--<span matPrefix>$ </span>-->
+              <!--</mat-form-field>-->
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col text-lighten-2">{{booking.date_created | date: 'long'}}</div>
+          </div>
+        </form>
+
+        <mat-action-row>
+          <div *ngIf="editable; else saveBlock">
+            <button mat-raised-button color="primary" class="mr-2" (click)="editable = !editable">Edit</button>
+          </div>
+          <ng-template #saveBlock>
+            <button mat-raised-button color="primary" class="mr-2" (click)="updateBooking()">Save</button>
+          </ng-template>
+          <div *ngIf="editable; else clearBlock">
+            <button mat-raised-button color="primary" (click)="cancelBooking(booking.booking_id)">Cancel Booking</button>
+          </div>
+          <ng-template #clearBlock>
+            <button mat-raised-button color="primary">Reset</button>
+          </ng-template>
+        </mat-action-row>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>
