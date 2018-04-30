@@ -31,11 +31,22 @@ export class BookingService {
     );
   }
 
+  getAllBookings(): Observable<any> {
+    const url = 'http://127.0.0.1:8000/api/bookings/';
+    return this._http.get(url).pipe(
+      tap(() => console.log('[DEBUG]: Tapped into async all booking fetching'))
+    );
+  }
+
   getBookings(event_id: number): Observable<any> {
     const url = 'http://127.0.0.1:8000/api/event/' + event_id + '/bookings/';
     return this._http.get(url).pipe(
       tap(() => console.log('[DEBUG]: Tapped into async booking fetching'))
     );
+  }
+
+  putBookings(id: number, data: any) {
+    // Implementation required
   }
 
   deleteBooking(event_id: number): Observable<any> {
