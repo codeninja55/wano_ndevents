@@ -3,8 +3,9 @@ import {BookingService} from '../../booking.service';
 import {Observable} from 'rxjs/Observable';
 import {Booking} from '../../booking';
 import {Event} from '../../event';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {EventService} from '../../event.service';
+import {MatDialog} from '@angular/material';
+import {BookingEditDialogComponent} from '../booking-edit-dialog/booking-edit-dialog.component';
 
 @Component({
   selector: 'app-home-booking-dash',
@@ -12,42 +13,23 @@ import {EventService} from '../../event.service';
   styleUrls: ['./home-booking-dash.component.css']
 })
 export class HomeBookingDashComponent implements OnInit {
-  public editable = true;
   bookings$: Observable<Booking[]>;
   events$: Observable<Event[]>;
 
-  bookingFormGroup = new FormGroup({
-    event_id: new FormControl(),
-    first_name: new FormControl(),
-    last_name: new FormControl(),
-    email: new FormControl(),
-    quantity: new FormControl(),
-    promotional_code: new FormControl(),
-  });
-
   constructor(private _bookingServer: BookingService,
-              private _formBuilder: FormBuilder,
-              private _eventService: EventService) { }
+              private _eventService: EventService,
+              private _dialog: MatDialog) { }
 
   ngOnInit() {
     this.bookings$ = this._bookingServer.getAllBookings();
     this.events$ = this._eventService.getEvents();
-    this.createForm();
   }
 
-  createForm(): void {
-    this.bookingFormGroup = this._formBuilder.group({
-      event_id: ['', Validators.required],
-      first_name: ['', Validators.required],
-      last_name: ['', Validators.required],
-      email: ['', Validators.required],
-      quantity: ['', Validators.required],
-      promotional_code: '',
+  openDialog(booking: Booking): void {
+    const dialogRef = this._dialog.open(BookingEditDialogComponent, {
+      width: '70%',
+      data: booking,
     });
-  }
-
-  updateBooking(): void {
-    // Implementation required
   }
 
   cancelBooking(id: number): void {

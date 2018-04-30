@@ -45,12 +45,16 @@ export class BookingService {
     );
   }
 
-  putBookings(id: number, data: any) {
-    // Implementation required
+  putBookings(id: number, data: any): Observable<any> {
+    const url = this._bookingApi + id + '/delete/';
+    const body = JSON.stringify(data);
+    return this._http.put(url, body, httpOptions).pipe(
+      tap(() => console.log('[DEBUG]: Tapped into put booking'))
+    );
   }
 
-  deleteBooking(event_id: number): Observable<any> {
-    const url = this._bookingApi + event_id + '/delete/';
+  deleteBooking(booking_id: number): Observable<any> {
+    const url = this._bookingApi + booking_id + '/delete/';
     return this._http.delete(url).pipe(
       tap(() => console.log('[DEBUG]: Deleting booking'))
     );
