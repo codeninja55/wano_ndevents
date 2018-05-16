@@ -1,9 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import * as moment from 'moment';
 import {EventService} from '../../event.service';
 import {Event} from '../../event';
 import {DisplayCompService} from '../../display-comp.service';
 import {IEventJSON} from '../../iEventJSON';
+import {Router} from '@angular/router';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-event-form',
@@ -13,10 +15,12 @@ import {IEventJSON} from '../../iEventJSON';
 export class EventFormComponent implements OnInit {
   model = <IEventJSON>{};
   user = <User>{};
+  @ViewChild('eventForm') public form: NgForm;
   submitted = false;
 
   constructor(private _eventService: EventService,
-              private _displayService: DisplayCompService) { }
+              private _displayService: DisplayCompService,
+              private _router: Router) { }
 
   ngOnInit() {
     this._displayService.emitChange(false);
@@ -24,8 +28,6 @@ export class EventFormComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-
-
     // TODO: Figure out these defaults
     this.model.launch_date = null;
     this.model.is_launched = false;
@@ -43,6 +45,14 @@ export class EventFormComponent implements OnInit {
 
     this._eventService.postEvent(newEventJSON).subscribe(() =>
       console.log(newEventJSON));
+
+    // Navigate back to empty admin page.
+    this._router.navigate(['/admin']);
+  }
+
+  onCancel(): void {
+    this.form.reset();
+    this._router.navigate(['/admin']);
   }
 
   // TODO: Remove diagnostic when done
