@@ -97,14 +97,6 @@ WSGI_APPLICATION = 'backend_django_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-# Default Database
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
 # ndevents PostgreSQL database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 if sys.platform.startswith("win32"):
