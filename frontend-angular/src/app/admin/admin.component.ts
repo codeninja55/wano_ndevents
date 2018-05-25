@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Subscription} from 'rxjs/Subscription';
+import {Subscription} from 'rxjs';
 import {DisplayCompService} from '../display-comp.service';
 
 @Component({
@@ -26,6 +26,7 @@ export class AdminComponent implements OnInit, OnDestroy {
       (change) => this.openEventsTab = change
     );
   }
+
 
   ngOnInit() {
     // On init of app, make sure the Fab is showing
