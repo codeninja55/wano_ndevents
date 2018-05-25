@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BookingService} from '../../booking.service';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 import {Booking} from '../../booking';
 import {Event} from '../../event';
 import {EventService} from '../../event.service';
