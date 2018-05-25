@@ -196,7 +196,20 @@ GRANT ALL ON SCHEMA public TO codeninja, codeninja55;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 ```
 
-## `pg_dump` Tables
+## `pg_dump`
+
+### Database
+
+```bash
+$ pg_dump --format=p --file=ndevents.db.sql ndevents
+```
+
+NOTES:
+
+* `-F`, `--format=c|t|p`       output file format (custom, tar, plain text)
+* `-f`, `--file=FILENAME`      output file name
+
+### Specific Tables
 
 ```bash
 $ pg_dump -h localhost -U wano -W --column-inserts -t "public.\"auth_user\"" ndevents > auth_user.sql
