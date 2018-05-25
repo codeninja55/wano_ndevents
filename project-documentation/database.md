@@ -6,7 +6,7 @@ If you need to drop the database, just delete the file stored in the project fol
 
 
 
-# PostgreSQL Configurations
+# PostgreSQL Linux Configurations
 
 > REF: https://docs.djangoproject.com/en/1.11/ref/contrib/postgres/
 >
@@ -195,6 +195,26 @@ CREATE SCHEMA public;
 GRANT ALL ON SCHEMA public TO codeninja, codeninja55;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 ```
+
+## `pg_dump` Tables
+
+```bash
+$ pg_dump -h localhost -U wano -W --column-inserts -t "public.\"auth_user\"" ndevents > auth_user.sql
+```
+
+```bash
+$ pg_dump -h localhost -U wano -W --column-inserts -t "public.\"NDEvents_api_event\"" ndevents > NDEvents_api_event.sql
+```
+
+```bash
+$ pg_dump -h localhost -U wano -W --column-inserts -t "public.\"NDEvents_api_event\"" ndevents > NDEvents_api_event.sql
+```
+
+NOTES:
+
+* `-W` for password prompt
+* `public` is the schema
+* `--column-inserts` creates an insert for each row
 
 
 
