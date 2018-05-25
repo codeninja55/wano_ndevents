@@ -4,7 +4,7 @@ import {CommonModule} from '@angular/common';
 import {MaterialModule} from '../material.module';
 // Custom Project Components
 import {FormsModule} from '@angular/forms';
-import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatGridListModule, MatCardModule, MatMenuModule, MatIconModule, MatButtonModule} from '@angular/material';
 import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
 // Custom Dependency Injection Services
 import {EventService} from '../event.service';
@@ -20,6 +20,7 @@ import {AdminNavbarComponent} from './admin-navbar/admin-navbar.component';
 // Routing Module
 import {AdminRoutingModule} from './admin-routing.module';
 import {MatFabComponent} from './mat-fab/mat-fab.component';
+import { AdminDashboardComponent } from '../admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   imports: [
@@ -27,6 +28,11 @@ import {MatFabComponent} from './mat-fab/mat-fab.component';
     MaterialModule,
     FormsModule,
     AdminRoutingModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
   ],
   declarations: [
     AdminComponent,
@@ -36,6 +42,7 @@ import {MatFabComponent} from './mat-fab/mat-fab.component';
     EventDetailComponent,
     EventFormComponent,
     BookingsTabComponent,
+    AdminDashboardComponent,
   ],
   providers: [ EventService, BookingService, DisplayCompService,
     {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
