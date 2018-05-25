@@ -1,7 +1,9 @@
+
+import {switchMap} from 'rxjs/operators';
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap} from '@angular/router';
-import 'rxjs/add/operator/switchMap';
-import {Observable} from 'rxjs/Observable';
+
+import {Observable} from 'rxjs';
 import {Location} from '@angular/common';
 import {EventService} from '../../event.service';
 import {BookingService} from '../../booking.service';
@@ -35,8 +37,8 @@ export class EventDetailComponent implements OnInit {
       const id = +this._route.snapshot.paramMap.get('id');
       this.getEvent(id);
     });
-    this.event$ = this._route.paramMap
-      .switchMap((params: ParamMap) => this._eventService.getEvent(+params.get('id')));
+    this.event$ = this._route.paramMap.pipe(
+      switchMap((params: ParamMap) => this._eventService.getEvent(+params.get('id'))));
 
     this.event$.subscribe(
       data => console.log(data)

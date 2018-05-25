@@ -3,7 +3,6 @@ import {NgModule} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
-  MAT_PLACEHOLDER_GLOBAL_OPTIONS,
   MatAutocompleteModule,
   MatButtonModule,
   MatButtonToggleModule,
@@ -117,9 +116,7 @@ import {CdkTableModule} from '@angular/cdk/table';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [
-    {provide: MAT_PLACEHOLDER_GLOBAL_OPTIONS, useValue: {float: 'auto'}}
-  ]
+  providers: [ ]
 })
 
 export class MaterialModule { }

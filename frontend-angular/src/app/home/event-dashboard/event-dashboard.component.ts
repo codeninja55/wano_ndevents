@@ -1,6 +1,6 @@
 import {Component, OnInit, Renderer2} from '@angular/core';
 import {EventService} from '../../event.service';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 import {Event} from '../../event';
 import {EventBookingDialogComponent} from '../event-booking-dialog/event-booking-dialog.component';
 import {MatDialog} from '@angular/material';

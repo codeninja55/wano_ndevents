@@ -4,8 +4,12 @@
 <mat-icon>add</mat-icon>
 
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #sidenav class="sidenav white red-text pt-2" mode="side" [opened]="true"
-               [fixedTopGap]="0" [fixedBottomGap]="0">
+  <mat-sidenav #sidenav
+               class="sidenav white red-text pt-2"
+               mode="side"
+               [fixedInViewport]="true"
+               [fixedTopGap]="0"
+               [fixedBottomGap]="0">
 
     <app-events-tab></app-events-tab>
 
