@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
-
+from simple_history.models import HistoricalRecords
 
 __author__ = 'codeninja55'
 
@@ -26,6 +26,8 @@ class Event(models.Model):
     last_updated = models.DateTimeField('last updated date', auto_now=True, auto_now_add=False, editable=False)
     launch_date = models.DateTimeField('date event launched', blank=True, null=True, auto_now_add=False, auto_now=False)
     is_launched = models.BooleanField('event launched', default=False)
+    # HistoricalRecords() from django-simple-history for the activity list
+    history = HistoricalRecords()
 
     def __str__(self):
         return '{title} @ {venue} ({date})'.format(title=self.title,
@@ -38,16 +40,17 @@ class Event(models.Model):
         super().save(*args, **kwargs)
 
 
-# Need to update the tickets available as these are saved.
+# TODO - Need to update the tickets available as these are saved.
 class Booking(models.Model):
+    user_id = models.ForeignKey(User, related_name='user_bookings', on_delete=models.CASCADE, null=True, blank=False)
     booking_id = models.BigAutoField(primary_key=True)
     event_id = models.ForeignKey(Event, related_name='event_bookings', on_delete=models.CASCADE, null=True, blank=True)
-    first_name = models.CharField('first name', max_length=100, blank=False, null=False)
-    last_name = models.CharField('last name', max_length=100, blank=False, null=False)
-    email = models.EmailField('email', blank=False, null=False)
     quantity = models.IntegerField('number of guests', blank=False, null=False)
+    payment = models.FloatField('payment', null=True, blank=True)
     promotional_code = models.CharField('promotional code', max_length=30, blank=True, null=True)
     date_created = models.DateTimeField('booking date', auto_now=False, auto_now_add=True)
+    # HistoricalRecords() from django-simple-history for the activity list
+    history = HistoricalRecords()
 
     def __str__(self):
         return '({booking_id}) {first_name} {last_name} ({date}) '.format(booking_id=self.booking_id,
