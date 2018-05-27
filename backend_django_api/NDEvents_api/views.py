@@ -15,6 +15,15 @@ class UserDetailAPIView(RetrieveUpdateDestroyAPIView):
     lookup_field = 'pk'
 
 
+class UserCreateAPIView(CreateAPIView):
+    """
+    This User API will allow creating of a new user.
+    """
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    lookup_field = 'pk'
+
+
 class EventListAPIView(ListCreateAPIView):
     """
     This Event API endpoint will return a list of events that can also be created.

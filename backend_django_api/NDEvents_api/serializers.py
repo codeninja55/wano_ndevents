@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from rest_framework import serializers
+from django.contrib.auth.hashers import make_password
 
 from .models import Event, Booking
 
@@ -21,16 +22,49 @@ class ExistingUserSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-
+    password2 = serializers.CharField(write_only=True)
+    password = serializers.CharField(write_only=True)
+    
     class Meta:
         model = User
-        fields = ('id', 'username', 'email', 'first_name', 'last_name', 'is_staff')
-        read_only_fields = ('id', )
+        fields = (
+            'pk',
+            'username',
+            'email',
+            'first_name',
+            'last_name',
+            'is_staff',
+            'password',
+            'password2',
+        )
+        read_only_fields = ('pk', )
+        write_only_fields = ('password', 'password2')
         extra_kwargs = {
             'username': {
                 'validators': [UnicodeUsernameValidator()],
             },
         }
+
+    def create(self, validated_data):
+        password = validated_data.pop('password', None)
+        password2 = validated_data.pop('password2', None)
+        # self.Meta.model, so if the model is changed on the serializer, it still works.
+        # instance = self.Meta.model(**validated_data)
+        if password is not None and password == password2:
+            user = User.objects.create_user(username=validated_data.pop('username'),
+                                            email=validated_data.pop('email'),
+                                            password=password,
+                                            **validated_data)
+            return user
+
+    def update(self, instance, validated_data):
+        for attr, value in validated_data.items():
+            if attr == 'password':
+                instance.set_password(value)
+            else:
+                setattr(instance, attr, value)
+        instance.save()
+        return instance
 
 
 class BookingSerializer(serializers.ModelSerializer):
