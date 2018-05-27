@@ -1,11 +1,12 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import * as moment from 'moment';
-import {EventService} from '../../event.service';
-import {Event} from '../../event';
-import {DisplayCompService} from '../../display-comp.service';
-import {IEventJSON} from '../../iEventJSON';
+import {EventService} from '../../services/event.service';
+import {Event} from '../../model/event';
+import {DisplayCompService} from '../../services/display-comp.service';
+import {IEventJSON} from '../../model/iEventJSON';
 import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
+import {IUserJSON} from '../../model/IUserJSON';
 
 @Component({
   selector: 'app-event-form',
@@ -14,7 +15,7 @@ import {NgForm} from '@angular/forms';
 })
 export class EventFormComponent implements OnInit {
   model = <IEventJSON>{};
-  user = <User>{};
+  user = <IUserJSON>{};
   @ViewChild('eventForm') public form: NgForm;
   submitted = false;
 
@@ -41,7 +42,7 @@ export class EventFormComponent implements OnInit {
       .add(this.model.time_end.split(':')[1], 'm').format('YYYY-MM-DD HH:MM');
     // Create a CEvent model and turn it into JSON using static toJSON method
     const newEventJSON = Event.toJSON(new Event(this.model));
-    console.log(newEventJSON);
+    // console.log(newEventJSON);
 
     this._eventService.postEvent(newEventJSON).subscribe(() =>
       console.log(newEventJSON));

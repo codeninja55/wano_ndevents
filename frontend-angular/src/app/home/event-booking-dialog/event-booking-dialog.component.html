@@ -124,17 +124,17 @@
         <div class="row">
           <div class="col">
             <mat-form-field class="w-100">
-              <input type="text" matInput placeholder="First name" formControlName="first_name" required>
+              <input type="text" matInput placeholder="First name" formControlName="first_name" [readonly]="true">
             </mat-form-field>
           </div>
           <div class="col">
             <mat-form-field class="w-100">
-              <input type="text" matInput placeholder="Last name" formControlName="last_name" required>
+              <input type="text" matInput placeholder="Last name" formControlName="last_name" [readonly]="true">
             </mat-form-field>
           </div>
           <div class="col">
             <mat-form-field class="w-100">
-              <input type="email" matInput placeholder="Email" formControlName="email" required>
+              <input type="email" matInput placeholder="Email" formControlName="email" [readonly]="true">
             </mat-form-field>
           </div>
         </div>
@@ -155,7 +155,8 @@
           <div class="col">
             <mat-form-field class="w-100">
               <input type="number" matInput placeholder="Price" [readonly]="true"
-                     [value]="(event.promotional_code === bookingFormGroup.value.promotional_code ? 0 : event.price)">
+                     [value]="(event.promotional_code === bookingFormGroup.value.promotional_code ?
+                     0 : (event.price*bookingFormGroup.value.quantity))">
               <span matPrefix="" >$ </span>
             </mat-form-field>
           </div>

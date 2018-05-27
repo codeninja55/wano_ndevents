@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {DisplayCompService} from './display-comp.service';
+import {DisplayCompService} from './services/display-comp.service';
 
 @Component({
   selector: 'app-root',

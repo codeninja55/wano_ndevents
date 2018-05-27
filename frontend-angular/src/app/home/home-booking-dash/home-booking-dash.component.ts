@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {BookingService} from '../../booking.service';
+import {BookingService} from '../../services/booking.service';
 import {Observable} from 'rxjs';
-import {Booking} from '../../booking';
-import {Event} from '../../event';
-import {EventService} from '../../event.service';
+import {Booking} from '../../model/booking';
+import {Event} from '../../model/event';
+import {EventService} from '../../services/event.service';
 import {MatDialog} from '@angular/material';
 import {BookingEditDialogComponent} from '../booking-edit-dialog/booking-edit-dialog.component';
 

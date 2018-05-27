@@ -1,9 +1,10 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material';
-import {IBookingJSON} from '../../IBookingJSON';
-import {BookingService} from '../../booking.service';
+import {IBookingJSON} from '../../model/IBookingJSON';
+import {BookingService} from '../../services/booking.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Booking} from '../../booking';
+import {Booking} from '../../model/booking';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-booking-edit-dialog',
@@ -22,7 +23,8 @@ export class BookingEditDialogComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public booking: IBookingJSON,
               private _formBuilder: FormBuilder,
-              private _bookingService: BookingService) {
+              private _bookingService: BookingService,
+              private _userService: UserService) {
     this.createForm();
   }
 
@@ -31,9 +33,9 @@ export class BookingEditDialogComponent implements OnInit {
   createForm(): void {
     this.bookingFormGroup = this._formBuilder.group({
       event_id: [this.booking.event_id, Validators.required],
-      first_name: [this.booking.first_name, Validators.required],
-      last_name: [this.booking.last_name, Validators.required],
-      email: [this.booking.email, Validators.required],
+      first_name: this._userService.user.first_name,
+      last_name: this._userService.user.last_name,
+      email: this._userService.user.last_name,
       quantity: [this.booking.quantity, Validators.required],
       promotional_code: this.booking.promotional_code,
     });

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {DisplayCompService} from '../../display-comp.service';
+import {DisplayCompService} from '../../services/display-comp.service';
 
 @Component({
   selector: 'app-admin-navbar',

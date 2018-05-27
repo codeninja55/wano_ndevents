@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
-import {DisplayCompService} from '../display-comp.service';
+import {DisplayCompService} from '../services/display-comp.service';
 
 @Component({
   selector: 'app-admin',

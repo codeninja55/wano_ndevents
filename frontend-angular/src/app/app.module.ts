@@ -6,7 +6,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 // Custom Project Components
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
-import {DisplayCompService} from './display-comp.service';
+import {DisplayCompService} from './services/display-comp.service';
 import {AdminModule} from './admin/admin.module';
 import {PageNotFoundComponent} from './not-found/not-found.component';
 import {MatDialogModule} from '@angular/material';

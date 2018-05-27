@@ -5,12 +5,12 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
 
 import {Observable} from 'rxjs';
 import {Location} from '@angular/common';
-import {EventService} from '../../event.service';
-import {BookingService} from '../../booking.service';
-import {Event} from '../../event';
+import {EventService} from '../../services/event.service';
+import {BookingService} from '../../services/booking.service';
+import {Event} from '../../model/event';
 import * as moment from 'moment';
-import {DisplayCompService} from '../../display-comp.service';
-import {IEventJSON} from '../../iEventJSON';
+import {DisplayCompService} from '../../services/display-comp.service';
+import {IEventJSON} from '../../model/iEventJSON';
 
 @Component({
   selector: 'app-event-detail',
@@ -112,7 +112,4 @@ export class EventDetailComponent implements OnInit {
       err => console.log(err),
     );
   }
-
-  // TODO: Remove diagnostic when done
-  // get diagnostic() { return JSON.stringify(this.model); }
 }

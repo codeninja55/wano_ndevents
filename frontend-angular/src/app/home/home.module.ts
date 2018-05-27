@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {DisplayCompService} from '../display-comp.service';
+import {DisplayCompService} from '../services/display-comp.service';
 import {HomeNavbarComponent} from './home-navbar/home-navbar.component';
 import {HomeComponent} from './home.component';
 import {HomeRoutingModule} from './home-routing.module';
@@ -13,10 +13,12 @@ import {HomeBookingDashComponent} from './home-booking-dash/home-booking-dash.co
 import {BookingEditDialogComponent} from './booking-edit-dialog/booking-edit-dialog.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
+import {BrowserModule} from '@angular/platform-browser';
 
 @NgModule({
   imports: [
     CommonModule,
+    BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HomeRoutingModule,

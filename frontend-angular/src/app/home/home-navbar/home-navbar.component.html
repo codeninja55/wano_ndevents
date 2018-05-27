@@ -14,20 +14,50 @@
       </button>
 
       <button mat-button class="mat-button nav-menu" title="event menu nav option" routerLink="/home">
-        <mat-icon class="">event</mat-icon>&nbsp;Events
+        &nbsp;<mat-icon class="">event</mat-icon>&nbsp;Events
       </button>
 
       <button mat-button class="mat-button nav-menu" title="bookings menu nav option" routerLink="/home/bookings">
-        <mat-icon class="">payment</mat-icon>&nbsp;Bookings
+        &nbsp;<mat-icon class="">payment</mat-icon>&nbsp;Bookings
       </button>
     </div>
 
     <span class="flex-fill"></span>
 
     <div class="flex-row align-middle text-right p-0">
-      <button mat-button class="mat-button mr-1 nav-menu" title="Admin" (click)="goToAdmin()">
+      <button *ngIf="!authService.isLoggedIn" mat-button class="mat-button mr-1 nav-menu" title="Login"
+              (click)="loginDialog()">
         <span class="mat-button-wrapper">
-          &nbsp;<i class="fal fa-sign-in fa-2x"></i>&nbsp;Admin&nbsp;
+          &nbsp;<i class="fa fa-sign-in fa-icon"></i>&nbsp;Login&nbsp;
+        </span>
+      </button>
+
+      <button *ngIf="authService.isLoggedIn" mat-button class="mat-button mr-1 nav-menu" title="Logout"
+              (click)="logout()">
+        <span class="mat-button-wrapper">
+          &nbsp;<i class="fa fa-sign-out fa-icon"></i>&nbsp;Logout&nbsp;
+        </span>
+      </button>
+
+      <button *ngIf="authService.isLoggedIn && authService.isAdmin" mat-button class="mat-button mr-1 nav-menu"
+              title="Admin" (click)="goToAdmin()">
+        <span class="mat-button-wrapper">
+          <!--&nbsp;<i class="fal fa-sign-in fa-2x"></i>&nbsp;Admin&nbsp;-->
+          &nbsp;<mat-icon class="">dashboard</mat-icon>&nbsp;Admin
+        </span>
+      </button>
+
+      <button *ngIf="!authService.isLoggedIn" mat-button class="mat-button mr-1 nav-menu" title="Register"
+              (click)="registerDialog()">
+        <span class="mat-button-wrapper">
+          <i class="fa fa-user-plus fa-icon"></i>&nbsp;Register
+        </span>
+      </button>
+
+      <button *ngIf="authService.isLoggedIn" mat-button class="mat-button mr-1 nav-menu" title="User">
+        <span class="mat-button-wrapper">
+          <mat-icon class="">account_circle</mat-icon>
+          <!--<i class="fal fa-user-circle fa-2x"></i>-->
         </span>
       </button>
     </div>

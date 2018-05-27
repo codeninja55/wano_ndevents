@@ -1,8 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material';
-import {IEventJSON} from '../../iEventJSON';
+import {IEventJSON} from '../../model/iEventJSON';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {BookingService} from '../../booking.service';
+import {BookingService} from '../../services/booking.service';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-event-booking-dialog',
@@ -21,14 +22,15 @@ export class EventBookingDialogComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public event: IEventJSON,
               private _formBuilder: FormBuilder,
-              private _bookingService: BookingService) { }
+              private _bookingService: BookingService,
+              private _userService: UserService) { }
 
   ngOnInit() {
     this.bookingFormGroup = this._formBuilder.group({
       event_id: this.event.event_id,
-      first_name: ['', Validators.required],
-      last_name: ['', Validators.required],
-      email: ['', Validators.required],
+      first_name: this._userService.user.first_name,
+      last_name: this._userService.user.last_name,
+      email: this._userService.user.email,
       quantity: ['', Validators.required],
       promotional_code: '',
     });

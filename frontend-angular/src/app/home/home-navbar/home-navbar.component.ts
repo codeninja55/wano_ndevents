@@ -1,22 +1,38 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {DisplayCompService} from '../../display-comp.service';
+import {DisplayCompService} from '../../services/display-comp.service';
 import {Router} from '@angular/router';
+import {AuthService} from '../../services/auth.service';
+import {MatDialog} from '@angular/material';
+import {LoginComponent} from '../login/login.component';
+import {RegisterComponent} from '../register/register.component';
 
 @Component({
   selector: 'app-home-navbar',
   templateUrl: './home-navbar.component.html',
   styleUrls: ['./home-navbar.component.css']
 })
-export class HomeNavbarComponent implements OnInit {
-  @Output() navToggle = new EventEmitter<boolean>();
+export class HomeNavbarComponent {
 
   constructor(private _router: Router,
-              private _displayService: DisplayCompService) { }
+              private _displayService: DisplayCompService,
+              private _dialog: MatDialog,
+              public authService: AuthService, ) { }
 
-  ngOnInit() { }
+  logout() { this.authService.logout(); }
 
-  toggleSidenav() { this.navToggle.emit(true); }
+  // toggleSidenav() { this.navToggle.emit(true); }
   showEventsTab() { this._displayService.toggleEventsTab(true); }
   goToAdmin(): void { this._router.navigate(['/admin']); }
 
+  loginDialog() {
+    const dialogRef = this._dialog.open(LoginComponent, {
+      width: '40%',
+    });
+  }
+
+  registerDialog() {
+    this._dialog.open(RegisterComponent, {
+      width: '55%'
+    });
+  }
 }
