@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
   MatAutocompleteModule,
   MatButtonModule,
@@ -75,8 +74,6 @@ import {CdkTableModule} from '@angular/cdk/table';
     MatToolbarModule,
     MatTooltipModule,
     MatStepperModule,
-    FormsModule,
-    ReactiveFormsModule,
   ],
   exports: [
     BrowserAnimationsModule,
@@ -113,10 +110,6 @@ import {CdkTableModule} from '@angular/cdk/table';
     MatToolbarModule,
     MatTooltipModule,
     MatStepperModule,
-    FormsModule,
-    ReactiveFormsModule,
   ],
-  providers: [ ]
 })
-
 export class MaterialModule { }
