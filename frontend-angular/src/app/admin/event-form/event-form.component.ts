@@ -54,7 +54,4 @@ export class EventFormComponent implements OnInit {
     this.form.reset();
     this._router.navigate(['/admin']);
   }
-
-  // TODO: Remove diagnostic when done
-  get diagnostic() { return JSON.stringify(this.model); }
 }
