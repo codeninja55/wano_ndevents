@@ -1,0 +1,1 @@
+ALTER SEQUENCE "NDEvents_api_booking_booking_id_seq" RESTART WITH 1;
