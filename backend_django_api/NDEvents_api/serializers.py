@@ -7,7 +7,7 @@ from .models import Event, Booking
 __author__ = 'codeninja55'
 
 
-class UserSerializer(serializers.ModelSerializer):
+class ExistingUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
@@ -20,8 +20,21 @@ class UserSerializer(serializers.ModelSerializer):
         }
 
 
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'email', 'first_name', 'last_name', 'is_staff')
+        read_only_fields = ('id', )
+        extra_kwargs = {
+            'username': {
+                'validators': [UnicodeUsernameValidator()],
+            },
+        }
+
+
 class BookingSerializer(serializers.ModelSerializer):
-    user = UserSerializer()
+    user = ExistingUserSerializer()
 
     class Meta:
         model = Booking
@@ -61,7 +74,7 @@ class BookingSerializer(serializers.ModelSerializer):
 
 
 class EventSerializer(serializers.ModelSerializer):
-    organisers_name = UserSerializer()
+    organisers_name = ExistingUserSerializer()
     event_bookings = BookingSerializer(many=True, read_only=True)
     date_start = serializers.DateTimeField(format='%Y-%m-%d %H:%M')
     date_end = serializers.DateTimeField(format='%Y-%m-%d %H:%M')
