@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {JwtHelperService} from '@auth0/angular-jwt';
+import {tap} from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -18,17 +19,17 @@ export class AuthService {
 
   constructor(private _http: HttpClient) { }
 
-  static setToken(token: string): void {
+  public setToken(token: string): void {
     localStorage.setItem('token', token);
   }
 
-  static getToken(): string {
+  public getToken(): string {
     return localStorage.getItem('token');
   }
 
-  static isAuthenticated(): boolean {
+  isAuthenticated(): boolean {
     // Get the token
-    const token = AuthService.getToken();
+    const token = this.getToken();
     const jwt_helper = new JwtHelperService();
     // Return a boolean reflecting whether or not the token is expired
     return jwt_helper.isTokenExpired(token);
@@ -41,8 +42,10 @@ export class AuthService {
   }
 
   logout(): void {
+    const url = this.baseUrl + 'auth/logout';
     this.isLoggedIn = false;
     this.isAdmin = false;
+    this._http.post(url, {}, httpOptions).subscribe(() => console.log('[DEBUG]: User Logged Out'));
     localStorage.removeItem('token');
   }
 }
