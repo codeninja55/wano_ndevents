@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {JwtHelperService} from '@auth0/angular-jwt';
-import {tap} from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -42,7 +41,7 @@ export class AuthService {
   }
 
   logout(): void {
-    const url = this.baseUrl + 'auth/logout';
+    const url = this.baseUrl + 'auth/logout/';
     this.isLoggedIn = false;
     this.isAdmin = false;
     this._http.post(url, {}, httpOptions).subscribe(() => console.log('[DEBUG]: User Logged Out'));

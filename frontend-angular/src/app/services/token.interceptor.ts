@@ -13,7 +13,6 @@ export class TokenInterceptor implements HttpInterceptor {
         Authorization: 'Token ' + this._authService.getToken(),
       }
     });
-    console.log(request);
     return next.handle(request);
   }
 }
