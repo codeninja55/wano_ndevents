@@ -1,0 +1,1 @@
+INSERT INTO public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) VALUES (1, 'pbkdf2_sha256$100000$eoIqc1xp6odB$A7gOrO1cPAbS+TJbukUFYyZ+oRNihYeUGzDW338M5+Y=', '2018-05-26 10:23:32.440494', true, 'codeninja', 'Andrew', 'Che', 'andrew@neuraldev.io', true, true, '2018-05-25 11:43:18.640925');
