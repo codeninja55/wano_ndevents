@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DisplayCompService} from '../display-comp.service';
 import {HomeNavbarComponent} from './home-navbar/home-navbar.component';
 import {HomeComponent} from './home.component';
@@ -9,13 +9,16 @@ import {EventDashboardComponent} from './event-dashboard/event-dashboard.compone
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {EventBookingDialogComponent} from './event-booking-dialog/event-booking-dialog.component';
 import {MaterialModule} from '../material.module';
-import { HomeBookingDashComponent } from './home-booking-dash/home-booking-dash.component';
-import { BookingEditDialogComponent } from './booking-edit-dialog/booking-edit-dialog.component';
+import {HomeBookingDashComponent} from './home-booking-dash/home-booking-dash.component';
+import {BookingEditDialogComponent} from './booking-edit-dialog/booking-edit-dialog.component';
+import {LoginComponent} from './login/login.component';
+import {RegisterComponent} from './register/register.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     HomeRoutingModule,
     FlexLayoutModule,
     MaterialModule,
@@ -27,6 +30,8 @@ import { BookingEditDialogComponent } from './booking-edit-dialog/booking-edit-d
     EventBookingDialogComponent,
     HomeBookingDashComponent,
     BookingEditDialogComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   exports: [],
   providers: [ DisplayCompService, ]
