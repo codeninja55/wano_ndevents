@@ -18,17 +18,17 @@ export class AuthService {
 
   constructor(private _http: HttpClient) { }
 
-  setToken(token: string): void {
+  static setToken(token: string): void {
     localStorage.setItem('token', token);
   }
 
-  public getToken(): string {
+  static getToken(): string {
     return localStorage.getItem('token');
   }
 
-  public isAuthenticated(): boolean {
+  static isAuthenticated(): boolean {
     // Get the token
-    const token = this.getToken();
+    const token = AuthService.getToken();
     const jwt_helper = new JwtHelperService();
     // Return a boolean reflecting whether or not the token is expired
     return jwt_helper.isTokenExpired(token);
@@ -42,5 +42,7 @@ export class AuthService {
 
   logout(): void {
     this.isLoggedIn = false;
+    this.isAdmin = false;
+    localStorage.removeItem('token');
   }
 }

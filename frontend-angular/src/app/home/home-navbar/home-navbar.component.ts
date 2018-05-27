@@ -1,10 +1,11 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component} from '@angular/core';
 import {DisplayCompService} from '../../services/display-comp.service';
 import {Router} from '@angular/router';
 import {AuthService} from '../../services/auth.service';
 import {MatDialog} from '@angular/material';
 import {LoginComponent} from '../login/login.component';
 import {RegisterComponent} from '../register/register.component';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-home-navbar',
@@ -16,9 +17,8 @@ export class HomeNavbarComponent {
   constructor(private _router: Router,
               private _displayService: DisplayCompService,
               private _dialog: MatDialog,
-              public authService: AuthService, ) { }
-
-  logout() { this.authService.logout(); }
+              private _userService: UserService,
+              public authService: AuthService) { }
 
   // toggleSidenav() { this.navToggle.emit(true); }
   showEventsTab() { this._displayService.toggleEventsTab(true); }
@@ -34,5 +34,10 @@ export class HomeNavbarComponent {
     this._dialog.open(RegisterComponent, {
       width: '55%'
     });
+  }
+
+  logout() {
+    this._userService.removeUser();
+    this.authService.logout();
   }
 }

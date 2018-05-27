@@ -33,9 +33,9 @@ export class BookingEditDialogComponent implements OnInit {
   createForm(): void {
     this.bookingFormGroup = this._formBuilder.group({
       event_id: [this.booking.event_id, Validators.required],
-      first_name: this._userService.user.first_name,
-      last_name: this._userService.user.last_name,
-      email: this._userService.user.last_name,
+      first_name: this._userService.current_user.first_name,
+      last_name: this._userService.current_user.last_name,
+      email: this._userService.current_user.last_name,
       quantity: [this.booking.quantity, Validators.required],
       promotional_code: this.booking.promotional_code,
     });
