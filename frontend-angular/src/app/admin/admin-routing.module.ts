@@ -3,12 +3,14 @@ import {RouterModule, Routes} from '@angular/router';
 import {EventDetailComponent} from './event-detail/event-detail.component';
 import {EventFormComponent} from './event-form/event-form.component';
 import {AdminComponent} from './admin.component';
-import {AdminDashboardComponent} from '../admin-dashboard/admin-dashboard.component';
+import {AdminDashboardComponent} from './admin-dashboard/admin-dashboard.component';
+import {AuthGuard} from '../auth-guard.service';
 
 const adminRoutes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
