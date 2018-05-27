@@ -1,0 +1,37 @@
+<h2 mat-dialog-title class="red-text text-lighten-1">Login</h2>
+
+<form class="w-100 p-0 m-0" #loginForm="ngForm">
+  <div class="row">
+    <div class="col">
+      <mat-form-field class="w-100">
+        <input type="text" matInput placeholder="Email" name="email" [(ngModel)]="data.email" required>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <mat-form-field class="w-100">
+        <input type="text" matInput placeholder="Username" name="username" [(ngModel)]="data.username" required>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <mat-form-field class="w-100">
+        <input type="password" matInput placeholder="Password" name="password" [(ngModel)]="data.password" required>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="mt-2">
+    <button type="submit" mat-raised-button color="primary" class="mr-1" [disabled]="!loginForm.form.valid"
+            [mat-dialog-close]="true" (click)="login()">
+      Login
+    </button>
+    <button type="button" mat-raised-button color="primary" [mat-dialog-close]="true">
+      Cancel
+    </button>
+  </div>
+</form>
