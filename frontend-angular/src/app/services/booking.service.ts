@@ -22,7 +22,7 @@ export class BookingService {
     this._eventSource.next(event_id);
   }
 
-  postBooking(data): Observable<any> {
+  postBooking(data: any): Observable<any> {
     const url = this._bookingApi + 'create/';
     const body = JSON.stringify(data);
     return this._http.post(url, body, httpOptions).pipe(

@@ -39,7 +39,15 @@ export class EventBookingDialogComponent implements OnInit {
   revert() { this.bookingFormGroup.reset(); }
 
   createBooking() {
-    this._bookingService.postBooking(this.bookingFormGroup.value).subscribe(
+    const user = {'username': this._userService.user.username,
+                  'email': this._userService.user.email};
+    const payload = {
+      'event': this.bookingFormGroup.controls['event_id'].value,
+      'user': user,
+      'quantity': this.bookingFormGroup.controls['quantity'].value,
+      'promotional_code': this.bookingFormGroup.controls['promotional_code'].value,
+    };
+    this._bookingService.postBooking(payload).subscribe(
       () => console.log(),
       (err) => console.error(err)
       );
