@@ -20,7 +20,7 @@ import {AdminNavbarComponent} from './admin-navbar/admin-navbar.component';
 // Routing Module
 import {AdminRoutingModule} from './admin-routing.module';
 import {MatFabComponent} from './mat-fab/mat-fab.component';
-import { AdminDashboardComponent } from '../admin-dashboard/admin-dashboard.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   imports: [
