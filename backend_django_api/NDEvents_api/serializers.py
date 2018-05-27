@@ -24,7 +24,7 @@ class ExistingUserSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     password2 = serializers.CharField(write_only=True)
     password = serializers.CharField(write_only=True)
-    
+
     class Meta:
         model = User
         fields = (
