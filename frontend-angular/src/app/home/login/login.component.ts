@@ -10,7 +10,7 @@ import {UserService} from '../../services/user.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  data = {username: 'codeninja', password: 'LimaLewis1215@', email: 'andrew@neuraldev.io'};
+  data = {username: 'codeninja', password: 'csit214@', email: 'andrew@neuraldev.io'};
   @ViewChild('loginForm') public form: NgForm;
   submitted = false;
 
