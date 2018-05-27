@@ -4,7 +4,7 @@ import {AppComponent} from './app.component';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 // Custom Project Components
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {DisplayCompService} from './services/display-comp.service';
 import {AdminModule} from './admin/admin.module';
@@ -15,6 +15,7 @@ import {EventBookingDialogComponent} from './home/event-booking-dialog/event-boo
 import {MaterialModule} from './material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {BookingEditDialogComponent} from './home/booking-edit-dialog/booking-edit-dialog.component';
+import {TokenInterceptor} from './services/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,12 @@ import {BookingEditDialogComponent} from './home/booking-edit-dialog/booking-edi
     FlexLayoutModule,
   ],
   exports: [MatDialogModule, MaterialModule, ],
-  providers: [ DisplayCompService, ],
+  providers: [ DisplayCompService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }],
   entryComponents: [ EventBookingDialogComponent, BookingEditDialogComponent ],
   bootstrap: [ AppComponent ]
 })

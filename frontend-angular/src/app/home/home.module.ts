@@ -14,6 +14,8 @@ import {BookingEditDialogComponent} from './booking-edit-dialog/booking-edit-dia
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {BrowserModule} from '@angular/platform-browser';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {TokenInterceptor} from '../services/token.interceptor';
 
 @NgModule({
   imports: [
@@ -36,6 +38,11 @@ import {BrowserModule} from '@angular/platform-browser';
     RegisterComponent,
   ],
   exports: [],
-  providers: [ DisplayCompService, ]
+  providers: [ DisplayCompService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }]
 })
 export class HomeModule { }
