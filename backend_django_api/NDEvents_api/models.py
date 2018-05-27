@@ -40,13 +40,12 @@ class Event(models.Model):
         super().save(*args, **kwargs)
 
     def create_bookings(self, quantity=0):
-        # event = Event.objects.get(event_id=event_id)
         if self.capacity_max != self.bookings_made:
             self.bookings_made += quantity
             self.bookings_available -= quantity
             self.save()
-        else:
-            return False
+            return True
+        return False
 
 
 # Bookings model
