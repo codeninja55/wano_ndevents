@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^auth/', include('rest_auth.urls')),
     url(r'^auth/register/', include('rest_auth.registration.urls')),
     url(r'^refresh-token/', refresh_jwt_token),
+    url(r'^user/(?P<pk>[0-9]+)/$', views.UserDetailAPIView.as_view()),
     url(r'^event/$', views.EventListAPIView.as_view()),
     url(r'^event/create/$', views.EventCreateAPIView.as_view()),
     url(r'^event/(?P<event_id>[0-9]+)/$', views.EventDetailUpdateDestroyAPIView.as_view(), name='event'),
