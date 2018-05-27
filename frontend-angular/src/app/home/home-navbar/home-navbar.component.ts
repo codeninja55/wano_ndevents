@@ -31,7 +31,7 @@ export class HomeNavbarComponent {
   }
 
   registerDialog() {
-    this._dialog.open(RegisterComponent, {
+    const dialogRef = this._dialog.open(RegisterComponent, {
       width: '55%'
     });
   }

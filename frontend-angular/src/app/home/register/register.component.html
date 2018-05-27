@@ -1,27 +1,10 @@
 <h2 mat-dialog-title class="red-text text-lighten-1">Register</h2>
 
-<form class="w-100 p-0 m-0" #registerForm="ngForm" (ngSubmit)="onSubmit()">
+<form class="w-100 p-0 m-0" [formGroup]="registerFormGroup">
   <div class="row">
     <div class="col">
       <mat-form-field class="w-100">
-        <input type="text" matInput placeholder="Username" name="username" #username="ngModel"
-               [ngModel]="user.username" required>
-      </mat-form-field>
-    </div>
-  </div>
-
-  <div class="col">
-    <mat-form-field class="w-100">
-      <input type="text" matInput placeholder="Email" name="email" #email="ngModel"
-             [ngModel]="user.email" required>
-    </mat-form-field>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <mat-form-field class="w-100">
-        <input type="password" matInput placeholder="Password" name="password1" #password1="ngModel"
-               [ngModel]="user.password1" required>
+        <input type="text" matInput placeholder="Username" formControlName="username" required>
       </mat-form-field>
     </div>
   </div>
@@ -29,17 +12,50 @@
   <div class="row">
     <div class="col">
       <mat-form-field class="w-100">
-        <input type="password" matInput placeholder="Confirm Password" name="password2" #password2="ngModel"
-               [ngModel]="user.password2" required>
+        <input type="email" matInput placeholder="Email" formControlName="email" required>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <mat-form-field class="w-100">
+        <input type="text" matInput placeholder="First Name" formControlName="first_name">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <mat-form-field class="w-100">
+        <input type="text" matInput placeholder="Last Name" formControlName="last_name">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <mat-form-field class="w-100">
+        <input type="password" matInput placeholder="Password" formControlName="password" required>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <mat-form-field class="w-100">
+        <input type="password" matInput placeholder="Confirm Password" id="password2"
+               formControlName="password2" required>
+        <mat-error *ngIf="registerFormGroup.controls['password2'].errors">
+          Passwords Do Not Match
+        </mat-error>
       </mat-form-field>
     </div>
   </div>
 
   <div class="mt-2">
-    <button type="submit" mat-raised-button color="primary" class="mr-1" [disabled]="!registerForm.form.valid"
-            [mat-dialog-close]="true">
-      Register
-    </button>
+    <button type="submit" mat-raised-button color="primary" class="mr-1" (click)="registerUser()"
+            [disabled]="!registerFormGroup.valid" [mat-dialog-close]="true">Register</button>
     <button type="button" mat-raised-button color="primary" [mat-dialog-close]="true">
       Cancel
     </button>

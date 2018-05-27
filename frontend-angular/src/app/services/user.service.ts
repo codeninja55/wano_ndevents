@@ -35,11 +35,9 @@ export class UserService {
     this.current_user = null;
   }
 
-  register(data: Object): Observable<any> {
-    const url = 'http://127.0.0.1:8000/auth/register';
-    return this._http.post(url, data, httpOptions).pipe(
-      tap(() => console.log('[DEBUG]: User registered'))
-    );
+  register(data: any): Observable<any> {
+    const url = 'http://127.0.0.1:8000/api/auth/register/';
+    return this._http.post(url, data, httpOptions);
   }
 
   getUser(pk: number): Observable<any> {
