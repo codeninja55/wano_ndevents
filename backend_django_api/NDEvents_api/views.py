@@ -1,8 +1,18 @@
+from django.contrib.auth.models import User
 from rest_framework.generics import (
     CreateAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView)
 
 from .models import Event, Booking
-from .serializers import EventSerializer, BookingSerializer
+from .serializers import EventSerializer, BookingSerializer, UserSerializer
+
+
+class UserDetailAPIView(RetrieveUpdateDestroyAPIView):
+    """
+    This User API endpoint will allow retrieve, update, and destroy on the default User model
+    """
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    lookup_field = 'pk'
 
 
 class EventListAPIView(ListCreateAPIView):
