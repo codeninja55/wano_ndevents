@@ -1,5 +1,4 @@
 import {IUserJSON} from './IUserJSON';
-import {Event} from './event';
 
 export class User {
   username: string;
