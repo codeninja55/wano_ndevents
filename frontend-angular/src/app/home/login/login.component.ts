@@ -20,14 +20,14 @@ export class LoginComponent {
 
   login() {
     this.submitted = true;
-    console.log('[DEBUG]: Login attempted');
     this.authService.login(this.data).subscribe(data => {
       if (data) {
         this.authService.isLoggedIn = true;
-        AuthService.setToken(data['token']);
+        this.authService.setToken(data['token']);
         this._userService.setUser(data['user']['pk']);
       }
-    });
+    }, err => console.log(err),
+      () => console.log('[DEBUG]: User Logged In'));
   }
 
   // TODO: Remove diagnostic when done
