@@ -26,7 +26,7 @@ export class EventService {
   getEvent(id: number): Observable<any> {
     const url = this._eventApi + id + '/';
     return this._http.get(url).pipe(
-      tap((event) => console.log('[DEBUG]: ' + event.toString())),
+      tap((event) => console.log('[DEBUG]: Service - ' + event.toString())),
       catchError(this.handleError('getEvent', []))
     );
   }
@@ -36,7 +36,7 @@ export class EventService {
     const url = this._eventApi + 'create/';
     const body = JSON.stringify(data);
     return this._http.post(url, body, httpOptions).pipe(
-        tap((newEvent) => console.log('[DEBUG]: ' + newEvent)),
+        tap((newEvent) => console.log('[DEBUG]: Service - ' + newEvent)),
         catchError(this.handleError('postEvent'))
       );
   }
