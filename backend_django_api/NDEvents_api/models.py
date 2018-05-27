@@ -39,12 +39,21 @@ class Event(models.Model):
             self.bookings_available = self.capacity_max
         super().save(*args, **kwargs)
 
+    def create_bookings(self, quantity=0):
+        # event = Event.objects.get(event_id=event_id)
+        if self.capacity_max != self.bookings_made:
+            self.bookings_made += quantity
+            self.bookings_available -= quantity
+            self.save()
+        else:
+            return False
 
-# TODO - Need to update the tickets available as these are saved.
+
+# Bookings model
 class Booking(models.Model):
-    user_id = models.ForeignKey(User, related_name='user_bookings', on_delete=models.CASCADE, null=True, blank=False)
     booking_id = models.BigAutoField(primary_key=True)
-    event_id = models.ForeignKey(Event, related_name='event_bookings', on_delete=models.CASCADE, null=True, blank=True)
+    event = models.ForeignKey(Event, related_name='event_bookings', on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(User, related_name='user_bookings', on_delete=models.CASCADE, null=True, blank=False)
     quantity = models.IntegerField('number of guests', blank=False, null=False)
     payment = models.FloatField('payment', null=True, blank=True)
     promotional_code = models.CharField('promotional code', max_length=30, blank=True, null=True)
@@ -53,7 +62,17 @@ class Booking(models.Model):
     history = HistoricalRecords()
 
     def __str__(self):
-        return '({booking_id}) {first_name} {last_name} ({date}) '.format(booking_id=self.booking_id,
-                                                                          first_name=self.first_name,
-                                                                          last_name=self.last_name,
-                                                                          date=self.date_created)
+        return '({booking_id}) {last_name}, {first_name} ({date}) '.format(booking_id=self.booking_id,
+                                                                           first_name=self.user.first_name,
+                                                                           last_name=self.user.last_name,
+                                                                           date=self.date_created)
+
+    def save(self, *args, **kwargs):
+        if not self.payment and self.promotional_code != self.event.promotional_code:
+            self.payment = self.event.price * self.quantity
+        else:
+            self.payment = 0
+
+        # Check if bookings has exceeded the available bookings before saving booking
+        if not self.event.create_bookings(self.quantity):
+            super().save(*args, **kwargs)

@@ -11,7 +11,8 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'email')
+        fields = ('username', 'email', 'first_name', 'last_name')
+        read_only_fields = ('first_name', 'last_name',)
         extra_kwargs = {
             'username': {
                 'validators': [UnicodeUsernameValidator()],
@@ -20,37 +21,43 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class BookingSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
 
     class Meta:
         model = Booking
+        read_only_fields = ('booking_id', 'payment', 'date_created')
         fields = (
             'booking_id',
-            'event_id',
-            'first_name',
-            'last_name',
-            'email',
+            'event',
+            'user',
             'quantity',
+            'payment',
             'promotional_code',
             'date_created'
         )
-        read_only_fields = ('booking_id', 'date_created')
 
-    # def create(self, validated_data):
-    #     event_id = validated_data.pop('event_id')
-    #     event_id = Event.objects.get_or_create(event_id=event_id)[0]
-    #     return Booking.objects.create(event_id=event_id, **validated_data)
-    #
-    # def update(self, instance, validated_data):
-    #     event_id = validated_data.pop('event_id')
-    #     event_id = Event.objects.get_or_create(event_id=event_id)[0]
-    #     instance.event_id = event_id
-    #     instance.first_name = validated_data['first_name']
-    #     instance.last_name = validated_data['last_name']
-    #     instance.email = validated_data['email']
-    #     instance.quantity = validated_data['quantity']
-    #     instance.promotional_code = validated_data['promotional_code']
-    #     instance.save()
-    #     return instance
+    def create(self, validated_data):
+        user = validated_data.pop('user')
+        username = user.pop('username')
+        email = user.pop('email')
+        user = User.objects.get_or_create(username=username, email=email)[0]
+        event = validated_data.pop('event')
+        event_id = event.event_id
+        event = Event.objects.get_or_create(event_id=event_id)[0]
+        return Booking.objects.create(user=user, event=event, **validated_data)
+
+    def update(self, instance, validated_data):
+        user = validated_data.pop('user')
+        username = user.pop('username')
+        user = User.objects.get_or_create(username=username)[0]
+        instance.user_id = user
+        event = validated_data.pop('event')
+        event = Event.objects.get_or_create(event_id=event.event_id)[0]
+        instance.event = event
+        instance.quantity = validated_data['quantity']
+        instance.promotional_code = validated_data['promotional_code']
+        instance.save()
+        return instance
 
 
 class EventSerializer(serializers.ModelSerializer):
