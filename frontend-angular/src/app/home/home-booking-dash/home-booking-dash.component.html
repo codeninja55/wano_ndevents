@@ -1,18 +1,29 @@
-<div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 mt-4">
-  <mat-card class="mat-typography">
-    <mat-nav-list>
-      <mat-list-item *ngFor="let booking of bookings$ | async">
-        <button mat-icon-button class="red-text text-lighten-3" (click)="openDialog(booking)">
-          <mat-icon>open_in_new</mat-icon>
-        </button>
-        <a matLine aria-disabled="false" (click)="openDialog(booking)" class="align-content-center">
-          <p class="d-inline blue-grey-text text-lighten-3">{{booking.booking_id}}</p>
-          <p class="d-inline">{{booking.last_name}}, {{booking.first_name}}</p>
-        </a>
-        <button mat-icon-button class="red-text text-accent-4" (click)="cancelBooking(booking.booking_id)">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </mat-list-item>
-    </mat-nav-list>
-  </mat-card>
+<div class="row no-gutters">
+  <div class="col mt-2 mb-4">
+
+    <div class="mt-2 offset-2 col-8 text-center" style="color: #4d4d4d!important;">
+      <span class="mat-headline">Bookings</span>
+    </div>
+    <mat-divider class="mt-2 red" style="background-color: #4d4d4d"></mat-divider>
+
+    <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 mt-4">
+      <mat-card class="mat-typography">
+        <mat-nav-list>
+          <mat-list-item *ngFor="let booking of bookings$ | async">
+            <button mat-icon-button class="red-text text-lighten-3" (click)="openDialog(booking)">
+              <mat-icon>open_in_new</mat-icon>
+            </button>
+            <a matLine aria-disabled="false" (click)="openDialog(booking)" class="align-content-center">
+              <p class="d-inline blue-grey-text text-lighten-3">{{booking.booking_id}}</p>
+              <p class="d-inline">{{booking.user.last_name}}, {{booking.user.first_name}}</p>
+            </a>
+            <button mat-icon-button class="red-text text-accent-4" (click)="cancelBooking(booking.booking_id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-list-item>
+        </mat-nav-list>
+      </mat-card>
+    </div>
+
+  </div>
 </div>
