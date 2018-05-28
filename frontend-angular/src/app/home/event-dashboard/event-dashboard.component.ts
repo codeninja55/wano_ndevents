@@ -4,6 +4,8 @@ import {Observable} from 'rxjs';
 import {Event} from '../../model/event';
 import {EventBookingDialogComponent} from '../event-booking-dialog/event-booking-dialog.component';
 import {MatDialog} from '@angular/material';
+import {AuthService} from '../../services/auth.service';
+import {LoginComponent} from '../login/login.component';
 
 @Component({
   selector: 'app-event-dashboard',
@@ -15,7 +17,8 @@ export class EventDashboardComponent implements OnInit {
 
   constructor(private _eventService: EventService,
               private _renderer2: Renderer2,
-              private _dialog: MatDialog) { }
+              private _dialog: MatDialog,
+              public authService: AuthService) { }
 
   ngOnInit() {
     this.events$ = this._eventService.getEvents();
@@ -35,5 +38,11 @@ export class EventDashboardComponent implements OnInit {
       width: '70%',
       data: event
     });
+  }
+
+  openLoginDialog() {
+    this._dialog.open(LoginComponent, {
+      width: '45%',
+    })
   }
 }
