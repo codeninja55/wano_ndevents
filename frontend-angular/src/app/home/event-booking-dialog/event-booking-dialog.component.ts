@@ -28,9 +28,9 @@ export class EventBookingDialogComponent implements OnInit {
   ngOnInit() {
     this.bookingFormGroup = this._formBuilder.group({
       event_id: this.event.event_id,
-      first_name: this._userService.current_user.first_name,
-      last_name: this._userService.current_user.last_name,
-      email: this._userService.current_user.email,
+      first_name: UserService.getCurrentUser().first_name,
+      last_name: UserService.getCurrentUser().last_name,
+      email: UserService.getCurrentUser().email,
       quantity: ['', Validators.required],
       promotional_code: '',
     });
@@ -39,8 +39,8 @@ export class EventBookingDialogComponent implements OnInit {
   revert() { this.bookingFormGroup.reset(); }
 
   createBooking() {
-    const user = {'username': this._userService.current_user.username,
-                  'email': this._userService.current_user.email};
+    const user = {'username': UserService.getCurrentUser().username,
+                  'email': UserService.getCurrentUser().email};
     const payload = {
       'event': this.bookingFormGroup.controls['event_id'].value,
       'user': user,

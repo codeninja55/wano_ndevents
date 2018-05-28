@@ -21,7 +21,8 @@ export class UserProfileComponent implements OnInit {
               private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.current_user = this._userService.current_user;
+    // this.current_user = this._userService.current_user;
+    this.current_user = UserService.getCurrentUser();
     this.userFormGroup = this._formBuilder.group({
       username: [this.current_user.username, Validators.required],
       email: [this.current_user.email, Validators.required],

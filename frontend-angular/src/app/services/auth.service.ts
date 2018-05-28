@@ -34,6 +34,11 @@ export class AuthService {
     return jwt_helper.isTokenExpired(token);
   }
 
+  checkLogin(): void {
+    this.isLoggedIn = (localStorage.getItem('user') !== null);
+    this.isAdmin = (localStorage.getItem('user') !== null);
+  }
+
   login(data: any) {
     const url = this.baseUrl + 'auth/login/';
     const body = JSON.stringify(data);

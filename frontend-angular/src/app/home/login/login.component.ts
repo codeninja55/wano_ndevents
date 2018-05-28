@@ -20,14 +20,18 @@ export class LoginComponent {
 
   login() {
     this.submitted = true;
-    this.authService.login(this.data).subscribe(data => {
-      if (data) {
-        this.authService.isLoggedIn = true;
-        this.authService.setToken(data['token']);
-        this._userService.setUser(data['user']['pk']);
-      }
-    }, err => console.log(err),
-      () => console.log('[DEBUG]: User Logged In'));
+    if (localStorage.getItem('user') === null) {
+      this.authService.login(this.data).subscribe(data => {
+          if (data) {
+            this.authService.isLoggedIn = true;
+            this.authService.setToken(data['token']);
+            this._userService.setUser(data['user']['pk']);
+          }
+        }, err => console.log(err),
+        () => console.log('[DEBUG]: User Logged In'));
+    } else {
+      this.authService.isLoggedIn = true;
+    }
   }
 
   // TODO: Remove diagnostic when done

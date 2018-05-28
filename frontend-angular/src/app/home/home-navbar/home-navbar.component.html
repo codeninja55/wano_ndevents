@@ -8,7 +8,7 @@
   <mat-toolbar-row class="mat-toolbar-row p-0">
     <div class="flex-row p-0 align-middle text-right p-0">
       <button mat-button [hidden]="true" class="mat-button main-button" title="main nav option"
-              routerLink="/home" (click)="showEventsTab()">
+              routerLink="/home" routerLinkActive="true">
         <img src="../../../assets/img/UOW_Icon-white.png" alt="UOW logo png icon" width="">
         <span class="mat-title align-middle pl-1 m-auto">UOW NDEvents</span>
       </button>
@@ -55,7 +55,7 @@
       </button>
 
       <button *ngIf="authService.isLoggedIn" mat-button class="mat-button mr-1 nav-menu" title="User"
-              routerLink="user/profile">
+              routerLink="user/profile" routerLinkActive="true">
         <span class="mat-button-wrapper">
           <mat-icon class="">account_circle</mat-icon>
           <!--<i class="fal fa-user-circle fa-2x"></i>-->
