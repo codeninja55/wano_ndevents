@@ -25,6 +25,7 @@ class UpdateUserSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+    password2 = serializers.CharField(write_only=True)
 
     class Meta:
         model = User
@@ -42,7 +43,6 @@ class UserSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'username': {'validators': [UnicodeUsernameValidator()]},
             'password': {'write_only': True},
-            'password2': {'write_only': True},
             'pk': {'read_only': True},
             'is_staff': {'read_only': True},
         }
