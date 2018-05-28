@@ -78,6 +78,9 @@ REST_FRAMEWORK = {
     )
 }
 
+# To keep the user logged in after password change
+LOGOUT_ON_PASSWORD_CHANGE = False
+
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
