@@ -5,6 +5,7 @@ import {EventDashboardComponent} from './event-dashboard/event-dashboard.compone
 import {HomeBookingDashComponent} from './home-booking-dash/home-booking-dash.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
+import {UserProfileComponent} from './user-profile/user-profile.component';
 
 const homeRoutes: Routes = [
   {
@@ -13,8 +14,7 @@ const homeRoutes: Routes = [
     children: [
       { path: '', component: EventDashboardComponent },
       { path: 'bookings', component: HomeBookingDashComponent },
-      { path: 'auth/login', component: LoginComponent },
-      { path: 'auth/register', component: RegisterComponent },
+      { path: 'user/profile', component: UserProfileComponent },
     ]
   },
 ];

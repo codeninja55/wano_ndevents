@@ -16,6 +16,8 @@ import {RegisterComponent} from './register/register.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {TokenInterceptor} from '../services/token.interceptor';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import {UserService} from '../services/user.service';
 
 @NgModule({
   imports: [
@@ -36,13 +38,15 @@ import {TokenInterceptor} from '../services/token.interceptor';
     BookingEditDialogComponent,
     LoginComponent,
     RegisterComponent,
+    UserProfileComponent,
   ],
   exports: [],
-  providers: [ DisplayCompService,
+  providers: [ DisplayCompService, UserService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }]
+    }],
+  entryComponents: [LoginComponent, RegisterComponent]
 })
 export class HomeModule { }

@@ -1,0 +1,117 @@
+<div class="row no-gutters">
+  <div class="col mt-2 mb-4">
+
+    <div class="mt-2 offset-2 col-8 text-center" style="color: #4d4d4d!important;">
+      <span class="mat-headline">User Profile</span>
+    </div>
+    <mat-divider class="mt-2 red" style="background-color: #4d4d4d"></mat-divider>
+
+    <div class="row no-gutters">
+      <div class="col-lg-7 offset-lg-1 col-md-9 offset-md-1 mt-4">
+        <mat-card>
+          <form class="w-100 p-0 m-0" [formGroup]="userFormGroup">
+            <div class="row mt-2 p-0">
+              <div class="col">
+                <h3 class="mat-subheading-2 my-1 font-weight-bold">Details</h3>
+              </div>
+            </div>
+
+            <div class="row mt-1 p-0">
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <mat-form-field class="w-100">
+                  <input type="text" matInput placeholder="Username" required [readonly]="!editable"
+                         formControlName="username">
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <mat-form-field class="w-100">
+                  <input type="email" matInput placeholder="Email" required [readonly]="!editable"
+                         formControlName="email">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row mt-1 p-0">
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <mat-form-field class="w-100">
+                  <input type="text" matInput placeholder="First Name" required [readonly]="!editable"
+                         formControlName="first_name">
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <mat-form-field class="w-100">
+                  <input type="text" matInput placeholder="Last Name" required [readonly]="!editable"
+                         formControlName="last_name">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <!-- PASSWORD -->
+            <form [hidden]="!editable" [formControl]="passwordFormGroup">
+
+              <div class="row mt-2 p-0" [hidden]="!editable">
+                <div class="col">
+                  <h3 class="mat-subheading-2 my-1 font-weight-bold">Change Password</h3>
+                </div>
+              </div>
+
+              <div class="row mt-2 p-0" [hidden]="!editable">
+                <div class="col">
+                  <mat-form-field class="w-100">
+                    <input type="password" matInput placeholder="Old Password" [readonly]="!editable"
+                           formControlName="old_password">
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row mt-1 p-0" [hidden]="!editable">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                  <mat-form-field class="w-100">
+                    <input type="password" matInput placeholder="New Password" [readonly]="!editable"
+                           formControlName="new_password">
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                  <mat-form-field class="w-100">
+                    <input type="password" matInput placeholder="Confirm New Password" [readonly]="!editable"
+                           formControlName="new_password2">
+                  </mat-form-field>
+                </div>
+              </div>
+            </form>
+
+            <!-- BUTTONS -->
+            <div class="row mt-4 justify-content-start">
+              <div class="col">
+                <button type="submit" *ngIf="!editable; else editBlock" mat-raised-button class="mat-button mr-1" (click)="onSubmit()"
+                        color="primary">
+                  <mat-icon>save</mat-icon>&nbsp;Save
+                </button>
+                <ng-template #editBlock>
+                  <button mat-raised-button class="mat-raised-button mr-1" color="primary" (click)="toggleEdit()">
+                    <mat-icon>edit</mat-icon>&nbsp;Edit
+                  </button>
+                </ng-template>
+                <button mat-raised-button class="mat-raised-button mx-1" color="primary" *ngIf="!editable" (click)="toggleEdit()">
+                  <mat-icon>cancel</mat-icon>&nbsp;Cancel
+                </button>
+              </div>
+            </div>
+
+          </form>
+        </mat-card>
+      </div>
+
+      <div class="mt-4 ml-2 col-lg-3 col-md-2">
+        <mat-card>
+          <div class="row mt-2 p-0">
+            <div class="col">
+              <h3 class="mat-subheading-2 my-1 font-weight-bold">Account Activities</h3>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+
+  </div>
+</div>

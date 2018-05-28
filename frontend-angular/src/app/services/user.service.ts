@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/internal/Observable';
 import {tap} from 'rxjs/operators';
 import {User} from '../model/user';
 import {AuthService} from './auth.service';
+import {IUserJSON} from '../model/IUserJSON';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -13,7 +14,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserService {
-  current_user: User = null;
+  current_user: User;
 
   constructor(private _http: HttpClient,
               private _authService: AuthService) { }
@@ -42,6 +43,13 @@ export class UserService {
 
   getUser(pk: number): Observable<any> {
     const url = 'http://127.0.0.1:8000/api/user/' + pk + '/';
-    return this._http.get(url, httpOptions);
+    return this._http.get<IUserJSON>(url, httpOptions).pipe(
+      tap(data => {this.current_user = JSON.parse(JSON.stringify(data), User.reviver); })
+    );
+  }
+
+  changePassword(data: any): Observable<any> {
+    const url = 'http://127.0.0.1:8000/api/auth/password/change/';
+    return this._http.post(url, data, httpOptions);
   }
 }

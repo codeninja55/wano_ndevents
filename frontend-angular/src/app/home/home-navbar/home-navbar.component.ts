@@ -17,11 +17,9 @@ export class HomeNavbarComponent {
   constructor(private _router: Router,
               private _displayService: DisplayCompService,
               private _dialog: MatDialog,
-              private _userService: UserService,
+              public userService: UserService,
               public authService: AuthService) { }
 
-  // toggleSidenav() { this.navToggle.emit(true); }
-  showEventsTab() { this._displayService.toggleEventsTab(true); }
   goToAdmin(): void { this._router.navigate(['/admin']); }
 
   loginDialog() {
@@ -37,7 +35,7 @@ export class HomeNavbarComponent {
   }
 
   logout() {
-    this._userService.removeUser();
+    this.userService.removeUser();
     this.authService.logout();
   }
 }

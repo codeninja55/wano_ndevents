@@ -54,7 +54,8 @@
         </span>
       </button>
 
-      <button *ngIf="authService.isLoggedIn" mat-button class="mat-button mr-1 nav-menu" title="User">
+      <button *ngIf="authService.isLoggedIn" mat-button class="mat-button mr-1 nav-menu" title="User"
+              routerLink="user/profile">
         <span class="mat-button-wrapper">
           <mat-icon class="">account_circle</mat-icon>
           <!--<i class="fal fa-user-circle fa-2x"></i>-->
