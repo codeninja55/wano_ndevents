@@ -19,10 +19,10 @@ const adminRoutes: Routes = [
       {
         path: 'event/:id',
         component: EventDetailComponent,
-        // outlet: 'event-detail'
       },
       {
         path: 'new',
+        canActivateChild: [AuthGuard],
         children: [
           { path: '', pathMatch: 'full', redirectTo: 'event'},
           { path: 'event', component: EventFormComponent}

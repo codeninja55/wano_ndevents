@@ -13,11 +13,13 @@
         <span class="mat-title align-middle pl-1 m-auto">UOW NDEvents</span>
       </button>
 
-      <button mat-button class="mat-button nav-menu" title="event menu nav option" routerLink="/home">
+      <button mat-button class="mat-button nav-menu" title="event menu nav option"
+              routerLink="/home" [routerLinkActive]="true">
         &nbsp;<mat-icon class="">event</mat-icon>&nbsp;Events
       </button>
 
-      <button mat-button class="mat-button nav-menu" title="bookings menu nav option" routerLink="/home/bookings">
+      <button mat-button class="mat-button nav-menu" title="bookings menu nav option"
+              routerLink="/home/bookings" [routerLinkActive]="true" [hidden]="!authService.isLoggedIn">
         &nbsp;<mat-icon class="">payment</mat-icon>&nbsp;Bookings
       </button>
     </div>

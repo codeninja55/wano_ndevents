@@ -6,6 +6,7 @@ import {HomeBookingDashComponent} from './home-booking-dash/home-booking-dash.co
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {UserProfileComponent} from './user-profile/user-profile.component';
+import {AuthGuard} from '../services/auth-guard.service';
 
 const homeRoutes: Routes = [
   {
@@ -13,8 +14,8 @@ const homeRoutes: Routes = [
     component: HomeComponent,
     children: [
       { path: '', component: EventDashboardComponent },
-      { path: 'bookings', component: HomeBookingDashComponent },
-      { path: 'user/profile', component: UserProfileComponent },
+      { path: 'bookings', component: HomeBookingDashComponent, canActivate: [AuthGuard] },
+      { path: 'user/profile', component: UserProfileComponent, canActivate: [AuthGuard] },
     ]
   },
 ];
