@@ -1,7 +1,7 @@
 export interface IUserJSON {
   username: string;
   email: string;
-  id?: number;
+  pk?: number;
   password?: string;
   password2?: string;
   first_name?: string;

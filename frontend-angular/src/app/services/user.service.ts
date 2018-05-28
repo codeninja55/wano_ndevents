@@ -67,6 +67,12 @@ export class UserService {
     );
   }
 
+  putUser(pk: number, data: any): Observable<any> {
+    const url = 'http://127.0.0.1:8000/api/user/' + pk + '/update/';
+    const body = JSON.parse(JSON.stringify(data), User.reviver);
+    return this._http.put(url, body, httpOptions);
+  }
+
   changePassword(data: any): Observable<any> {
     const url = 'http://127.0.0.1:8000/api/auth/password/change/';
     return this._http.post(url, data, httpOptions);

@@ -3,7 +3,7 @@ import {IUserJSON} from './IUserJSON';
 export class User {
   username: string;
   email: string;
-  id?: number;
+  pk?: number;
   password?: string;
   password2?: string;
   first_name?: string;
@@ -11,7 +11,7 @@ export class User {
   is_staff?: boolean;
 
   constructor(iUser: IUserJSON) {
-    this.id = iUser.id;
+    this.pk = iUser.pk;
     this.username = iUser.username;
     this.email = iUser.email;
     this.first_name = iUser.first_name;

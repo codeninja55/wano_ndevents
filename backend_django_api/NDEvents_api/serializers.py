@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from rest_framework import serializers
-from django.contrib.auth.hashers import make_password
 
 from .models import Event, Booking
 
@@ -14,16 +13,18 @@ class ExistingUserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('username', 'email', 'first_name', 'last_name')
         read_only_fields = ('first_name', 'last_name',)
-        extra_kwargs = {
-            'username': {
-                'validators': [UnicodeUsernameValidator()],
-            }
-        }
+        extra_kwargs = {'username': {'validators': [UnicodeUsernameValidator()]}}
+
+
+class UpdateUserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'first_name', 'last_name')
+        extra_kwargs = {'username': {'validators': [UnicodeUsernameValidator()]}}
 
 
 class UserSerializer(serializers.ModelSerializer):
-    password2 = serializers.CharField(write_only=True)
-    password = serializers.CharField(write_only=True)
 
     class Meta:
         model = User
@@ -38,11 +39,12 @@ class UserSerializer(serializers.ModelSerializer):
             'password2',
         )
         read_only_fields = ('pk', )
-        write_only_fields = ('password', 'password2')
         extra_kwargs = {
-            'username': {
-                'validators': [UnicodeUsernameValidator()],
-            },
+            'username': {'validators': [UnicodeUsernameValidator()]},
+            'password': {'write_only': True},
+            'password2': {'write_only': True},
+            'pk': {'read_only': True},
+            'is_staff': {'read_only': True},
         }
 
     def create(self, validated_data):
