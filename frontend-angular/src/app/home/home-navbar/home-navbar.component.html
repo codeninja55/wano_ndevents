@@ -14,12 +14,12 @@
       </button>
 
       <button mat-button class="mat-button nav-menu" title="event menu nav option"
-              routerLink="/home" [routerLinkActive]="true">
+              routerLink="/home" routerLinkActive="active">
         &nbsp;<mat-icon class="">event</mat-icon>&nbsp;Events
       </button>
 
       <button mat-button class="mat-button nav-menu" title="bookings menu nav option"
-              routerLink="/home/bookings" [routerLinkActive]="true" [hidden]="!authService.isLoggedIn">
+              routerLink="/home/bookings" routerLinkActive="active" [hidden]="!authService.isLoggedIn">
         &nbsp;<mat-icon class="">payment</mat-icon>&nbsp;Bookings
       </button>
     </div>
@@ -57,7 +57,7 @@
       </button>
 
       <button *ngIf="authService.isLoggedIn" mat-button class="mat-button mr-1 nav-menu" title="User"
-              routerLink="user/profile" routerLinkActive="true">
+              routerLink="user/profile" routerLinkActive="active">
         <span class="mat-button-wrapper">
           <mat-icon class="">account_circle</mat-icon>
           <!--<i class="fal fa-user-circle fa-2x"></i>-->
