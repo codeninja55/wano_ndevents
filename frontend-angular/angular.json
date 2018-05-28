@@ -21,6 +21,7 @@
               "src/favicon.ico"
             ],
             "styles": [
+              "src/assets/css/app-theme.scss",
               "src/styles.css"
             ],
             "scripts": []

@@ -16,7 +16,7 @@ $config: mat-typography-config();
 $app-primary: mat-palette($mat-red);
 $app-accent:  mat-palette($mat-blue-grey, A200, A100, A400);
 // The warn palette is optional (defaults to red).
-$app-warn:    mat-palette($mat-amber);
+$app-warn:    mat-palette($mat-green);
 
 // Create the theme object (a Sass map containing all of the palettes).
 $app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
@@ -25,3 +25,8 @@ $app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($app-theme);
+
+// Export theme colors
+$primary: mat-color($app-primary);
+$accent: mat-color($app-accent);
+$warn: mat-color($app-warn);
