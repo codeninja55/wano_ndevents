@@ -100,7 +100,7 @@ class BookingsSpecificListAPIView(ListAPIView):
         the event as determined by the event_id portion of the URL.
         """
         event_id = self.kwargs['event_id']
-        return Booking.objects.filter(event_id=event_id)
+        return Booking.objects.filter(event_id__exact=event_id)
 
 
 class BookingUserAPIView(ListAPIView):
@@ -115,7 +115,7 @@ class BookingUserAPIView(ListAPIView):
         :return: Array of Booking objects.
         """
         pk = self.kwargs['pk']
-        return Booking.objects.filter(pk=pk)
+        return Booking.objects.filter(user_id__exact=pk)
 
 
 class BookingCreateAPIView(CreateAPIView):
