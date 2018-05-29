@@ -18,6 +18,8 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {TokenInterceptor} from '../services/token.interceptor';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import {UserService} from '../services/user.service';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material';
+import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
 
 @NgModule({
   imports: [
@@ -46,7 +48,11 @@ import {UserService} from '../services/user.service';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }],
+    },
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+    {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
+    {provide: MAT_DATE_LOCALE, useValue: 'en-au'},
+  ],
   entryComponents: [LoginComponent, RegisterComponent]
 })
 export class HomeModule { }
