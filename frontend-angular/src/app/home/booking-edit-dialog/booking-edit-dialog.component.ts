@@ -32,7 +32,7 @@ export class BookingEditDialogComponent implements OnInit {
 
   createForm(): void {
     this.bookingFormGroup = this._formBuilder.group({
-      event_id: [this.booking.event_id, Validators.required],
+      event_id: [this.booking.event.event_id, Validators.required],
       first_name: UserService.getCurrentUser().first_name,
       last_name: UserService.getCurrentUser().last_name,
       email: UserService.getCurrentUser().last_name,

@@ -47,9 +47,6 @@ export class EventBookingDialogComponent implements OnInit {
       'quantity': this.bookingFormGroup.controls['quantity'].value,
       'promotional_code': this.bookingFormGroup.controls['promotional_code'].value,
     };
-    this._bookingService.postBooking(payload).subscribe(
-      () => console.log(),
-      (err) => console.error(err)
-    );
+    this._bookingService.postBooking(payload).subscribe();
   }
 }

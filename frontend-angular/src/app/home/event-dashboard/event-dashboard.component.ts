@@ -43,6 +43,6 @@ export class EventDashboardComponent implements OnInit {
   openLoginDialog() {
     this._dialog.open(LoginComponent, {
       width: '45%',
-    })
+    });
   }
 }
