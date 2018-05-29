@@ -73,5 +73,5 @@ class Booking(models.Model):
             self.payment = 0
 
         # Check if bookings has exceeded the available bookings before saving booking
-        if not self.event.create_bookings(self.quantity):
+        if self.event.create_bookings(self.quantity):
             super().save(*args, **kwargs)
