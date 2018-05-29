@@ -158,3 +158,42 @@ class EventSerializer(serializers.ModelSerializer):
         instance.is_launched = validated_data['is_launched']
         instance.save()
         return instance
+
+
+class EventBookingSerializer(serializers.ModelSerializer):
+    date_start = serializers.DateTimeField(format='%Y-%m-%d %H:%M')
+    date_end = serializers.DateTimeField(format='%Y-%m-%d %H:%M')
+    date_created = serializers.DateTimeField(format='%Y-%m-%d %H:%M', read_only=True)
+    last_updated = serializers.DateTimeField(format='%Y-%m-%d %H:%M', read_only=True)
+
+    class Meta:
+        model = Event
+        fields = ('event_id',
+                  'title',
+                  'description',
+                  'price',
+                  'venue',
+                  'date_start',
+                  'date_end',
+                  'launch_date',
+                  'is_launched',
+                  'last_updated',
+                  'date_created')
+
+
+class BookingUserSerializer(serializers.ModelSerializer):
+    user = ExistingUserSerializer()
+    event = EventBookingSerializer()
+
+    class Meta:
+        model = Booking
+        read_only_fields = ('booking_id', 'payment', 'date_created')
+        fields = (
+            'booking_id',
+            'event',
+            'user',
+            'quantity',
+            'payment',
+            'promotional_code',
+            'date_created'
+        )

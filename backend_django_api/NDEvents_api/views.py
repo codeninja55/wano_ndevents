@@ -3,7 +3,7 @@ from rest_framework.generics import (
     CreateAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView, UpdateAPIView, RetrieveDestroyAPIView)
 
 from .models import Event, Booking
-from .serializers import EventSerializer, BookingSerializer, UserSerializer, UpdateUserSerializer
+from .serializers import EventSerializer, BookingSerializer, UserSerializer, UpdateUserSerializer, BookingUserSerializer
 
 
 class UserDetailAPIView(RetrieveDestroyAPIView):
@@ -101,6 +101,21 @@ class BookingsSpecificListAPIView(ListAPIView):
         """
         event_id = self.kwargs['event_id']
         return Booking.objects.filter(event_id=event_id)
+
+
+class BookingUserAPIView(ListAPIView):
+    """
+    This Booking API endpoint will allow a list retrieval specific to the User that is signed in.
+    """
+    serializer_class = BookingUserSerializer
+
+    def get_queryset(self):
+        """
+        This view should return a list of all bookings for the user as determined by the pk.
+        :return: Array of Booking objects.
+        """
+        pk = self.kwargs['pk']
+        return Booking.objects.filter(pk=pk)
 
 
 class BookingCreateAPIView(CreateAPIView):

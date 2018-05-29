@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^auth/register/$', views.UserCreateAPIView.as_view()),
     url(r'^user/(?P<pk>[0-9]+)/$', views.UserDetailAPIView.as_view()),
     url(r'^user/(?P<pk>[0-9]+)/update/$', views.UserUpdateAPIView.as_view()),
+    url(r'^user/(?P<pk>[0-9]+)/bookings/$', views.BookingUserAPIView.as_view()),
     url(r'^event/$', views.EventListAPIView.as_view()),
     url(r'^event/create/$', views.EventCreateAPIView.as_view()),
     url(r'^event/(?P<event_id>[0-9]+)/$', views.EventDetailUpdateDestroyAPIView.as_view(), name='event'),
