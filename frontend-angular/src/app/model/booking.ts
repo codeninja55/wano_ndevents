@@ -5,17 +5,19 @@ import {IUserJSON} from './IUserJSON';
 
 export class Booking {
   booking_id?: number;
-  event_id: number;
+  event: any;
   user: IUserJSON;
   quantity: number;
+  payment: number;
   promotional_code: string;
   date_created?: Date;
 
   constructor(iBooking: IBookingJSON) {
     this.booking_id = iBooking.booking_id;
-    this.event_id = iBooking.event_id;
+    this.event = iBooking.event;
     this.user = iBooking.user;
     this.quantity = iBooking.quantity;
+    this.payment = iBooking.payment;
     this.promotional_code = iBooking.promotional_code;
     this.date_created = moment(iBooking.date_created).toDate();
   }
@@ -33,7 +35,7 @@ export class Booking {
 
     // Return a specific format that is required by the API endpoint
     return {
-      event_id: booking.event_id,
+      event: booking.event,
       quantity: booking.quantity,
       promotional_code: booking.promotional_code,
       user: booking.user
