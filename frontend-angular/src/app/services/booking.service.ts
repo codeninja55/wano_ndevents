@@ -44,6 +44,13 @@ export class BookingService {
     );
   }
 
+  getUserBookings(pk: number): Observable<any> {
+    const url = 'http://127.0.0.1:8000/api/user/' + pk + '/bookings/';
+    return this._http.get(url).pipe(
+      tap(() => console.log('[DEBUG]: Tapped into async booking fetching for user ' + pk))
+    );
+  }
+
   putBookings(id: number, data: any): Observable<any> {
     const url = this._bookingApi + id + '/delete/';
     const body = JSON.stringify(data);
