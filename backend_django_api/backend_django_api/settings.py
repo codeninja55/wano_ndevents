@@ -140,10 +140,20 @@ WSGI_APPLICATION = 'backend_django_api.wsgi.application'
 # ndevents PostgreSQL database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 if sys.platform.startswith("win32"):
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.sqlite3',
+    #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    #     }
+    # }
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'ndevents',
+            'USER': 'wano',
+            'PASSWORD': 'wearenumber1',
+            'HOST': '127.0.0.1',
+            'PORT': '5432',
         }
     }
 elif sys.platform.startswith("linux"):
