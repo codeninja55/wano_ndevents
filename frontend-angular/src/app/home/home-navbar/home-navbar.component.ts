@@ -19,9 +19,7 @@ export class HomeNavbarComponent implements OnInit {
               public userService: UserService,
               public authService: AuthService) { }
 
-  ngOnInit(): void {
-    this.authService.checkLogin();
-  }
+  ngOnInit(): void { this.authService.checkLogin(); }
 
   goToAdmin(): void { this._router.navigate(['/admin']); }
 
