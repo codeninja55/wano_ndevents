@@ -35,8 +35,9 @@ export class AuthService {
   }
 
   checkLogin(): void {
+    const user = JSON.parse(localStorage.getItem('user'));
     this.isLoggedIn = (localStorage.getItem('user') !== null);
-    this.isAdmin = (localStorage.getItem('user') == null) ? false : localStorage.getItem('user')['is_staff'] ;
+    this.isAdmin = (localStorage.getItem('user') == null) ? false : user.is_staff ;
   }
 
   login(data: any) {
