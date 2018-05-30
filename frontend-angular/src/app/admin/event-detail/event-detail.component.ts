@@ -1,7 +1,6 @@
-
 import {switchMap} from 'rxjs/operators';
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
 import {Observable} from 'rxjs';
 import {Location} from '@angular/common';
@@ -27,11 +26,19 @@ export class EventDetailComponent implements OnInit {
 
   constructor(private _eventService: EventService,
               private _route: ActivatedRoute,
+              private _router: Router,
               private _location: Location,
               private _displayService: DisplayCompService,
               private _bookingService: BookingService) { }
 
   ngOnInit() {
+    // this._displayService.emitChange(true);
+    this._displayService.toggleMatFabDisplay(true);
+
+    this.refreshData();
+  }
+
+  refreshData(): void {
     // Old way, not recommended as params might be deprecated
     this._route.params.subscribe( () => {
       const id = +this._route.snapshot.paramMap.get('id');
@@ -40,12 +47,7 @@ export class EventDetailComponent implements OnInit {
     this.event$ = this._route.paramMap.pipe(
       switchMap((params: ParamMap) => this._eventService.getEvent(+params.get('id'))));
 
-    this.event$.subscribe(
-      data => console.log(data)
-    );
-
-    // this._displayService.emitChange(true);
-    this._displayService.toggleMatFabDisplay(true);
+    this.event$.subscribe();
   }
 
   getEvent(id: any): void {
@@ -103,6 +105,8 @@ export class EventDetailComponent implements OnInit {
     },
       err => console.log(err),
     );
+
+    this.refreshData();
   }
 
   launchEvent(): void {
@@ -121,6 +125,8 @@ export class EventDetailComponent implements OnInit {
       },
       err => console.log(err),
     );
+
+    this.refreshData();
   }
 
   deleteEvent(): void {
@@ -129,5 +135,9 @@ export class EventDetailComponent implements OnInit {
       },
       err => console.log(err),
     );
+
+    this._router.navigate(['/admin']);
+
+    this._eventService.getEvents();
   }
 }

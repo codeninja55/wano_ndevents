@@ -9,10 +9,14 @@ import {BookingService} from '../../services/booking.service';
 })
 export class BookingsTabComponent implements OnInit {
   bookings: Booking[];
+  event_id: number;
 
   constructor(private _bookingService: BookingService) {
     _bookingService.eventAnnounced$.subscribe(
-      (event_id) => this.getBookings(event_id),
+      (event_id) => {
+        this.event_id = event_id;
+        this.getBookings(event_id);
+      },
       (err) => console.log(err)
     );
   }
@@ -31,6 +35,8 @@ export class BookingsTabComponent implements OnInit {
     this._bookingService.deleteBooking(id).subscribe(
       () => console.log('[DEBUG]: Delete booking complete')
     );
+
+    this.getBookings(this.event_id);
   }
 
 }

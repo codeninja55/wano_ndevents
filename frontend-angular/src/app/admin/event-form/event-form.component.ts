@@ -34,6 +34,7 @@ export class EventFormComponent implements OnInit {
     this.submitted = true;
     // TODO: Figure out these defaults
     this.model.launch_date = (this.model.is_launched) ? moment().format() : null;
+    this.model.is_launched = (this.form.controls['is_launched'].value !== null);
 
     this.model.organisers_name = {
       'username': this.user.username,
@@ -52,14 +53,16 @@ export class EventFormComponent implements OnInit {
     this._eventService.postEvent(newEventJSON).subscribe(() =>
       console.log(newEventJSON));
 
+    this._eventService.getEvents();
+
     // Navigate back to empty admin page.
     this._router.navigate(['/admin']);
   }
 
-  submitLaunch() {
+  /*submitLaunch() {
     this.model.is_launched = true;
     this.onSubmit();
-  }
+  }*/
 
   onCancel(): void {
     this.form.reset();

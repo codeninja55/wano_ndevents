@@ -5,10 +5,10 @@
     </ng-template>
 
     <mat-nav-list class="mat-nav-list">
-      <mat-list-item *ngFor="let event of events$ | async" class="mt-2 mb-2">
+      <mat-list-item *ngFor="let event of current_events" class="mt-2 mb-2">
         <a matLine aria-disabled="false" routerLink="/admin/event/{{event.event_id}}" routerLinkActive="active">
-          <span class="mat-subheading-2 p-0 m-0">{{event.title}}</span> &nbsp;
-          <br/><span class="mat-subheading-1">{{event.date_start}}</span>
+          <span class="mat-subheading-2 p-0 m-0">{{ event.title }}</span> &nbsp;
+          <br/><span class="mat-subheading-1">{{ event.date_start }}</span>
         </a>
         <button mat-icon-button class="mat-button" routerLink="/admin/event/{{event.event_id}}" routerLinkActive="active">
             <mat-icon class="red-text text-lighten-1">edit</mat-icon>
@@ -27,5 +27,18 @@
     <ng-template mat-tab-label="">
       <i class="fal fa-calendar-alt fa-2x"></i> &nbsp; Past Events
     </ng-template>
+
+    <mat-nav-list class="mat-nav-list">
+      <mat-list-item *ngFor="let p_event of past_events" class="mt-2 mb-2">
+        <a matLine aria-disabled="false" routerLink="/admin/event/{{p_event.event_id}}"
+           routerLinkActive="active">
+          <span class="mat-subheading-2 p-0 m-0">{{ p_event.title }}</span> &nbsp;
+          <br/><span class="mat-subheading-1">{{ p_event.date_start }}</span>
+        </a>
+        <button mat-icon-button class="mat-button" routerLink="/admin/event/{{p_event.event_id}}" routerLinkActive="active">
+          <mat-icon class="red-text text-lighten-1">edit</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-nav-list>
   </mat-tab>
 </mat-tab-group>
