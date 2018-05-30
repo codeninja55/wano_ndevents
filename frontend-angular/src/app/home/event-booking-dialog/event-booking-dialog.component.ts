@@ -4,6 +4,8 @@ import {IEventJSON} from '../../model/iEventJSON';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {BookingService} from '../../services/booking.service';
 import {UserService} from '../../services/user.service';
+import {PositiveNumberValidator} from '../../validate-positive.directive';
+import {ExceedCapacityValidator} from '../../validate-capacity.directive';
 
 @Component({
   selector: 'app-event-booking-dialog',
@@ -31,9 +33,9 @@ export class EventBookingDialogComponent implements OnInit {
       first_name: UserService.getCurrentUser().first_name,
       last_name: UserService.getCurrentUser().last_name,
       email: UserService.getCurrentUser().email,
-      quantity: ['', Validators.required],
+      quantity: '',
       promotional_code: '',
-    });
+    }, {'validator': PositiveNumberValidator.validate('quantity')});
   }
 
   revert() { this.bookingFormGroup.reset(); }

@@ -148,6 +148,8 @@
             <mat-form-field class="w-100" appearance="fill">
               <mat-label>Quantity</mat-label>
               <input type="number" matInput formControlName="quantity" required>
+              <mat-error *ngIf="bookingFormGroup.controls['quantity'].errors">Quantity cannot be negative</mat-error>
+              <!--<mat-error *ngIf="bookingFormGroup.controls['quantity'].errors['exceed_capacity']">Quantity cannot exceed capacity</mat-error>-->
             </mat-form-field>
           </div>
           <div class="col">
