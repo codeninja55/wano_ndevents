@@ -32,7 +32,7 @@ export class EventFormComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    // TODO: Figure out these defaults
+
     this.model.launch_date = (this.model.is_launched) ? moment().format() : null;
     this.model.is_launched = (this.form.controls['is_launched'].value !== null);
 
