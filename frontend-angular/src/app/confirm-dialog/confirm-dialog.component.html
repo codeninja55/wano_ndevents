@@ -7,8 +7,8 @@
     </mat-dialog-content>
 
     <mat-dialog-actions align="start">
-      <button mat-button matDialogClose>Confirm?</button>
-      <button mat-button>No</button>
+      <button mat-button (click)="dialogRef.close(false)">No</button>
+      <button mat-button matDialogClose (click)="dialogRef.close(true)">Confirm?</button>
     </mat-dialog-actions>
   </div>
 </div>

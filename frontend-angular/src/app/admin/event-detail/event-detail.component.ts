@@ -133,23 +133,28 @@ export class EventDetailComponent implements OnInit {
   }
 
   deleteEvent(): void {
-    this._eventService.deleteEvent(this.event.event_id).subscribe(() => {
-        console.log('[DEBUG]: Delete method complete.');
-      },
-      err => console.log(err),
-    );
-
-    const confirmDetails = {
-      'confirm_title': 'Delete Event',
-      'confirm_message': 'Are you sure you would like to delete ' + this.event.title,
-    };
 
     const confirmDialog = this._dialog.open(ConfirmDialogComponent, {
       width: '40%',
-      data: confirmDetails,
+      disableClose: false,
     });
 
-    this._router.navigate(['/admin']);
+    confirmDialog.componentInstance.confirm_title = 'Delete Event';
+    confirmDialog.componentInstance.confirm_message = 'Are you sure you would like to delete ' + this.event.title;
+
+    confirmDialog.afterClosed().subscribe(result => {
+      if (result) {
+        this._eventService.deleteEvent(this.event.event_id).subscribe(() => {
+            console.log('[DEBUG]: Delete method complete.');
+          },
+          err => console.log(err),
+        );
+        this._dialog = null;
+        this._router.navigate(['/admin']);
+      } else {
+        this._router.navigate(['/admin/event', this.event.event_id])
+      }
+    });
 
     this._eventService.getEvents();
   }
