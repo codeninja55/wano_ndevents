@@ -3,48 +3,54 @@
 <form class="w-100 p-0 m-0" [formGroup]="registerFormGroup">
   <div class="row">
     <div class="col">
-      <mat-form-field class="w-100">
-        <input type="text" matInput placeholder="Username" formControlName="username" required>
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Username</mat-label>
+        <input type="text" matInput formControlName="username" name="username" required>
       </mat-form-field>
     </div>
   </div>
 
   <div class="row">
     <div class="col">
-      <mat-form-field class="w-100">
-        <input type="email" matInput placeholder="Email" formControlName="email" required>
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput formControlName="email" name="email" required>
       </mat-form-field>
     </div>
   </div>
 
   <div class="row">
     <div class="col">
-      <mat-form-field class="w-100">
-        <input type="text" matInput placeholder="First Name" formControlName="first_name">
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>First Name</mat-label>
+        <input type="text" matInput formControlName="first_name" name="first_name">
       </mat-form-field>
     </div>
   </div>
 
   <div class="row">
     <div class="col">
-      <mat-form-field class="w-100">
-        <input type="text" matInput placeholder="Last Name" formControlName="last_name">
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Last Name</mat-label>
+        <input type="text" matInput formControlName="last_name">
       </mat-form-field>
     </div>
   </div>
 
   <div class="row">
     <div class="col">
-      <mat-form-field class="w-100">
-        <input type="password" matInput placeholder="Password" formControlName="password" required>
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput formControlName="password" required>
       </mat-form-field>
     </div>
   </div>
 
   <div class="row">
     <div class="col">
-      <mat-form-field class="w-100">
-        <input type="password" matInput placeholder="Confirm Password" id="password2"
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Confirm Password</mat-label>
+        <input type="password" matInput id="password2"
                formControlName="password2" required>
         <mat-error *ngIf="registerFormGroup.controls['password2'].errors">
           Passwords Do Not Match
