@@ -10,6 +10,8 @@ import {Event} from '../../model/event';
 import * as moment from 'moment';
 import {DisplayCompService} from '../../services/display-comp.service';
 import {IEventJSON} from '../../model/iEventJSON';
+import {MatDialog} from '@angular/material';
+import {ConfirmDialogComponent} from '../../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-event-detail',
@@ -29,7 +31,8 @@ export class EventDetailComponent implements OnInit {
               private _router: Router,
               private _location: Location,
               private _displayService: DisplayCompService,
-              private _bookingService: BookingService) { }
+              private _bookingService: BookingService,
+              private _dialog: MatDialog) { }
 
   ngOnInit() {
     // this._displayService.emitChange(true);
@@ -135,6 +138,16 @@ export class EventDetailComponent implements OnInit {
       },
       err => console.log(err),
     );
+
+    const confirmDetails = {
+      'confirm_title': 'Delete Event',
+      'confirm_message': 'Are you sure you would like to delete ' + this.event.title,
+    };
+
+    const confirmDialog = this._dialog.open(ConfirmDialogComponent, {
+      width: '40%',
+      data: confirmDetails,
+    });
 
     this._router.navigate(['/admin']);
 

@@ -40,16 +40,12 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
   ],
   exports: [MatDialogModule, MaterialModule, ],
   providers: [ DisplayCompService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true
-    },
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
     {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
     {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
     {provide: MAT_DATE_LOCALE, useValue: 'en-au'},
   ],
-  entryComponents: [ EventBookingDialogComponent, BookingEditDialogComponent ],
+  entryComponents: [ EventBookingDialogComponent, BookingEditDialogComponent, ConfirmDialogComponent ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
