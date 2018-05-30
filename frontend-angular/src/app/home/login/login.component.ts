@@ -24,6 +24,7 @@ export class LoginComponent {
       this.authService.login(this.data).subscribe(data => {
           if (data) {
             this.authService.isLoggedIn = true;
+            this.authService.isAdmin = data['user']['is_staff'];
             this.authService.setToken(data['token']);
             this._userService.setUser(data['user']['pk']);
           }
