@@ -17,11 +17,13 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {BookingEditDialogComponent} from './home/booking-edit-dialog/booking-edit-dialog.component';
 import {TokenInterceptor} from './services/token.interceptor';
 import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
