@@ -6,6 +6,7 @@ import {EventBookingDialogComponent} from '../event-booking-dialog/event-booking
 import {MatDialog} from '@angular/material';
 import {AuthService} from '../../services/auth.service';
 import {LoginComponent} from '../login/login.component';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-event-dashboard',
@@ -18,10 +19,12 @@ export class EventDashboardComponent implements OnInit {
   constructor(private _eventService: EventService,
               private _renderer2: Renderer2,
               private _dialog: MatDialog,
+              private _userService: UserService,
               public authService: AuthService) { }
 
   ngOnInit() {
     this.events$ = this._eventService.getLaunchedEvents();
+    this.authService.checkLogin();
   }
 
   // Add elevation classes when mouse hover over card
