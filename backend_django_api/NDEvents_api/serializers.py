@@ -119,6 +119,7 @@ class EventSerializer(serializers.ModelSerializer):
     self = serializers.HyperlinkedIdentityField(read_only=True,
                                                 view_name='ndevents:event',
                                                 lookup_field='event_id')
+    is_launched = serializers.BooleanField()
 
     class Meta:
         model = Event

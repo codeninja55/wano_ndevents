@@ -42,6 +42,12 @@ class EventListAPIView(ListCreateAPIView):
     lookup_field = 'event_id'
 
 
+class EventLaunchedAPIView(ListAPIView):
+    serializer_class = EventSerializer
+
+    def get_queryset(self):
+        return Event.objects.filter(is_launched=True)
+
 # class EventDetailAPIView(APIView):
 #     """
 #     This Event API endpoint will return a single event from the event_id
