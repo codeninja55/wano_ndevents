@@ -17,14 +17,16 @@
       <!-- ORGANISER DETAILS -->
       <div class="row mt-1 p-0">
         <div class="col-lg-6 col-md-6 col-sm-12">
-          <mat-form-field class="w-100">
-            <input type="text" matInput placeholder="Organiser (username)" required
+          <mat-form-field class="w-100" appearance="fill">
+            <mat-label>Organiser (username)</mat-label>
+            <input type="text" matInput required
                    [(ngModel)]="user.username" name="organisers_name">
           </mat-form-field>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12">
-          <mat-form-field class="w-100">
-            <input type="email" matInput placeholder="Organiser (email)" required
+          <mat-form-field class="w-100" appearance="fill">
+            <mat-label>Organiser (email)</mat-label>
+            <input type="email" matInput required
                    [(ngModel)]="user.email" name="organisers_email">
           </mat-form-field>
         </div>
@@ -33,14 +35,16 @@
       <!-- EVENT TITLE AND VENUE -->
       <div class="row mt-1 p-0">
         <div class="col-lg-6 col-md-6 col-sm-12">
-          <mat-form-field class="w-100">
-            <input type="text" matInput placeholder="Event Title" required
+          <mat-form-field class="w-100" appearance="fill">
+            <mat-label>Event Title</mat-label>
+            <input type="text" matInput required
                    [(ngModel)]="model.title" name="title">
           </mat-form-field>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12">
-          <mat-form-field class="w-100">
-            <input type="text" matInput placeholder="Location" required [(ngModel)]="model.venue" name="venue">
+          <mat-form-field class="w-100" appearance="fill">
+            <mat-label>Location</mat-label>
+            <input type="text" matInput required [(ngModel)]="model.venue" name="venue">
           </mat-form-field>
         </div>
       </div>
@@ -58,8 +62,9 @@
           <div class="row">
 
             <div class="col-lg-6 pr-lg-1 col-md-6 pr-md-1 col-sm-12">
-              <mat-form-field class="w-100" hintLabel="Format: MM/DD/YYYY">
-                <input matInput [matDatepicker]="dateStartPicker" placeholder="Date" required
+              <mat-form-field class="w-100" hintLabel="Format: MM/DD/YYYY" appearance="fill">
+                <mat-label>Date</mat-label>
+                <input matInput [matDatepicker]="dateStartPicker" required
                        [(ngModel)]="model.date_start" name="date_start">
                 <mat-datepicker-toggle matSuffix [for]="dateStartPicker"></mat-datepicker-toggle>
                 <mat-datepicker #dateStartPicker></mat-datepicker>
@@ -67,8 +72,9 @@
             </div>
 
             <div class="col-lg-6 pl-lg-1 col-md-6 pl-md-1 col-sm-12">
-              <mat-form-field class="w-100" hintLabel="Format (24H): HH:MM">
-                <input type="text" matInput class="w-100" placeholder="Time" required
+              <mat-form-field class="w-100" hintLabel="Format (24H): HH:MM" appearance="fill">
+                <mat-label>Time</mat-label>
+                <input type="text" matInput class="w-100" required
                        [(ngModel)]="model.time_start" name="time_start">
               </mat-form-field>
             </div>
@@ -89,8 +95,9 @@
           <div class="row">
 
             <div class="col-lg-6 pr-lg-1 col-md-6 pr-md-1 col-sm-12">
-              <mat-form-field class="w-100" hintLabel="Format: MM/DD/YYYY">
-                <input matInput [matDatepicker]="dateEndPicker" placeholder="Date" required
+              <mat-form-field class="w-100" hintLabel="Format: MM/DD/YYYY" appearance="fill">
+                <mat-label>Date</mat-label>
+                <input matInput [matDatepicker]="dateEndPicker" required
                        [(ngModel)]="model.date_end" name="date_end">
                 <mat-datepicker-toggle matSuffix [for]="dateEndPicker"></mat-datepicker-toggle>
                 <mat-datepicker #dateEndPicker></mat-datepicker>
@@ -98,8 +105,9 @@
             </div>
 
             <div class="col-lg-6 pl-lg-1 col-md-6 pl-md-1 col-sm-12">
-              <mat-form-field class="w-100" hintLabel="Format (24H): HH:MM">
-                <input type="text" matInput class="w-100" placeholder="Time" required
+              <mat-form-field class="w-100" hintLabel="Format (24H): HH:MM" appearance="fill">
+                <mat-label>Time</mat-label>
+                <input type="text" matInput class="w-100" required
                        [(ngModel)]="model.time_end" name="time_end">
               </mat-form-field>
             </div>
@@ -118,15 +126,17 @@
         <div class="col-md-6 col-sm-12">
           <div class="row no-gutters">
             <div class="col-lg-6 pr-lg-1 col-md-12 pr-md-1 col-sm-12">
-              <mat-form-field class="w-100">
-                <input type="number" matInput class="w-100" placeholder="Max Capacity" required
+              <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Max Capacity</mat-label>
+                <input type="number" matInput class="w-100" required
                        [(ngModel)]="model.capacity_max" name="capacity_max">
               </mat-form-field>
             </div>
 
             <div class="col-lg-6 pl-lg-1 col-md-12 pl-md-1 col-sm-12">
-              <mat-form-field class="w-100">
-                <input type="number" matInput class="w-100" placeholder="Expected Capacity" required
+              <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Exepected Capacity</mat-label>
+                <input type="number" matInput class="w-100" required
                        [(ngModel)]="model.capacity_expected" name="capacity_expected">
               </mat-form-field>
             </div>
@@ -137,8 +147,9 @@
       <!-- DESCRIPTION -->
       <div class="row mt-1 p-0">
         <div class="col">
-          <mat-form-field class="w-100">
-            <textarea matInput class="w-100" placeholder="Description" matTextareaAutosize matAutosizeMinRows="2"
+          <mat-form-field class="w-100" appearance="fill">
+            <mat-label>Description</mat-label>
+            <textarea matInput class="w-100" matTextareaAutosize matAutosizeMinRows="2"
                       matAutosizeMaxRows="10" [(ngModel)]="model.description" name="description">
             </textarea>
           </mat-form-field>
@@ -150,16 +161,18 @@
         <div class="col-md-6 col-sm-12">
           <div class="row no-gutters">
             <div class="col-lg-6 pr-lg-1 col-md-12 pr-md-1 col-sm-12">
-              <mat-form-field class="w-100" hintLabel="Leave empty for free event.">
-                <input type="number" matInput class="w-100" placeholder="Booking Price" required
+              <mat-form-field class="w-100" hintLabel="Leave empty for free event." appearance="fill">
+                <mat-label>Booking Price</mat-label>
+                <input type="number" matInput class="w-100" required
                        [(ngModel)]="model.price" name="price">
                 <span matPrefix>$&nbsp;</span>
               </mat-form-field>
             </div>
 
             <div class="col-lg-6 pl-lg-1 col-md-12 pl-md-1 col-sm-12">
-              <mat-form-field class="w-100" hintLabel="Optional promotional code discount">
-                <input type="text" matInput class="w-100" placeholder="Promotional Code"
+              <mat-form-field class="w-100" hintLabel="Optional promotional code discount" appearance="fill">
+                <mat-label>Promotional Code</mat-label>
+                <input type="text" matInput class="w-100"
                        [(ngModel)]="model.promotional_code" name="promotional_code">
               </mat-form-field>
             </div>
@@ -179,12 +192,12 @@
       <!-- BUTTONS -->
       <div class="row mt-4 justify-content-start">
         <div class="col">
-          <button type="submit" mat-raised-button class="mat-button mr-1" color="primary" [disabled]="model.is_launched">
+          <button type="submit" mat-raised-button class="mat-button mr-1" color="primary">
             <mat-icon>save</mat-icon>&nbsp;Save
           </button>
-          <button type="submit" mat-raised-button class="mat-button mx-1" color="primary">
-            <i class="far fa-rocket"></i>&nbsp;Save & Launch
-          </button>
+          <!--<button type="submit" mat-raised-button class="mat-button mx-1" color="primary">-->
+            <!--<i class="far fa-rocket" (click)="submitLaunch()"></i>&nbsp;Save & Launch-->
+          <!--</button>-->
           <button type="button" mat-raised-button class="mat-button ml-1" color="primary" (click)="onCancel()">
             <mat-icon>cancel</mat-icon>&nbsp;Cancel
           </button>

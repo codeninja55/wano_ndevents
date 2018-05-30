@@ -13,7 +13,7 @@ import {LoginComponent} from '../login/login.component';
   styleUrls: ['./event-dashboard.component.css']
 })
 export class EventDashboardComponent implements OnInit {
-  events$: Observable<Event[]>;
+  events$: Observable<any>;
 
   constructor(private _eventService: EventService,
               private _renderer2: Renderer2,
@@ -21,7 +21,7 @@ export class EventDashboardComponent implements OnInit {
               public authService: AuthService) { }
 
   ngOnInit() {
-    this.events$ = this._eventService.getEvents();
+    this.events$ = this._eventService.getLaunchedEvents();
   }
 
   // Add elevation classes when mouse hover over card

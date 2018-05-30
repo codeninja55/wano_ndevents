@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {EventService} from '../../services/event.service';
+import {Observable} from 'rxjs/internal/Observable';
 
 @Component({
   selector: 'app-events-tab',
@@ -7,18 +8,14 @@ import {EventService} from '../../services/event.service';
   styleUrls: ['./events-tab.component.css']
 })
 export class EventsTabComponent implements OnInit {
-  events: Event[];
+  events$: Observable<any>;
 
   constructor( private _eventService: EventService) { }
 
   ngOnInit() { this.getEvents(); }
 
   getEvents(): void {
-    this._eventService.getEvents().subscribe(
-      data => { this.events = data; },
-      err => console.error(err),
-      () => console.log(this.events)
-    );
+    this.events$ = this._eventService.getEvents();
   }
 
 }

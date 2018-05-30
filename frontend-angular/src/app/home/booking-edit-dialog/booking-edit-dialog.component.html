@@ -1,49 +1,55 @@
 <h2 mat-dialog-title class="red-text text-lighten-1">Edit Booking | {{booking.booking_id}}</h2>
 
-<form [formGroup]="bookingFormGroup" (ngSubmit)="onSubmit()">
+<form [formGroup]="bookingFormGroup">
   <div class="row">
     <div class="col">
-      <mat-form-field class="w-100">
-        <input type="text" matInput placeholder="First name" formControlName="first_name" required>
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>First name</mat-label>
+        <input type="text" matInput formControlName="first_name" required>
       </mat-form-field>
     </div>
     <div class="col">
-      <mat-form-field class="w-100">
-        <input type="text" matInput placeholder="Last name" formControlName="last_name" required>
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Last name</mat-label>
+        <input type="text" matInput formControlName="last_name" required>
       </mat-form-field>
     </div>
     <div class="col">
-      <mat-form-field class="w-100">
-        <input type="email" matInput placeholder="Email" formControlName="email" required>
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput formControlName="email" required>
       </mat-form-field>
     </div>
   </div>
 
   <div class="row">
     <div class="col">
-      <mat-form-field class="w-100">
-        <input type="number" matInput placeholder="Quantity" formControlName="quantity" required>
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Quantity</mat-label>
+        <input type="number" matInput formControlName="quantity" required>
       </mat-form-field>
     </div>
     <div class="col">
       <!-- IF PROMOTIONAL CODE CORRECT, CHANGE PRICE TO ZERO -->
-      <mat-form-field class="w-100">
-        <input type="text" matInput placeholder="Promotional Code"
-               formControlName="promotional_code">
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Promotional Code</mat-label>
+        <input type="text" matInput formControlName="promotional_code">
       </mat-form-field>
     </div>
     <div class="col">
-      <!--<mat-form-field class="w-100">-->
-        <!--<input type="number" matInput placeholder="Price" [readonly]="true"-->
-               <!--[value]="(booking.promotional_code === bookingFormGroup.value.promotional_code ? 0 : event.price)">-->
-        <!--<span matPrefix="" >$ </span>-->
-      <!--</mat-form-field>-->
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Price</mat-label>
+        <input type="number" matInput formControlName="payment" [readonly]="true"
+               [value]="(bookingFormGroup.pristine || booking.promotional_code !== bookingFormGroup.value.promotional_code
+               ? 0 : (booking.event.price * bookingFormGroup.value.quantity))">
+        <span matPrefix="" >$ </span>
+      </mat-form-field>
     </div>
   </div>
 
   <div class="mt-2">
     <button type="submit" mat-raised-button color="primary" [disabled]="!bookingFormGroup.valid"
-            [mat-dialog-close]="true">
+            [mat-dialog-close]="true" (click)="updateBooking()">
       <mat-icon class="mat-18">update</mat-icon>&nbsp;Update
     </button>
     <button type="button" mat-raised-button color="primary">

@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable , of} from 'rxjs';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable, of} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 
 const httpOptions = {
@@ -9,17 +9,23 @@ const httpOptions = {
 
 @Injectable()
 export class EventService {
-  private _eventApi = 'http://127.0.0.1:8000/api/event/';
+  private _eventApi = 'api/event/';
 
   constructor(private _http: HttpClient) {}
 
   // Uses http.get() to load data from a single API endpoint
   getEvents(): Observable<any> {
     /* .pipe() used to tap into the Observable to log messages */
-    return this._http.get(this._eventApi).pipe(
+    /*return this._http.get(this._eventApi).pipe(
       tap(() => console.log('[DEBUG]: Tapped into async event fetching')),
       catchError(this.handleError('getEvents', []))
-    );
+    );*/
+    return this._http.get<any>(this._eventApi);
+  }
+
+  getLaunchedEvents(): Observable<any> {
+    const url = this._eventApi + 'launched/';
+    return this._http.get<any>(url);
   }
 
   // Uses http.get() to retrieve one hero from a single API endpoint

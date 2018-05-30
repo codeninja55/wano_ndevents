@@ -7,6 +7,7 @@ import {IEventJSON} from '../../model/iEventJSON';
 import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import {IUserJSON} from '../../model/IUserJSON';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-event-form',
@@ -24,16 +25,20 @@ export class EventFormComponent implements OnInit {
               private _router: Router) { }
 
   ngOnInit() {
-    this._displayService.emitChange(false);
+    // this._displayService.emitChange(false);
+    this._displayService.toggleMatFabDisplay(false);
+    this.user = UserService.getCurrentUser();
   }
 
   onSubmit() {
     this.submitted = true;
     // TODO: Figure out these defaults
-    this.model.launch_date = null;
-    this.model.is_launched = false;
+    this.model.launch_date = (this.model.is_launched) ? moment().format() : null;
 
-    this.model.organisers_name = this.user;
+    this.model.organisers_name = {
+      'username': this.user.username,
+      'email': this.user.email,
+    };
     // Add the time to the date as when received, the date is set to 0. Using MomentJS chained adding feature
     // https://momentjs.com/docs/#/manipulating/add/
     this.model.date_start = moment(this.model.date_start).add(this.model.time_start.split(':')[0], 'h')
@@ -49,6 +54,11 @@ export class EventFormComponent implements OnInit {
 
     // Navigate back to empty admin page.
     this._router.navigate(['/admin']);
+  }
+
+  submitLaunch() {
+    this.model.is_launched = true;
+    this.onSubmit();
   }
 
   onCancel(): void {

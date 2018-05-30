@@ -44,7 +44,8 @@ export class EventDetailComponent implements OnInit {
       data => console.log(data)
     );
 
-    this._displayService.emitChange(true);
+    // this._displayService.emitChange(true);
+    this._displayService.toggleMatFabDisplay(true);
   }
 
   getEvent(id: any): void {
@@ -96,11 +97,28 @@ export class EventDetailComponent implements OnInit {
       .add(this.event_model.time_end.split(':')[1], 'm').format('YYYY-MM-DD HH:MM');
 
     const editedEvent = Event.toJSON(new Event(this.event_model));
-    console.log(editedEvent);
 
     this._eventService.putEvent(this.event.event_id, editedEvent).subscribe(() => {
       console.log('[DEBUG]: Put method complete');
     },
+      err => console.log(err),
+    );
+  }
+
+  launchEvent(): void {
+    this.event_model.is_launched = true;
+    this.event_model.launch_date = moment().format();
+
+    this.event_model.date_start = moment(this.event_model.date_start).add(this.event_model.time_start.split(':')[0], 'h')
+      .add(this.event_model.time_start.split(':')[1], 'm').format('YYYY-MM-DD HH:MM');
+    this.event_model.date_end = moment(this.event_model.date_end).add(this.event_model.time_end.split(':')[0], 'h')
+      .add(this.event_model.time_end.split(':')[1], 'm').format('YYYY-MM-DD HH:MM');
+
+    const launched_event = Event.toJSON(new Event(this.event_model));
+
+    this._eventService.putEvent(this.event.event_id, launched_event).subscribe(() => {
+        console.log('[DEBUG]: Event launch complete');
+      },
       err => console.log(err),
     );
   }

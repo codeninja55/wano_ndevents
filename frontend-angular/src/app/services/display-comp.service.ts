@@ -7,7 +7,7 @@ export class DisplayCompService {
   private _emitChangeSource = new Subject<boolean>();
   private _emitBookingsTabChangeSource = new Subject<boolean>();
   private _emitEventsTabChangeSource = new Subject<boolean>();
-
+  public matFabDisplay = true;
 
   // Observable streams
   changeEmitted$ = this._emitChangeSource.asObservable();
@@ -25,5 +25,9 @@ export class DisplayCompService {
 
   toggleEventsTab(change: boolean) {
     this._emitEventsTabChangeSource.next(change);
+  }
+
+  toggleMatFabDisplay(show: boolean): void {
+    this.matFabDisplay = show;
   }
 }

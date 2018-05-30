@@ -192,7 +192,8 @@
               <mat-icon>edit</mat-icon>&nbsp;Edit
             </button>
           </ng-template>
-          <button type="submit" mat-raised-button class="mat-raised-button mx-1" color="primary" [disabled]="event.is_launched">
+          <button mat-raised-button class="mat-raised-button mx-1" color="primary"
+                  [disabled]="event.is_launched" (click)="launchEvent()">
             <i class="far fa-rocket"></i>&nbsp;Launch
           </button>
           <button mat-raised-button class="mat-raised-button mx-1" color="primary" (click)="deleteEvent()">

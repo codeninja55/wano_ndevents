@@ -1,15 +1,22 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {DisplayCompService} from '../../services/display-comp.service';
 
 @Component({
-  selector: 'admin-dashboard',
+  selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
   styleUrls: ['./admin-dashboard.component.css']
 })
-export class AdminDashboardComponent {
+export class AdminDashboardComponent implements OnInit {
   cards = [
-    { title: 'Card 1', cols: 2, rows: 1 },
-    { title: 'Card 2', cols: 1, rows: 1 },
-    { title: 'Card 3', cols: 1, rows: 2 },
-    { title: 'Card 4', cols: 1, rows: 1 }
+    { title: 'Current Events', cols: 2, rows: 1 },
+    { title: 'Latest Bookings', cols: 1, rows: 1 },
+    { title: 'Activity', cols: 1, rows: 2 },
+    { title: 'Latest Events', cols: 1, rows: 1 }
   ];
+
+  constructor(private _displayService: DisplayCompService) { }
+
+  ngOnInit() {
+    this._displayService.toggleMatFabDisplay(true);
+  }
 }

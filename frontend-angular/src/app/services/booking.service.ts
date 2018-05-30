@@ -1,7 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
-import {tap} from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -9,7 +8,7 @@ const httpOptions = {
 
 @Injectable()
 export class BookingService {
-  private _bookingApi = 'http://127.0.0.1:8000/api/booking/';
+  private _bookingApi = 'api/booking/';
 
   constructor(private _http: HttpClient) { }
 
@@ -25,45 +24,33 @@ export class BookingService {
   postBooking(data: any): Observable<any> {
     const url = this._bookingApi + 'create/';
     const body = JSON.stringify(data);
-    return this._http.post(url, body, httpOptions).pipe(
-      tap(() => console.log('[DEBUG]: Sending post data for Booking'))
-    );
+    return this._http.post(url, body, httpOptions);
   }
 
   getAllBookings(): Observable<any> {
-    const url = 'http://127.0.0.1:8000/api/bookings/';
-    return this._http.get(url).pipe(
-      tap(() => console.log('[DEBUG]: Tapped into async all booking fetching'))
-    );
+    const url = 'api/bookings/';
+    return this._http.get(url);
   }
 
   getBookings(event_id: number): Observable<any> {
-    const url = 'http://127.0.0.1:8000/api/event/' + event_id + '/bookings/';
-    return this._http.get(url).pipe(
-      tap(() => console.log('[DEBUG]: Tapped into async booking fetching'))
-    );
+    const url = 'api/event/' + event_id + '/bookings/';
+    return this._http.get(url);
   }
 
   getUserBookings(pk: number): Observable<any> {
-    const url = 'http://127.0.0.1:8000/api/user/' + pk + '/bookings/';
-    return this._http.get(url).pipe(
-      tap(() => console.log('[DEBUG]: Tapped into async booking fetching for user ' + pk))
-    );
+    const url = 'api/user/' + pk + '/bookings/';
+    return this._http.get(url);
   }
 
   putBookings(id: number, data: any): Observable<any> {
-    const url = this._bookingApi + id + '/delete/';
+    const url = this._bookingApi + id + '/update/';
     const body = JSON.stringify(data);
-    return this._http.put(url, body, httpOptions).pipe(
-      tap(() => console.log('[DEBUG]: Tapped into put booking'))
-    );
+    return this._http.put(url, body, httpOptions);
   }
 
   deleteBooking(booking_id: number): Observable<any> {
     const url = this._bookingApi + booking_id + '/delete/';
-    return this._http.delete(url).pipe(
-      tap(() => console.log('[DEBUG]: Deleting booking'))
-    );
+    return this._http.delete(url);
   }
 
 }

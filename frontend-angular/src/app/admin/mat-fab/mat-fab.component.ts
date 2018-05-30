@@ -1,5 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
 import {DisplayCompService} from '../../services/display-comp.service';
 
 @Component({

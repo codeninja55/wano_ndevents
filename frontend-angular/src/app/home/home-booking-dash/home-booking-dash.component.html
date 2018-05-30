@@ -6,9 +6,9 @@
     </div>
     <mat-divider class="mt-2 red" style="background-color: #4d4d4d"></mat-divider>
 
-    <div fxLayout="col" fxLayoutGap="10px" fxLayoutAlign="space-evenly center" class="flex-wrap m-4">
+    <div fxLayout="col" fxLayoutGap="0px" fxLayoutAlign="space-evenly center" class="flex-wrap m-4">
       <mat-card class="mt-3" *ngFor="let booking of bookings$ | async"
-                fxFlex="50" (mouseenter)="mouseenter($event)" (mouseleave)="mouseleave($event)">
+                fxFlex="60" (mouseenter)="mouseenter($event)" (mouseleave)="mouseleave($event)">
         <mat-card-header class="mat-card-header">
           <mat-card-title>
             {{booking.event.title | uppercase}} | {{booking.date_created | date: 'short'}}
