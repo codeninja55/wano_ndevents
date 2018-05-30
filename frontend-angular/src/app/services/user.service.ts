@@ -38,7 +38,7 @@ export class UserService {
     }, (err) => { console.error(err); },
       () => {
         this._authService.isAdmin = (this.current_user.is_staff);
-        return true
+        return true;
       });
     return false;
   }

@@ -16,7 +16,7 @@
         <mat-label>Email</mat-label>
         <input type="email" matInput formControlName="email" name="email" required>
       </mat-form-field>
-      <mat-error *ngIf="registerFormGroup.controls['email'].errors">
+      <mat-error *ngIf="registerFormGroup.controls['email'].dirty && registerFormGroup.controls['email'].errors">
         Not a valid email
       </mat-error>
     </div>

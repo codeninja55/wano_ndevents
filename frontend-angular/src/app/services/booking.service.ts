@@ -8,7 +8,7 @@ const httpOptions = {
 
 @Injectable()
 export class BookingService {
-  private _bookingApi = 'api/booking/';
+  private _bookingApi = 'http://localhost:8000/api/booking/';
 
   constructor(private _http: HttpClient) { }
 
@@ -28,17 +28,17 @@ export class BookingService {
   }
 
   getAllBookings(): Observable<any> {
-    const url = 'api/bookings/';
+    const url = 'http://localhost:8000/api/bookings/';
     return this._http.get(url);
   }
 
   getBookings(event_id: number): Observable<any> {
-    const url = 'api/event/' + event_id + '/bookings/';
+    const url = 'http://localhost:8000/api/event/' + event_id + '/bookings/';
     return this._http.get(url);
   }
 
   getUserBookings(pk: number): Observable<any> {
-    const url = 'api/user/' + pk + '/bookings/';
+    const url = 'http://localhost:8000/api/user/' + pk + '/bookings/';
     return this._http.get(url);
   }
 

@@ -9,7 +9,7 @@ const httpOptions = {
 
 @Injectable()
 export class EventService {
-  private _eventApi = 'api/event/';
+  private _eventApi = 'http://localhost:8000/api/event/';
 
   constructor(private _http: HttpClient) {}
 
