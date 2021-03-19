@@ -6,7 +6,7 @@ conda==4.4.10
 cryptography==2.1.4
 Django==2.0.4
 django-cors-headers==2.2.0
-djangorestframework==3.8.2
+djangorestframework==3.11.2
 idna==2.6
 psycopg2==2.7.4
 pycosat==0.6.3
