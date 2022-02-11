@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/icons": "^1.0.0-beta.42",
-    "ajv": "^6.4.0",
+    "ajv": "^6.12.3",
     "classnames": "latest",
     "material-ui": "^1.0.0-beta.42",
     "prop-types": "latest",
